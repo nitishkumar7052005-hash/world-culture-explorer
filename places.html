@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Places - World Culture Explorer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            background: white;
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #ff7a00;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 35px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #ff7a00;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #666;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+        /* ================= CONTROLS ================= */
+
+        .controls {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 18px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: #ff7a00;
+        }
+
+        /* ================= MAP SEARCH ================= */
+
+        .map-search-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .map-search-button {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: #ff7a00;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .map-search-button:hover {
+            background: #e56700;
+            transform: translateY(-2px);
+        }
+
+        #mapSearchStatus {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .category-btn {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            background: #f1f3f6;
+            color: #333;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .category-btn:hover {
+            background: #ffe4cc;
+        }
+
+        .category-btn.active {
+            background: #ff7a00;
+            color: white;
+        }
+
+        /* ================= TRAVEL GUIDE ================= */
+
+        .travel-guide-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .travel-guide-button {
+            display: inline-block;
+            padding: 12px 22px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        .travel-guide-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+        }
+
+        #tripPlannerButton {
+            background: #16a34a;
+        }
+
+        #tripPlannerButton:hover {
+            background: #15803d;
+        }
+
+        /* ================= MAP ================= */
+
+        .map-section {
+            background: white;
+            margin-bottom: 35px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .map-section h2 {
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .map-description {
+            color: #777;
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+
+        #placesMap {
+            width: 100%;
+            height: 500px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .map-popup {
+            min-width: 190px;
+        }
+
+        .map-popup h3 {
+            margin: 0 0 8px;
+            font-size: 17px;
+        }
+
+        .map-popup p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 13px;
+        }
+
+        .map-popup a {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .map-popup a:hover {
+            background: #e56700;
+        }
+
+        /* ================= SEARCH MARKER ================= */
+
+        .map-search-marker-popup {
+            min-width: 210px;
+        }
+
+        .map-search-marker-popup h3 {
+            margin: 0 0 8px;
+            font-size: 17px;
+        }
+
+        .map-search-marker-popup p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .map-search-marker-popup a {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .map-search-marker-popup a:hover {
+            background: #e56700;
+        }
+
+        /* ================= GRID ================= */
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+        }
+
+        /* ================= PLACE CARD ================= */
+
+        .place-card {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .place-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ================= IMAGE ================= */
+
+        .image-box {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .place-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: 0.4s;
+        }
+
+        .place-card:hover .place-image {
+            transform: scale(1.05);
+        }
+
+        /* ================= CONTENT ================= */
+
+        .place-content {
+            padding: 25px;
+        }
+
+        .place-content h2 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: #fff1e5;
+            color: #e56700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 18px;
+        }
+
+        /* ================= INFO ================= */
+
+        .info-box {
+            background: #f8f9fb;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .info-box p {
+            margin: 7px 0;
+            font-size: 15px;
+        }
+
+        /* ================= HIGHLIGHTS ================= */
+
+        .highlights {
+            background: #f8f9fb;
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 18px;
+        }
+
+        .highlights h3 {
+            margin-bottom: 10px;
+        }
+
+        .highlights ul {
+            padding-left: 20px;
+        }
+
+        .highlights li {
+            margin-bottom: 7px;
+            line-height: 1.4;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .map-button,
+        .details-button {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .map-button {
+            background: #ff7a00;
+            margin-right: 8px;
+        }
+
+        .map-button:hover {
+            background: #e56700;
+            transform: translateY(-2px);
+        }
+
+        .details-button {
+            background: #333;
+        }
+
+        .details-button:hover {
+            background: #111;
+            transform: translateY(-2px);
+        }
+
+        /* ================= SOURCE ================= */
+
+        .source {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty-message {
+            background: white;
+            padding: 50px 25px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            grid-column: 1 / -1;
+        }
+
+        .empty-message h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty-message p {
+            color: #777;
+        }
+
+        /* ================= BACK BUTTON ================= */
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            background: #f0f0f0;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero {
+                padding-top: 40px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-box {
+                height: 240px;
+            }
+
+            .map-section {
+                padding: 18px;
+            }
+
+            #placesMap {
+                height: 380px;
+            }
+
+            .map-button,
+            .details-button {
+                margin-top: 8px;
+            }
+
+            .map-search-button {
+                width: 100%;
+            }
+
+            #mapSearchStatus {
+                width: 100%;
+            }
+
+            .travel-guide-box {
+                flex-direction: column;
+            }
+
+            .travel-guide-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="country.html">
+                Countries
+            </a>
+
+            <a href="country.html">
+                Culture
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h1>
+            📍 Places of
+            <span id="countryName">India</span>
+        </h1>
+
+        <p>
+            Explore famous landmarks, historical places and cultural destinations.
+        </p>
+
+    </section>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <div class="container">
+
+        <!-- ================= CONTROLS ================= -->
+
+        <div class="controls">
+
+            <input
+                type="text"
+                id="searchInput"
+                class="search-box"
+                placeholder="🔎 Search places or any location..."
+            >
+
+            <div class="map-search-row">
+
+                <button
+                    type="button"
+                    id="mapSearchButton"
+                    class="map-search-button"
+                >
+                    📍 Search Location on Map
+                </button>
+
+                <span id="mapSearchStatus"></span>
+
+            </div>
+
+            <div
+                class="category-buttons"
+                id="categoryButtons"
+            ></div>
+
+        </div>
+
+        <!-- ================= TRAVEL GUIDE ================= -->
+
+        <div class="travel-guide-box">
+
+            <a
+                id="travelGuideButton"
+                href="travel-guide.html?country=India"
+                class="travel-guide-button"
+            >
+                ✈️ Travel Guide
+            </a>
+
+            <a
+                id="tripPlannerButton"
+                href="trip-planner.html?country=India"
+                class="travel-guide-button"
+            >
+                🧳 Trip Planner
+            </a>
+
+        </div>
+
+        <!-- ================= MAP ================= -->
+
+        <section class="map-section">
+
+            <h2>
+                🗺️ Explore Places on Map
+            </h2>
+
+            <p class="map-description">
+                Existing cultural places are shown on the map.
+                Search any real-world place to find its location.
+            </p>
+
+            <div id="placesMap"></div>
+
+        </section>
+
+        <!-- ================= PLACES ================= -->
+
+        <div
+            class="places-grid"
+            id="placesContainer"
+        ></div>
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 World Culture Explorer
+        </p>
+
+        <p>
+            Explore cultures from around the world 🌍
+        </p>
+
+        <a
+            href="javascript:history.back()"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+
+    </footer>
+
+    <!-- ================= LEAFLET ================= -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <script>
+
+        /* ================= COUNTRY ================= */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        let country =
+            urlParams.get("country") ||
+            urlParams.get("name") ||
+            "India";
+
+        function normalizeCountry(name) {
+
+            const cleaned =
+                String(name || "")
+                    .trim()
+                    .toLowerCase();
+
+            const countries = {
+                "india": "India",
+                "japan": "Japan",
+                "france": "France",
+                "italy": "Italy"
+            };
+
+            return (
+                countries[cleaned] ||
+                String(name || "").trim()
+            );
+        }
+
+        country =
+            normalizeCountry(country);
+
+        document.getElementById(
+            "countryName"
+        ).textContent = country;
+
+
+        /* ================= TRAVEL GUIDE ================= */
+
+        const travelGuideButton =
+            document.getElementById(
+                "travelGuideButton"
+            );
+
+        if (travelGuideButton) {
+
+            travelGuideButton.href =
+                "travel-guide.html?country=" +
+                encodeURIComponent(country);
+
+        }
+
+
+        /* ================= TRIP PLANNER ================= */
+
+        const tripPlannerButton =
+            document.getElementById(
+                "tripPlannerButton"
+            );
+
+        if (tripPlannerButton) {
+
+            tripPlannerButton.href =
+                "trip-planner.html?country=" +
+                encodeURIComponent(country);
+
+        }
+
+
+        /* ================= DATA ================= */
+
+        let allPlaces = {};
+
+        let selectedCategory = "All";
+
+
+        /* ================= MAP ================= */
+
+        let placesMap = null;
+
+        let mapMarkers = [];
+
+        let searchedLocationMarker = null;
+
+
+        const defaultCenter = [
+            20.5937,
+            78.9629
+        ];
+
+
+        /* ================= INITIALIZE MAP ================= */
+
+        function initializePlacesMap() {
+
+            const mapElement =
+                document.getElementById(
+                    "placesMap"
+                );
+
+            if (!mapElement) {
+
+                console.error(
+                    "Map element not found."
+                );
+
+                return;
+            }
+
+            if (typeof L === "undefined") {
+
+                console.error(
+                    "Leaflet library not loaded."
+                );
+
+                return;
+            }
+
+            placesMap =
+                L.map(
+                    "placesMap"
+                ).setView(
+                    defaultCenter,
+                    5
+                );
+
+
+            L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+                {
+                    maxZoom: 19,
+                    attribution: "Tiles &copy; Esri"
+                }
+            ).addTo(
+                placesMap
+            );
+
+        }
+
+
+        /* ================= CLEAR EXISTING MARKERS ================= */
+
+        function clearMapMarkers() {
+
+            if (!placesMap) {
+                return;
+            }
+
+            mapMarkers.forEach(
+                function(marker) {
+
+                    placesMap.removeLayer(
+                        marker
+                    );
+
+                }
+            );
+
+            mapMarkers = [];
+
+        }
+
+
+        /* ================= UPDATE PLACE MARKERS ================= */
+
+        function updateMapMarkers(
+            filteredPlaces
+        ) {
+
+            if (!placesMap) {
+                return;
+            }
+
+            clearMapMarkers();
+
+
+            if (
+                !filteredPlaces ||
+                filteredPlaces.length === 0
+            ) {
+
+                placesMap.setView(
+                    defaultCenter,
+                    5
+                );
+
+                return;
+            }
+
+
+            const bounds = [];
+
+
+            filteredPlaces.forEach(
+                function([placeName, data]) {
+
+                    const latitude =
+                        Number(
+                            data.latitude
+                        );
+
+                    const longitude =
+                        Number(
+                            data.longitude
+                        );
+
+
+                    if (
+                        !Number.isFinite(latitude) ||
+                        !Number.isFinite(longitude)
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const marker =
+                        L.marker([
+                            latitude,
+                            longitude
+                        ]).addTo(
+                            placesMap
+                        );
+
+
+                    const googleMapsUrl =
+                        createMapLink(
+                            data.location ||
+                            placeName
+                        );
+
+
+                    const popupHTML = `
+
+                        <div class="map-popup">
+
+                            <h3>
+                                ${escapeHTML(
+                                    placeName
+                                )}
+                            </h3>
+
+                            <p>
+                                📍
+                                ${escapeHTML(
+                                    data.location ||
+                                    "Location unavailable"
+                                )}
+                            </p>
+
+                            <p>
+                                🏷️
+                                ${escapeHTML(
+                                    data.category ||
+                                    "Place"
+                                )}
+                            </p>
+
+                            <a
+                                href="${googleMapsUrl}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                🗺️ View on Google Maps
+                            </a>
+
+                        </div>
+
+                    `;
+
+
+                    marker.bindPopup(
+                        popupHTML
+                    );
+
+
+                    mapMarkers.push(
+                        marker
+                    );
+
+
+                    bounds.push([
+                        latitude,
+                        longitude
+                    ]);
+
+                }
+            );
+
+
+            if (bounds.length === 1) {
+
+                placesMap.setView(
+                    bounds[0],
+                    12
+                );
+
+            }
+            else if (bounds.length > 1) {
+
+                placesMap.fitBounds(
+                    bounds,
+                    {
+                        padding: [
+                            40,
+                            40
+                        ]
+                    }
+                );
+
+            }
+            else {
+
+                placesMap.setView(
+                    defaultCenter,
+                    5
+                );
+
+            }
+
+        }
+
+
+        /* ================= SEARCH ANY LOCATION ================= */
+
+        async function searchAnyMapLocation() {
+
+            const input =
+                document.getElementById(
+                    "searchInput"
+                );
+
+            const status =
+                document.getElementById(
+                    "mapSearchStatus"
+                );
+
+
+            const searchQuery =
+                input.value.trim();
+
+
+            if (!searchQuery) {
+
+                status.textContent =
+                    "Please enter a place name.";
+
+                return;
+            }
+
+
+            if (!placesMap) {
+
+                status.textContent =
+                    "Map is still loading...";
+
+                return;
+            }
+
+
+            status.textContent =
+                "🔎 Searching location...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=" +
+                        encodeURIComponent(
+                            searchQuery
+                        )
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Location search failed."
+                    );
+
+                }
+
+
+                const results =
+                    await response.json();
+
+
+                if (
+                    !results ||
+                    results.length === 0
+                ) {
+
+                    status.textContent =
+                        "❌ Location not found.";
+
+                    return;
+                }
+
+
+                const result =
+                    results[0];
+
+
+                const latitude =
+                    Number(
+                        result.lat
+                    );
+
+                const longitude =
+                    Number(
+                        result.lon
+                    );
+
+
+                if (
+                    !Number.isFinite(latitude) ||
+                    !Number.isFinite(longitude)
+                ) {
+
+                    status.textContent =
+                        "❌ Invalid location.";
+
+                    return;
+                }
+
+
+                /* Remove previous searched marker */
+
+                if (
+                    searchedLocationMarker
+                ) {
+
+                    placesMap.removeLayer(
+                        searchedLocationMarker
+                    );
+
+                }
+
+
+                /* Create searched location marker */
+
+                searchedLocationMarker =
+                    L.marker([
+                        latitude,
+                        longitude
+                    ]).addTo(
+                        placesMap
+                    );
+
+
+                const displayName =
+                    result.display_name ||
+                    searchQuery;
+
+
+                const popupHTML = `
+
+                    <div class="map-search-marker-popup">
+
+                        <h3>
+                            📍
+                            ${escapeHTML(
+                                searchQuery
+                            )}
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(
+                                displayName
+                            )}
+                        </p>
+
+                        <p>
+                            🌐 Coordinates:
+                            ${latitude.toFixed(5)},
+                            ${longitude.toFixed(5)}
+                        </p>
+
+                        <a
+                            href="${createMapLink(
+                                displayName
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            🗺️ View on Google Maps
+                        </a>
+
+                    </div>
+
+                `;
+
+
+                searchedLocationMarker
+                    .bindPopup(
+                        popupHTML
+                    )
+                    .openPopup();
+
+
+                /* Zoom to searched location */
+
+                placesMap.setView(
+                    [
+                        latitude,
+                        longitude
+                    ],
+                    15
+                );
+
+
+                status.textContent =
+                    "📍 Location found.";
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Map location search error:",
+                    error
+                );
+
+                status.textContent =
+                    "❌ Unable to search location.";
+
+            }
+
+        }
+
+
+        /* ================= LOAD DATA ================= */
+
+        async function loadPlacesData() {
+
+            const container =
+                document.getElementById(
+                    "placesContainer"
+                );
+
+
+            try {
+
+                container.innerHTML = `
+
+                    <div class="empty-message">
+
+                        <h2>
+                            🌍 Loading Places...
+                        </h2>
+
+                        <p>
+                            Please wait...
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                const response =
+                    await fetch(
+                        "./data/places.json"
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Could not load places.json"
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                allPlaces =
+                    data[country] || {};
+
+
+                createCategoryButtons();
+
+                displayPlaces();
+
+            }
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                container.innerHTML = `
+
+                    <div class="empty-message">
+
+                        <h2>
+                            ❌ Unable to Load Places
+                        </h2>
+
+                        <p>
+                            Please check that
+                            <strong>
+                                data/places.json
+                            </strong>
+                            exists and try again.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* ================= CATEGORY BUTTONS ================= */
+
+        function createCategoryButtons() {
+
+            const buttonContainer =
+                document.getElementById(
+                    "categoryButtons"
+                );
+
+
+            buttonContainer.innerHTML =
+                "";
+
+
+            const categories = [
+                "All"
+            ];
+
+
+            Object.values(
+                allPlaces
+            ).forEach(
+                function(place) {
+
+                    if (
+                        place.category &&
+                        !categories.includes(
+                            place.category
+                        )
+                    ) {
+
+                        categories.push(
+                            place.category
+                        );
+
+                    }
+
+                }
+            );
+
+
+            categories.forEach(
+                function(category) {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.className =
+                        "category-btn";
+
+
+                    if (
+                        category ===
+                        selectedCategory
+                    ) {
+
+                        button.classList.add(
+                            "active"
+                        );
+
+                    }
+
+
+                    button.textContent =
+                        category;
+
+
+                    button.addEventListener(
+                        "click",
+                        function() {
+
+                            selectedCategory =
+                                category;
+
+
+                            document
+                                .querySelectorAll(
+                                    ".category-btn"
+                                )
+                                .forEach(
+                                    function(btn) {
+
+                                        btn.classList
+                                            .remove(
+                                                "active"
+                                            );
+
+                                    }
+                                );
+
+
+                            button.classList.add(
+                                "active"
+                            );
+
+
+                            displayPlaces();
+
+                        }
+                    );
+
+
+                    buttonContainer.appendChild(
+                        button
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ================= NORMAL SEARCH ================= */
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                function() {
+
+                    displayPlaces();
+
+                }
+            );
+
+
+        /* ================= MAP SEARCH BUTTON ================= */
+
+        document
+            .getElementById(
+                "mapSearchButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    searchAnyMapLocation();
+
+                }
+            );
+
+
+        /* ================= ENTER TO SEARCH MAP ================= */
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key ===
+                        "Enter"
+                    ) {
+
+                        event.preventDefault();
+
+                        searchAnyMapLocation();
+
+                    }
+
+                }
+            );
+
+
+        /* ================= DISPLAY PLACES ================= */
+
+        function displayPlaces() {
+
+            const container =
+                document.getElementById(
+                    "placesContainer"
+                );
+
+
+            container.innerHTML =
+                "";
+
+
+            const searchText =
+                document
+                    .getElementById(
+                        "searchInput"
+                    )
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const filteredPlaces =
+                Object.entries(
+                    allPlaces
+                ).filter(
+                    function([name, data]) {
+
+                        const description =
+                            String(
+                                data.description ||
+                                ""
+                            ).toLowerCase();
+
+
+                        const location =
+                            String(
+                                data.location ||
+                                ""
+                            ).toLowerCase();
+
+
+                        const placeName =
+                            String(
+                                name ||
+                                ""
+                            ).toLowerCase();
+
+
+                        const matchesSearch =
+                            placeName.includes(
+                                searchText
+                            ) ||
+                            description.includes(
+                                searchText
+                            ) ||
+                            location.includes(
+                                searchText
+                            );
+
+
+                        const matchesCategory =
+                            selectedCategory ===
+                            "All" ||
+                            data.category ===
+                            selectedCategory;
+
+
+                        return (
+                            matchesSearch &&
+                            matchesCategory
+                        );
+
+                    }
+                );
+
+
+            updateMapMarkers(
+                filteredPlaces
+            );
+
+
+            if (
+                filteredPlaces.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="empty-message">
+
+                        <h2>
+                            🔍 No Places Found
+                        </h2>
+
+                        <p>
+                            Try another search
+                            or click
+                            <strong>
+                                Search Location on Map
+                            </strong>
+                            to find any real-world place.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            filteredPlaces.forEach(
+                function([name, data]) {
+
+                    const card =
+                        createPlaceCard(
+                            name,
+                            data
+                        );
+
+
+                    container.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ================= GOOGLE MAP LINK ================= */
+
+        function createMapLink(
+            location
+        ) {
+
+            return (
+                "https://www.google.com/maps/search/?api=1&query=" +
+                encodeURIComponent(
+                    location
+                )
+            );
+
+        }
+
+
+        /* ================= PLACE CARD ================= */
+
+        function createPlaceCard(
+            placeName,
+            data
+        ) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "place-card";
+
+
+            /* ================= IMAGE ================= */
+
+            const imageBox =
+                document.createElement(
+                    "div"
+                );
+
+
+            imageBox.className =
+                "image-box";
+
+
+            const image =
+                document.createElement(
+                    "img"
+                );
+
+
+            image.className =
+                "place-image";
+
+
+            image.src =
+                data.image || "";
+
+
+            image.alt =
+                placeName;
+
+
+            image.loading =
+                "lazy";
+
+
+            image.onerror =
+                function() {
+
+                    this.style.display =
+                        "none";
+
+                };
+
+
+            imageBox.appendChild(
+                image
+            );
+
+
+            /* ================= CONTENT ================= */
+
+            const content =
+                document.createElement(
+                    "div"
+                );
+
+
+            content.className =
+                "place-content";
+
+
+            /* ================= TITLE ================= */
+
+            const title =
+                document.createElement(
+                    "h2"
+                );
+
+
+            title.textContent =
+                placeName;
+
+
+            /* ================= CATEGORY ================= */
+
+            const category =
+                document.createElement(
+                    "span"
+                );
+
+
+            category.className =
+                "category-badge";
+
+
+            category.textContent =
+                data.category ||
+                "Destination";
+
+
+            /* ================= DESCRIPTION ================= */
+
+            const description =
+                document.createElement(
+                    "p"
+                );
+
+
+            description.className =
+                "description";
+
+
+            description.textContent =
+                data.description ||
+                "Explore this cultural destination.";
+
+
+            /* ================= INFO ================= */
+
+            const info =
+                document.createElement(
+                    "div"
+                );
+
+
+            info.className =
+                "info-box";
+
+
+            info.innerHTML = `
+
+                <p>
+
+                    <strong>
+                        📍 Location:
+                    </strong>
+
+                    ${escapeHTML(
+                        data.location ||
+                        "Location unavailable"
+                    )}
+
+                </p>
+
+                <p>
+
+                    <strong>
+                        📅 Best Time:
+                    </strong>
+
+                    ${escapeHTML(
+                        data.bestTime ||
+                        "Check local conditions"
+                    )}
+
+                </p>
+
+            `;
+
+
+            /* ================= HIGHLIGHTS ================= */
+
+            const highlights =
+                document.createElement(
+                    "div"
+                );
+
+
+            highlights.className =
+                "highlights";
+
+
+            const highlightsTitle =
+                document.createElement(
+                    "h3"
+                );
+
+
+            highlightsTitle.textContent =
+                "⭐ Highlights";
+
+
+            const list =
+                document.createElement(
+                    "ul"
+                );
+
+
+            (
+                data.highlights ||
+                []
+            ).forEach(
+                function(item) {
+
+                    const li =
+                        document.createElement(
+                            "li"
+                        );
+
+
+                    li.textContent =
+                        item;
+
+
+                    list.appendChild(
+                        li
+                    );
+
+                }
+            );
+
+
+            highlights.appendChild(
+                highlightsTitle
+            );
+
+
+            highlights.appendChild(
+                list
+            );
+
+
+            /* ================= MAP BUTTON ================= */
+
+            const mapButton =
+                document.createElement(
+                    "a"
+                );
+
+
+            mapButton.className =
+                "map-button";
+
+
+            mapButton.textContent =
+                "🗺️ View on Google Maps";
+
+
+            mapButton.href =
+                createMapLink(
+                    data.location ||
+                    placeName
+                );
+
+
+            mapButton.target =
+                "_blank";
+
+
+            mapButton.rel =
+                "noopener noreferrer";
+
+
+            /* ================= DETAILS BUTTON ================= */
+
+            const detailsButton =
+                document.createElement(
+                    "a"
+                );
+
+
+            detailsButton.className =
+                "details-button";
+
+
+            detailsButton.textContent =
+                "View Details →";
+
+
+            detailsButton.href =
+                "place-details.html?country=" +
+                encodeURIComponent(
+                    country
+                ) +
+                "&place=" +
+                encodeURIComponent(
+                    placeName
+                );
+
+
+            /* ================= SOURCE ================= */
+
+            const source =
+                document.createElement(
+                    "div"
+                );
+
+
+            source.className =
+                "source";
+
+
+            if (
+                data.image &&
+                data.image.startsWith(
+                    "./"
+                )
+            ) {
+
+                source.textContent =
+                    "Photo Source: Local Project Images";
+
+            }
+            else {
+
+                source.textContent =
+                    "Photo Source: Wikimedia Commons";
+
+            }
+
+
+            /* ================= APPEND ================= */
+
+            content.appendChild(
+                title
+            );
+
+            content.appendChild(
+                category
+            );
+
+            content.appendChild(
+                description
+            );
+
+            content.appendChild(
+                info
+            );
+
+            content.appendChild(
+                highlights
+            );
+
+            content.appendChild(
+                mapButton
+            );
+
+            content.appendChild(
+                detailsButton
+            );
+
+            content.appendChild(
+                source
+            );
+
+
+            card.appendChild(
+                imageBox
+            );
+
+            card.appendChild(
+                content
+            );
+
+
+            return card;
+
+        }
+
+
+        /* ================= HTML ESCAPE ================= */
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        /* ================= START ================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                initializePlacesMap();
+
+                loadPlacesData();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

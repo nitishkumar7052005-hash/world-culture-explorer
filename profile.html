@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        My Profile - World Culture Explorer
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            padding: 30px 20px;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            max-width: 1100px;
+            margin: 0 auto 30px;
+
+            background: white;
+
+            padding: 16px 25px;
+
+            border-radius: 15px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+
+        .nav-links a {
+            text-decoration: none;
+
+            color: #555;
+
+            font-weight: bold;
+
+            padding: 9px 14px;
+
+            border-radius: 8px;
+
+            transition: 0.2s;
+        }
+
+
+        .nav-links a:hover {
+            background: #f0f1ff;
+            color: #667eea;
+        }
+
+
+        /* =========================
+           PROFILE CONTAINER
+        ========================= */
+
+        .profile-wrapper {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                330px
+                1fr;
+
+            gap: 25px;
+        }
+
+
+        /* =========================
+           PROFILE CARD
+        ========================= */
+
+        .profile-card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.15);
+
+            height: fit-content;
+        }
+
+
+        /* =========================
+           PROFILE PHOTO
+        ========================= */
+
+        .profile-photo-wrapper {
+            position: relative;
+
+            width: 150px;
+            height: 150px;
+
+            margin:
+                0 auto
+                20px;
+        }
+
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border:
+                5px solid #667eea;
+
+            background: #f0f1ff;
+
+            display: block;
+        }
+
+
+        .photo-placeholder {
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 55px;
+
+            border:
+                5px solid white;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .upload-label {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 9px 15px;
+
+            background: #667eea;
+
+            color: white;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+
+        .upload-label:hover {
+            background: #5568d9;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        #photoInput {
+            display: none;
+        }
+
+
+        .remove-photo {
+            margin-top: 10px;
+
+            border: none;
+
+            background: #ffe9ed;
+
+            color: #b4233c;
+
+            padding: 8px 14px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        .remove-photo:hover {
+            background: #ffd6de;
+        }
+
+
+        /* =========================
+           PROFILE NAME
+        ========================= */
+
+        .profile-card h1 {
+            font-size: 25px;
+
+            color: #333;
+
+            margin-top: 15px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .profile-email {
+            color: #777;
+
+            font-size: 14px;
+
+            word-break: break-word;
+        }
+
+
+        .profile-badge {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            background: #f0f1ff;
+
+            color: #667eea;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           EDIT CARD
+        ========================= */
+
+        .edit-card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .edit-card h2 {
+            color: #333;
+
+            font-size: 28px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .edit-subtitle {
+            color: #777;
+
+            margin-bottom: 30px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #333;
+
+            font-weight: bold;
+        }
+
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            background: #fafafa;
+
+            transition: 0.2s;
+        }
+
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: #667eea;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(102, 126, 234, 0.12);
+        }
+
+
+        .form-input:disabled {
+            background: #f1f1f1;
+
+            color: #777;
+
+            cursor: not-allowed;
+        }
+
+
+        .form-textarea {
+            min-height: 150px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+        }
+
+
+        .bio-count {
+            text-align: right;
+
+            margin-top: 5px;
+
+            color: #999;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           SAVE BUTTON
+        ========================= */
+
+        .save-btn {
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            box-shadow:
+                0 8px 20px
+                rgba(102, 126, 234, 0.25);
+        }
+
+
+        .save-btn:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(102, 126, 234, 0.35);
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .message {
+            display: none;
+
+            padding: 12px 15px;
+
+            margin-bottom: 20px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        .message.success {
+            display: block;
+
+            background: #e8f8ee;
+
+            color: #19703b;
+
+            border:
+                1px solid #bce8ca;
+        }
+
+
+        .message.error {
+            display: block;
+
+            background: #ffe9ed;
+
+            color: #b4233c;
+
+            border:
+                1px solid #ffc8d1;
+        }
+
+
+        /* =========================
+           ACCOUNT INFORMATION
+        ========================= */
+
+        .account-info {
+            margin-top: 30px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid #eee;
+        }
+
+
+        .account-info h3 {
+            color: #333;
+
+            margin-bottom: 15px;
+        }
+
+
+        .info-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 10px 0;
+
+            border-bottom:
+                1px solid #f1f1f1;
+
+            font-size: 14px;
+        }
+
+
+        .info-label {
+            color: #777;
+        }
+
+
+        .info-value {
+            color: #333;
+
+            font-weight: bold;
+
+            text-align: right;
+        }
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        .logout-btn {
+            display: block;
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 12px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #e74c3c;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .logout-btn:hover {
+            background: #c0392b;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================
+           BACK HOME
+        ========================= */
+
+        .back-home {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #667eea;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .profile-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+
+            .navbar {
+                flex-direction: column;
+
+                gap: 15px;
+
+                text-align: center;
+            }
+
+
+            .nav-links {
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            body {
+                padding: 15px 10px;
+            }
+
+
+            .edit-card,
+            .profile-card {
+                padding: 25px 20px;
+            }
+
+
+            .edit-card h2 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                🏠 Home
+            </a>
+
+            <a href="profile.html">
+                👤 My Profile
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         PROFILE
+    ========================= -->
+
+    <main class="profile-wrapper">
+
+
+        <!-- =========================
+             LEFT PROFILE CARD
+        ========================= -->
+
+        <section class="profile-card">
+
+
+            <div class="profile-photo-wrapper">
+
+                <div
+                    id="photoPlaceholder"
+                    class="photo-placeholder">
+
+                    👤
+
+                </div>
+
+
+                <img
+                    id="profilePhoto"
+                    class="profile-photo"
+                    src=""
+                    alt="Profile Photo"
+                    style="display: none;">
+
+            </div>
+
+
+            <!-- PHOTO INPUT -->
+
+            <label
+                for="photoInput"
+                class="upload-label">
+
+                📷 Change Profile Photo
+
+            </label>
+
+
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/*">
+
+
+            <br>
+
+
+            <button
+                type="button"
+                id="removePhoto"
+                class="remove-photo">
+
+                🗑️ Remove Photo
+
+            </button>
+
+
+            <!-- USER INFO -->
+
+            <h1 id="profileName">
+                World Explorer
+            </h1>
+
+
+            <p
+                id="profileEmail"
+                class="profile-email">
+                -
+            </p>
+
+
+            <span class="profile-badge">
+                🌍 Culture Explorer
+            </span>
+
+
+            <!-- ACCOUNT INFO -->
+
+            <div class="account-info">
+
+                <h3>
+                    Account Information
+                </h3>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Name
+                    </span>
+
+                    <span
+                        id="infoName"
+                        class="info-value">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Email
+                    </span>
+
+                    <span
+                        id="infoEmail"
+                        class="info-value">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Member Since
+                    </span>
+
+                    <span
+                        id="memberSince"
+                        class="info-value">
+                        -
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOGOUT -->
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-btn">
+
+                🚪 Logout
+
+            </button>
+
+
+            <a
+                href="index.html"
+                class="back-home">
+
+                ← Back to Home
+
+            </a>
+
+        </section>
+
+
+        <!-- =========================
+             EDIT PROFILE
+        ========================= -->
+
+        <section class="edit-card">
+
+
+            <h2>
+                ✏️ Edit Profile
+            </h2>
+
+
+            <p class="edit-subtitle">
+                Update your profile information and
+                tell other explorers a little about yourself.
+            </p>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="message"
+                class="message">
+            </div>
+
+
+            <!-- PROFILE FORM -->
+
+            <form id="profileForm">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        👤 Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        class="form-input"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        📧 Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-input"
+                        disabled>
+
+                </div>
+
+
+                <!-- BIO -->
+
+                <div class="form-group">
+
+                    <label for="bio">
+                        📝 Bio
+                    </label>
+
+                    <textarea
+                        id="bio"
+                        class="form-textarea"
+                        maxlength="300"
+                        placeholder="Tell us something about yourself..."></textarea>
+
+
+                    <div
+                        id="bioCount"
+                        class="bio-count">
+
+                        0 / 300
+
+                    </div>
+
+                </div>
+
+
+                <!-- SAVE -->
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    💾 Save Profile
+
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           ELEMENTS
+        ========================= */
+
+        const profileForm =
+            document.getElementById("profileForm");
+
+        const nameInput =
+            document.getElementById("name");
+
+        const emailInput =
+            document.getElementById("email");
+
+        const bioInput =
+            document.getElementById("bio");
+
+        const bioCount =
+            document.getElementById("bioCount");
+
+        const profileName =
+            document.getElementById("profileName");
+
+        const profileEmail =
+            document.getElementById("profileEmail");
+
+        const infoName =
+            document.getElementById("infoName");
+
+        const infoEmail =
+            document.getElementById("infoEmail");
+
+        const memberSince =
+            document.getElementById("memberSince");
+
+        const message =
+            document.getElementById("message");
+
+        const photoInput =
+            document.getElementById("photoInput");
+
+        const profilePhoto =
+            document.getElementById("profilePhoto");
+
+        const photoPlaceholder =
+            document.getElementById("photoPlaceholder");
+
+        const removePhoto =
+            document.getElementById("removePhoto");
+
+        const logoutButton =
+            document.getElementById("logoutButton");
+
+
+        /* =========================
+           CHECK LOGIN
+        ========================= */
+
+        const loggedIn =
+            localStorage.getItem(
+                "wce_logged_in"
+            );
+
+
+        if (loggedIn !== "true") {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        /* =========================
+           CURRENT USER
+        ========================= */
+
+        const currentEmail =
+            localStorage.getItem(
+                "wce_user_email"
+            );
+
+
+        let users = [];
+
+
+        try {
+
+            users =
+                JSON.parse(
+                    localStorage.getItem(
+                        "wce_users"
+                    ) || "[]"
+                );
+
+        } catch (error) {
+
+            users = [];
+
+        }
+
+
+        /* =========================
+           FIND USER
+        ========================= */
+
+        let currentUser =
+            users.find(
+                function (user) {
+
+                    return (
+                        user.email &&
+                        user.email
+                            .trim()
+                            .toLowerCase() ===
+                        (currentEmail || "")
+                            .trim()
+                            .toLowerCase()
+                    );
+
+                }
+            );
+
+
+        /* =========================
+           LOAD PROFILE
+        ========================= */
+
+        function loadProfile() {
+
+            const savedName =
+                localStorage.getItem(
+                    "wce_user_name"
+                ) || "World Explorer";
+
+
+            const savedEmail =
+                localStorage.getItem(
+                    "wce_user_email"
+                ) || "";
+
+
+            nameInput.value =
+                savedName;
+
+            emailInput.value =
+                savedEmail;
+
+
+            profileName.textContent =
+                savedName;
+
+            profileEmail.textContent =
+                savedEmail || "No email";
+
+            infoName.textContent =
+                savedName;
+
+            infoEmail.textContent =
+                savedEmail || "-";
+
+
+            /* MEMBER DATE */
+
+            if (
+                currentUser &&
+                currentUser.createdAt
+            ) {
+
+                const date =
+                    new Date(
+                        currentUser.createdAt
+                    );
+
+                memberSince.textContent =
+                    date.toLocaleDateString();
+
+            } else {
+
+                memberSince.textContent =
+                    "Recently";
+
+            }
+
+
+            /* BIO */
+
+            const savedBio =
+                localStorage.getItem(
+                    "wce_user_bio"
+                ) || "";
+
+            bioInput.value =
+                savedBio;
+
+            updateBioCount();
+
+
+            /* PROFILE PHOTO */
+
+            const savedPhoto =
+                localStorage.getItem(
+                    "wce_profile_photo"
+                );
+
+
+            if (savedPhoto) {
+
+                profilePhoto.src =
+                    savedPhoto;
+
+                profilePhoto.style.display =
+                    "block";
+
+                photoPlaceholder.style.display =
+                    "none";
+
+            } else {
+
+                profilePhoto.style.display =
+                    "none";
+
+                photoPlaceholder.style.display =
+                    "flex";
+
+            }
+
+        }
+
+
+        /* =========================
+           BIO COUNTER
+        ========================= */
+
+        function updateBioCount() {
+
+            bioCount.textContent =
+                bioInput.value.length +
+                " / 300";
+
+        }
+
+
+        bioInput.addEventListener(
+            "input",
+            updateBioCount
+        );
+
+
+        /* =========================
+           SHOW MESSAGE
+        ========================= */
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            message.textContent =
+                text;
+
+            message.className =
+                "message " + type;
+
+        }
+
+
+        /* =========================
+           SAVE PROFILE
+        ========================= */
+
+        profileForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const newName =
+                    nameInput.value.trim();
+
+
+                const newBio =
+                    bioInput.value.trim();
+
+
+                if (!newName) {
+
+                    showMessage(
+                        "Please enter your name.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /* SAVE NAME */
+
+                localStorage.setItem(
+                    "wce_user_name",
+                    newName
+                );
+
+
+                /* SAVE BIO */
+
+                localStorage.setItem(
+                    "wce_user_bio",
+                    newBio
+                );
+
+
+                /* UPDATE USER */
+
+                if (currentUser) {
+
+                    currentUser.name =
+                        newName;
+
+
+                    const userIndex =
+                        users.indexOf(
+                            currentUser
+                        );
+
+
+                    if (userIndex !== -1) {
+
+                        users[userIndex] =
+                            currentUser;
+
+                        localStorage.setItem(
+                            "wce_users",
+                            JSON.stringify(users)
+                        );
+
+                    }
+
+                }
+
+
+                /* UPDATE UI */
+
+                profileName.textContent =
+                    newName;
+
+                infoName.textContent =
+                    newName;
+
+
+                showMessage(
+                    "Profile updated successfully! ✅",
+                    "success"
+                );
+
+            }
+        );
+
+
+        /* =========================
+           PROFILE PHOTO
+        ========================= */
+
+        photoInput.addEventListener(
+            "change",
+            function () {
+
+                const file =
+                    photoInput.files[0];
+
+
+                if (!file) {
+                    return;
+                }
+
+
+                if (
+                    !file.type.startsWith(
+                        "image/"
+                    )
+                ) {
+
+                    showMessage(
+                        "Please select an image file.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /* SIZE CHECK */
+
+                if (
+                    file.size >
+                    5 * 1024 * 1024
+                ) {
+
+                    showMessage(
+                        "Please select an image smaller than 5 MB.",
+                        "error"
+                    );
+
+                    photoInput.value = "";
+
+                    return;
+
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (event) {
+
+                        const image =
+                            new Image();
+
+
+                        image.onload =
+                            function () {
+
+                                const canvas =
+                                    document.createElement(
+                                        "canvas"
+                                    );
+
+
+                                const maxSize =
+                                    500;
+
+
+                                let width =
+                                    image.width;
+
+                                let height =
+                                    image.height;
+
+
+                                if (
+                                    width >
+                                    height
+                                ) {
+
+                                    if (
+                                        width >
+                                        maxSize
+                                    ) {
+
+                                        height =
+                                            height *
+                                            maxSize /
+                                            width;
+
+                                        width =
+                                            maxSize;
+
+                                    }
+
+                                } else {
+
+                                    if (
+                                        height >
+                                        maxSize
+                                    ) {
+
+                                        width =
+                                            width *
+                                            maxSize /
+                                            height;
+
+                                        height =
+                                            maxSize;
+
+                                    }
+
+                                }
+
+
+                                canvas.width =
+                                    width;
+
+                                canvas.height =
+                                    height;
+
+
+                                const ctx =
+                                    canvas.getContext(
+                                        "2d"
+                                    );
+
+
+                                ctx.drawImage(
+                                    image,
+                                    0,
+                                    0,
+                                    width,
+                                    height
+                                );
+
+
+                                const compressedImage =
+                                    canvas.toDataURL(
+                                        "image/jpeg",
+                                        0.8
+                                    );
+
+
+                                localStorage.setItem(
+                                    "wce_profile_photo",
+                                    compressedImage
+                                );
+
+
+                                profilePhoto.src =
+                                    compressedImage;
+
+                                profilePhoto.style.display =
+                                    "block";
+
+                                photoPlaceholder.style.display =
+                                    "none";
+
+
+                                showMessage(
+                                    "Profile photo updated successfully! 📷",
+                                    "success"
+                                );
+
+                            };
+
+
+                        image.src =
+                            event.target.result;
+
+                    };
+
+
+                reader.readAsDataURL(file);
+
+            }
+        );
+
+
+        /* =========================
+           REMOVE PHOTO
+        ========================= */
+
+        removePhoto.addEventListener(
+            "click",
+            function () {
+
+                localStorage.removeItem(
+                    "wce_profile_photo"
+                );
+
+
+                profilePhoto.src =
+                    "";
+
+                profilePhoto.style.display =
+                    "none";
+
+                photoPlaceholder.style.display =
+                    "flex";
+
+
+                photoInput.value =
+                    "";
+
+
+                showMessage(
+                    "Profile photo removed.",
+                    "success"
+                );
+
+            }
+        );
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        logoutButton.addEventListener(
+            "click",
+            function () {
+
+                localStorage.removeItem(
+                    "wce_logged_in"
+                );
+
+                localStorage.removeItem(
+                    "wce_user_name"
+                );
+
+                localStorage.removeItem(
+                    "wce_user_email"
+                );
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+
+        /* =========================
+           LOAD
+        ========================= */
+
+        loadProfile();
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Art & Crafts - World Culture Explorer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        nav {
+            background: #fff;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: #222;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #ff7a00;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #ff7a00;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #666;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+        .craft-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+        }
+
+        .craft-card h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #5b4bc4;
+        }
+
+        .main-image-box {
+            width: 100%;
+            height: 430px;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            background: #eee;
+        }
+
+        .main-craft-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .craft-description {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: #f1efff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 18px;
+        }
+
+        .info-box p {
+            margin: 8px 0;
+        }
+
+        .info-box strong {
+            color: #5b4bc4;
+        }
+
+        .location-box {
+            margin-top: 18px;
+            padding: 18px;
+            background: #f8f8f8;
+            border-left: 5px solid #667eea;
+            border-radius: 10px;
+        }
+
+        .map-btn,
+        .details-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 11px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .map-btn {
+            background: #667eea;
+            color: #fff;
+        }
+
+        .map-btn:hover {
+            background: #4f3db8;
+        }
+
+        .details-btn {
+            background: #222;
+            color: #fff;
+            border-radius: 8px;
+        }
+
+        .details-btn:hover {
+            background: #ff7a00;
+            transform: translateY(-2px);
+        }
+
+        .source {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .no-data {
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            font-size: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #222;
+            color: #fff;
+            margin-top: 40px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 20px;
+            background: #fff;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .main-image-box {
+                height: 280px;
+            }
+
+            .craft-card {
+                padding: 20px;
+            }
+
+            .craft-card h2 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="country.html">Countries</a>
+            <a href="country.html">Culture</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>
+            🎨 Art & Crafts of
+            <span id="countryName">India</span>
+        </h1>
+
+        <p>
+            Explore traditional art, crafts and cultural heritage.
+        </p>
+    </section>
+
+    <div class="container" id="craftContainer"></div>
+
+    <footer>
+        <p>🌍 World Culture Explorer</p>
+
+        <p>
+            Discover Art, Crafts & Cultural Heritage
+        </p>
+
+        <a
+            id="artBackButton"
+            href="country.html?country=India"
+            class="back-btn">
+            ← Back to Country
+        </a>
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        let country =
+            params.get("country") ||
+            params.get("name") ||
+            "India";
+
+        function normalizeCountry(name) {
+            const map = {
+                india: "India",
+                japan: "Japan",
+                france: "France"
+            };
+
+            return (
+                map[name.trim().toLowerCase()] ||
+                name
+            );
+        }
+
+        country = normalizeCountry(country);
+
+        document.getElementById("countryName").textContent =
+            country;
+
+        const artBackButton =
+            document.getElementById("artBackButton");
+
+        if (artBackButton) {
+            artBackButton.href =
+                "country.html?country=" +
+                encodeURIComponent(country);
+        }
+
+        const artData = {
+            India: [
+                {
+                    name: "Madhubani Painting",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Madhubani%20art.jpg",
+                    description:
+                        "Madhubani or Mithila painting is a traditional folk art associated with the Mithila region of Bihar. It is known for detailed patterns, nature-inspired themes, animals, flowers and traditional cultural subjects.",
+                    location:
+                        "Mithila region, Bihar, India"
+                },
+
+                {
+                    name: "Warli Art",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Warli%20art.jpg",
+                    description:
+                        "Warli painting is a traditional tribal art form from Maharashtra. It commonly uses simple geometric shapes and depicts everyday life, farming, hunting, dancing and community activities.",
+                    location:
+                        "Maharashtra, India"
+                },
+
+                {
+                    name: "Dhokra Art",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Dhokra%20art.jpg",
+                    description:
+                        "Dhokra is a traditional metal-casting craft known for distinctive handmade figures and decorative objects. The craft uses the lost-wax casting technique.",
+                    location:
+                        "Chhattisgarh, Odisha, West Bengal and other regions of India"
+                },
+
+                {
+                    name: "Phulkari",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Phulkari.jpg",
+                    description:
+                        "Phulkari is a traditional embroidery style from Punjab. The craft is famous for colorful floral patterns embroidered on fabric.",
+                    location:
+                        "Punjab, India"
+                },
+
+                {
+                    name: "Patan Patola",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Patola.jpg",
+                    description:
+                        "Patan Patola is a traditional double-ikat textile tradition known for detailed geometric patterns, bright colors and highly skilled weaving.",
+                    location:
+                        "Patan, Gujarat, India"
+                },
+
+                {
+                    name: "Channapatna Toys",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Channapatna%20toys53.jpg",
+                    description:
+                        "Channapatna toys are traditional wooden toys and dolls made in Channapatna, Karnataka. The craft is known for colorful handcrafted wooden products.",
+                    location:
+                        "Channapatna, Karnataka, India"
+                }
+            ],
+
+            Japan: [
+                {
+                    name: "Origami",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Origami.jpg",
+                    description:
+                        "Origami is the traditional Japanese art of paper folding. Paper is folded into animals, flowers, geometric forms and decorative objects.",
+                    location:
+                        "Japan"
+                },
+
+                {
+                    name: "Kintsugi",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Kintugi.jpg",
+                    description:
+                        "Kintsugi is a Japanese craft technique in which broken ceramic objects are repaired using lacquer and often highlighted with metallic powder such as gold.",
+                    location:
+                        "Japan"
+                },
+
+                {
+                    name: "Japanese Pottery",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20pottery.jpg",
+                    description:
+                        "Japanese pottery includes many regional traditions known for handmade forms, natural textures, glazing techniques and functional as well as artistic designs.",
+                    location:
+                        "Japan"
+                },
+
+                {
+                    name: "Bamboo Crafts",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20bamboo%20basket.jpg",
+                    description:
+                        "Japanese bamboo craftsmanship includes baskets, containers and decorative objects made using carefully prepared bamboo strips.",
+                    location:
+                        "Japan"
+                }
+            ],
+
+            France: [
+                {
+                    name: "French Pottery",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/French%20pottery.jpg",
+                    description:
+                        "French pottery includes regional ceramic traditions with decorated tableware, artistic ceramics and handcrafted pottery.",
+                    location:
+                        "Various regions of France"
+                },
+
+                {
+                    name: "Lace Making",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Alen%C3%A7on%20lace.jpg",
+                    description:
+                        "French lace-making has a long history and includes highly detailed handmade lace traditions. Alençon lace is one of the notable French lace traditions.",
+                    location:
+                        "Alençon, Normandy, France"
+                },
+
+                {
+                    name: "Glass Art",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/French%20glass%20art.jpg",
+                    description:
+                        "French glass craftsmanship includes decorative glass objects, artistic vessels and detailed glasswork created through traditional techniques.",
+                    location:
+                        "Various regions of France"
+                },
+
+                {
+                    name: "Perfume Making",
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Perfume%20making.jpg",
+                    description:
+                        "Perfume making is an important traditional craft associated especially with Grasse. It involves selecting, processing and blending aromatic ingredients.",
+                    location:
+                        "Grasse, Provence-Alpes-Côte d'Azur, France"
+                }
+            ]
+        };
+
+        function mapLink(location) {
+            return (
+                "https://www.google.com/maps/search/?api=1&query=" +
+                encodeURIComponent(location)
+            );
+        }
+
+        function displayArt() {
+            const container =
+                document.getElementById("craftContainer");
+
+            const crafts = artData[country];
+
+            container.innerHTML = "";
+
+            if (!crafts) {
+                container.innerHTML = `
+                    <div class="no-data">
+
+                        <h2>
+                            Art & Crafts data not available
+                        </h2>
+
+                        <p>
+                            Currently Art & Crafts information is available for India, Japan and France.
+                        </p>
+
+                    </div>
+                `;
+
+                return;
+            }
+
+            crafts.forEach((craft, index) => {
+
+                const card =
+                    document.createElement("div");
+
+                card.className = "craft-card";
+
+                card.innerHTML = `
+                    <h2>
+                        ${index + 1}. ${craft.name}
+                    </h2>
+
+                    <div class="main-image-box">
+                        <img
+                            class="main-craft-image"
+                            src="${craft.image}"
+                            alt="${craft.name}"
+                            loading="lazy"
+                            onerror="this.style.display='none';">
+                    </div>
+
+                    <p class="craft-description">
+                        ${craft.description}
+                    </p>
+
+                    <div class="info-box">
+
+                        <p>
+                            <strong>🎨 Craft:</strong>
+                            ${craft.name}
+                        </p>
+
+                        <p>
+                            <strong>🌍 Country:</strong>
+                            ${country}
+                        </p>
+
+                        <p>
+                            <strong>📍 Region:</strong>
+                            ${craft.location}
+                        </p>
+
+                    </div>
+
+                    <div class="location-box">
+
+                        <strong>📍 Location</strong>
+
+                        <p>
+                            ${craft.location}
+                        </p>
+
+                        <a
+                            href="${mapLink(craft.location)}"
+                            target="_blank"
+                            class="map-btn">
+                            🗺️ Open in Google Maps
+                        </a>
+
+                    </div>
+
+                    <div class="source">
+                        📷 Image Source: Wikimedia Commons
+                    </div>
+
+                    <a
+                        href="art-details.html?country=${encodeURIComponent(country)}&art=${encodeURIComponent(craft.name)}"
+                        class="details-btn">
+                        🎨 View Details →
+                    </a>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        displayArt();
+    </script>
+
+</body>
+
+</html>

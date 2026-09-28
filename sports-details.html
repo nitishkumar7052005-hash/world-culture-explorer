@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sports Details | World Culture Explorer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f8fb;
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            height: 70px;
+            background: #fff;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 7%;
+
+            box-shadow: 0 2px 12px #ddd;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: #f0f3ff;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #666;
+        }
+
+        /* =========================
+           MAIN LAYOUT
+        ========================== */
+
+        .layout {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        .main,
+        .side {
+            background: #fff;
+            padding: 25px;
+            border-radius: 18px;
+
+            box-shadow: 0 7px 25px #ddd;
+        }
+
+        /* =========================
+           MAIN IMAGE
+        ========================== */
+
+        .main-img {
+            width: 100%;
+            height: 360px;
+
+            border-radius: 14px;
+            overflow: hidden;
+
+            background: #eee;
+        }
+
+        .main-img img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            display: block;
+        }
+
+        /* =========================
+           LIKE + WISHLIST
+        ========================== */
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+
+            margin-top: 18px;
+        }
+
+        .actions button {
+            padding: 12px 16px;
+
+            border: 0;
+            border-radius: 10px;
+
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .like {
+            background: #ffe8ed;
+        }
+
+        .wish {
+            background: #fff3cf;
+        }
+
+        /* =========================
+           CONTENT
+        ========================== */
+
+        .section {
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* =========================
+           HIGHLIGHTS
+        ========================== */
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .highlights div {
+            padding: 13px;
+            background: #f3f4f7;
+            border-radius: 10px;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================== */
+
+        .side h3 {
+            margin-top: 0;
+        }
+
+        .side a {
+            display: block;
+
+            padding: 10px 0;
+
+            text-decoration: none;
+            color: #333;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .side a:hover {
+            color: #555;
+        }
+
+        /* =========================
+           USER PHOTOS / REVIEWS
+        ========================== */
+
+        .box {
+            margin-top: 25px;
+            padding: 18px;
+
+            background: #f5f6f8;
+            border-radius: 12px;
+        }
+
+        .box input,
+        .box textarea {
+            width: 100%;
+
+            padding: 11px;
+            margin: 6px 0;
+
+            border: 1px solid #ddd;
+            border-radius: 8px;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .box button {
+            padding: 10px 15px;
+
+            background: #222;
+            color: #fff;
+
+            border: 0;
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+        .box button:hover {
+            opacity: 0.85;
+        }
+
+        /* Uploaded Photos */
+
+        #photos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        #photos img {
+            width: 110px;
+            height: 90px;
+
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Reviews */
+
+        .reviews div {
+            background: #fff;
+
+            padding: 12px;
+            border-radius: 8px;
+
+            margin-top: 8px;
+        }
+
+        /* =========================
+           BACK TO SPORTS
+           THIS IS AT THE VERY BOTTOM
+        ========================== */
+
+        .back-sports-box {
+            margin-top: 25px;
+            padding-top: 5px;
+        }
+
+        .back {
+            display: inline-block;
+
+            padding: 12px 18px;
+
+            background: #eee;
+            color: #222;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            background: #ddd;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+            padding: 35px;
+            color: #666;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 800px) {
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .main-img {
+                height: 280px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="country.html">
+                Countries
+            </a>
+
+            <a href="country.html">
+                Culture
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <h1>
+            🏆
+            <span id="sportName">
+                Sport
+            </span>
+        </h1>
+
+        <p>
+
+            <span id="countryName">
+                India
+            </span>
+
+            · Sports & Cultural Heritage
+
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PAGE LAYOUT
+    ========================== -->
+
+    <div class="layout">
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="main">
+
+
+            <!-- Main Sport Image -->
+
+            <div class="main-img">
+
+                <img
+                    id="mainImage"
+                    alt="Sport"
+                >
+
+            </div>
+
+
+            <!-- =========================
+                 LIKE + WISHLIST
+            ========================== -->
+
+            <div class="actions">
+
+                <button
+                    class="like"
+                    id="likeBtn"
+                >
+
+                    ❤️ Like
+
+                    <span id="likes">
+                        0
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="wish"
+                    id="wishBtn"
+                >
+
+                    ⭐ Add to Wishlist
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 HISTORY
+            ========================== -->
+
+            <h2>
+                📜 History
+            </h2>
+
+            <p
+                class="section"
+                id="history"
+            ></p>
+
+
+            <!-- =========================
+                 HOW IT IS PLAYED
+            ========================== -->
+
+            <h2>
+                🎯 How It Is Played
+            </h2>
+
+            <p
+                class="section"
+                id="how"
+            ></p>
+
+
+            <!-- =========================
+                 PLAYERS / TEAMS
+            ========================== -->
+
+            <h2>
+                👥 Players / Teams
+            </h2>
+
+            <p
+                class="section"
+                id="players"
+            ></p>
+
+
+            <!-- =========================
+                 MAJOR COMPETITIONS
+            ========================== -->
+
+            <h2>
+                🏅 Major Competitions
+            </h2>
+
+            <p
+                class="section"
+                id="competitions"
+            ></p>
+
+
+            <!-- =========================
+                 CULTURAL SIGNIFICANCE
+            ========================== -->
+
+            <h2>
+                🌍 Cultural Significance
+            </h2>
+
+            <p
+                class="section"
+                id="culture"
+            ></p>
+
+
+            <!-- =========================
+                 HIGHLIGHTS
+            ========================== -->
+
+            <h2>
+                ✨ Highlights
+            </h2>
+
+            <div
+                class="highlights"
+                id="highlights"
+            ></div>
+
+
+            <!-- =========================
+                 USER PHOTOS
+            ========================== -->
+
+            <div class="box">
+
+                <h2>
+                    📸 User Photos
+                </h2>
+
+                <input
+                    type="file"
+                    id="photo"
+                    accept="image/*"
+                >
+
+                <button id="upload">
+                    Upload Photo
+                </button>
+
+                <div id="photos"></div>
+
+            </div>
+
+
+            <!-- =========================
+                 REVIEWS & COMMENTS
+            ========================== -->
+
+            <div class="box">
+
+                <h2>
+                    ⭐ Reviews & Comments
+                </h2>
+
+                <input
+                    id="name"
+                    placeholder="Your name"
+                >
+
+                <textarea
+                    id="comment"
+                    rows="4"
+                    placeholder="Write your comment..."
+                ></textarea>
+
+                <button id="post">
+                    Post Comment
+                </button>
+
+                <div
+                    class="reviews"
+                    id="reviews"
+                ></div>
+
+            </div>
+
+
+            <!-- =========================
+                 BACK TO SPORTS
+                 VERY BOTTOM
+            ========================== -->
+
+            <div class="back-sports-box">
+
+                <a
+                    id="backButton"
+                    class="back"
+                    href="#"
+                >
+                    ← Back to Sports
+                </a>
+
+            </div>
+
+
+        </main>
+
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="side">
+
+            <h3>
+
+                🌍
+
+                <span id="sideCountry">
+                    India
+                </span>
+
+            </h3>
+
+
+            <a id="food">
+                🍛 Food
+            </a>
+
+
+            <a id="clothing">
+                👕 Clothing
+            </a>
+
+
+            <a id="festivals">
+                🎉 Festivals
+            </a>
+
+
+            <a id="music">
+                🎵 Music & Dance
+            </a>
+
+
+            <a id="art">
+                🎨 Art & Crafts
+            </a>
+
+
+            <a id="places">
+                📍 Places
+            </a>
+
+        </aside>
+
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        © 2026 World Culture Explorer ·
+        Explore cultures from around the world 🌍
+
+    </footer>
+
+
+    <script>
+
+
+        /* =========================
+           GET URL PARAMETERS
+        ========================== */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const country =
+            params.get("country") || "India";
+
+
+        const sport =
+            params.get("sport") || "Cricket";
+
+
+        /* =========================
+           SET PAGE INFORMATION
+        ========================== */
+
+        document.getElementById(
+            "countryName"
+        ).textContent = country;
+
+
+        document.getElementById(
+            "sideCountry"
+        ).textContent = country;
+
+
+        document.getElementById(
+            "sportName"
+        ).textContent = sport;
+
+
+        /* =========================
+           BACK TO SPORTS
+        ========================== */
+
+        const backButton =
+            document.getElementById(
+                "backButton"
+            );
+
+
+        backButton.href =
+            "sports.html?country=" +
+            encodeURIComponent(country);
+
+
+        /* =========================
+           SPORT CONTENT
+        ========================== */
+
+        const sportData = {
+
+            history:
+                `${sport} has an important place in the sporting culture of ${country}. Its traditions have developed through local communities, organized competition and modern sporting institutions.`,
+
+            how:
+                "The rules and playing style depend on the sport. Players use skill, strategy, teamwork and physical technique to compete.",
+
+            players:
+                "Player numbers and team structure depend on the format of the sport.",
+
+            competitions:
+                "Major national, regional and international competitions provide organized opportunities for athletes.",
+
+            culture:
+                `${sport} is connected with the sporting culture and community life of ${country}.`,
+
+            highlights: [
+                "Skill",
+                "Teamwork",
+                "Strategy",
+                "Tradition"
+            ]
+
+        };
+
+
+        /* =========================
+           SPORT IMAGES
+        ========================== */
+
+        const images = {
+
+            Cricket:
+                "https://cdn.pixabay.com/photo/2023/12/12/09/26/cricket-8444899_1280.jpg",
+
+            Hockey:
+                "https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=1200&q=80",
+
+            Kabaddi:
+                "https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1200&q=80",
+
+            Sumo:
+                "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80",
+
+            Judo:
+                "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=80",
+
+            Karate:
+                "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=80",
+
+            Kendo:
+                "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=80",
+
+            Football:
+                "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80",
+
+            Rugby:
+                "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1200&q=80",
+
+            Cycling:
+                "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1200&q=80",
+
+            Tennis:
+                "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1200&q=80",
+
+            Pétanque:
+                "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1200&q=80",
+
+            Wrestling:
+                "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1200&q=80",
+
+            "Kho Kho":
+                "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80",
+
+            Badminton:
+                "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=1200&q=80",
+
+            Fencing:
+                "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&w=1200&q=80",
+
+            Volleyball:
+                "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=1200&q=80",
+
+            "Motor Racing":
+                "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80",
+
+            Baseball:
+                "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=1200&q=80"
+
+        };
+
+
+        /* =========================
+           SET MAIN IMAGE
+        ========================== */
+
+        const mainImage =
+            document.getElementById(
+                "mainImage"
+            );
+
+
+        mainImage.src =
+            images[sport] ||
+            images.Cricket;
+
+
+        /* =========================
+           IMAGE ERROR FALLBACK
+        ========================== */
+
+        mainImage.onerror =
+            function () {
+
+                if (
+                    this.src !==
+                    images.Cricket
+                ) {
+
+                    this.src =
+                        images.Cricket;
+
+                }
+
+            };
+
+
+        /* =========================
+           SET TEXT CONTENT
+        ========================== */
+
+        document.getElementById(
+            "history"
+        ).textContent =
+            sportData.history;
+
+
+        document.getElementById(
+            "how"
+        ).textContent =
+            sportData.how;
+
+
+        document.getElementById(
+            "players"
+        ).textContent =
+            sportData.players;
+
+
+        document.getElementById(
+            "competitions"
+        ).textContent =
+            sportData.competitions;
+
+
+        document.getElementById(
+            "culture"
+        ).textContent =
+            sportData.culture;
+
+
+        /* =========================
+           HIGHLIGHTS
+        ========================== */
+
+        const highlightsContainer =
+            document.getElementById(
+                "highlights"
+            );
+
+
+        sportData.highlights.forEach(
+            function (item) {
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.textContent =
+                    "🏅 " + item;
+
+
+                highlightsContainer.appendChild(
+                    div
+                );
+
+            }
+        );
+
+
+        /* =========================
+           LOCAL STORAGE KEY
+        ========================== */
+
+        const storageKey =
+            "wce_sport_" +
+            country +
+            "_" +
+            sport;
+
+
+        /* =========================
+           LIKE SYSTEM
+        ========================== */
+
+        let likes =
+            Number(
+                localStorage.getItem(
+                    storageKey + "likes"
+                )
+            ) || 0;
+
+
+        document.getElementById(
+            "likes"
+        ).textContent = likes;
+
+
+        document.getElementById(
+            "likeBtn"
+        ).onclick =
+            function () {
+
+                likes++;
+
+
+                localStorage.setItem(
+                    storageKey + "likes",
+                    likes
+                );
+
+
+                document.getElementById(
+                    "likes"
+                ).textContent = likes;
+
+            };
+
+
+        /* =========================
+           WISHLIST SYSTEM
+        ========================== */
+
+        let wished =
+            localStorage.getItem(
+                storageKey + "wish"
+            ) === "1";
+
+
+        const wishlistButton =
+            document.getElementById(
+                "wishBtn"
+            );
+
+
+        function updateWishlistButton() {
+
+            wishlistButton.textContent =
+                wished
+                    ? "⭐ In Wishlist"
+                    : "⭐ Add to Wishlist";
+
+        }
+
+
+        updateWishlistButton();
+
+
+        wishlistButton.onclick =
+            function () {
+
+                wished = !wished;
+
+
+                localStorage.setItem(
+                    storageKey + "wish",
+                    wished ? "1" : "0"
+                );
+
+
+                updateWishlistButton();
+
+            };
+
+
+        /* =========================
+           SIDEBAR LINKS
+        ========================== */
+
+        const sidebarLinks = [
+
+            "food",
+            "clothing",
+            "festivals",
+            "music",
+            "art",
+            "places"
+
+        ];
+
+
+        sidebarLinks.forEach(
+            function (id) {
+
+                const link =
+                    document.getElementById(id);
+
+
+                if (id === "festivals") {
+
+                    link.href =
+                        "festivals.html?country=" +
+                        encodeURIComponent(country);
+
+                } else {
+
+                    link.href =
+                        id +
+                        ".html?country=" +
+                        encodeURIComponent(country);
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           USER PHOTOS
+        ========================== */
+
+        const photoStorageKey =
+            storageKey + "photos";
+
+
+        let photos =
+            JSON.parse(
+                localStorage.getItem(
+                    photoStorageKey
+                ) || "[]"
+            );
+
+
+        const photoInput =
+            document.getElementById(
+                "photo"
+            );
+
+
+        const uploadButton =
+            document.getElementById(
+                "upload"
+            );
+
+
+        const photosContainer =
+            document.getElementById(
+                "photos"
+            );
+
+
+        uploadButton.onclick =
+            function () {
+
+                const file =
+                    photoInput.files[0];
+
+
+                if (!file) {
+
+                    alert(
+                        "Please select a photo first."
+                    );
+
+                    return;
+
+                }
+
+
+                if (photos.length >= 10) {
+
+                    alert(
+                        "Maximum 10 photos allowed."
+                    );
+
+                    return;
+
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (event) {
+
+                        photos.push(
+                            event.target.result
+                        );
+
+
+                        localStorage.setItem(
+                            photoStorageKey,
+                            JSON.stringify(photos)
+                        );
+
+
+                        renderPhotos();
+
+
+                        photoInput.value = "";
+
+                    };
+
+
+                reader.readAsDataURL(file);
+
+            };
+
+
+        function renderPhotos() {
+
+            photosContainer.innerHTML = "";
+
+
+            photos.forEach(
+                function (photo) {
+
+                    const image =
+                        document.createElement(
+                            "img"
+                        );
+
+
+                    image.src = photo;
+
+
+                    photosContainer.appendChild(
+                        image
+                    );
+
+                }
+            );
+
+        }
+
+
+        renderPhotos();
+
+
+        /* =========================
+           REVIEWS & COMMENTS
+        ========================== */
+
+        const reviewStorageKey =
+            storageKey + "reviews";
+
+
+        let reviews =
+            JSON.parse(
+                localStorage.getItem(
+                    reviewStorageKey
+                ) || "[]"
+            );
+
+
+        const reviewsContainer =
+            document.getElementById(
+                "reviews"
+            );
+
+
+        function renderReviews() {
+
+            if (reviews.length === 0) {
+
+                reviewsContainer.innerHTML =
+                    "<p>No comments yet.</p>";
+
+                return;
+
+            }
+
+
+            reviewsContainer.innerHTML = "";
+
+
+            reviews.forEach(
+                function (review) {
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    div.innerHTML =
+                        "<b>" +
+                        review.name +
+                        "</b><br>" +
+                        review.text;
+
+
+                    reviewsContainer.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+        }
+
+
+        renderReviews();
+
+
+        /* =========================
+           POST COMMENT
+        ========================== */
+
+        document.getElementById(
+            "post"
+        ).onclick =
+            function () {
+
+                const name =
+                    document.getElementById(
+                        "name"
+                    ).value.trim();
+
+
+                const comment =
+                    document.getElementById(
+                        "comment"
+                    ).value.trim();
+
+
+                if (!comment) {
+
+                    alert(
+                        "Please write a comment."
+                    );
+
+                    return;
+
+                }
+
+
+                reviews.unshift({
+
+                    name:
+                        name || "Explorer",
+
+                    text:
+                        comment
+
+                });
+
+
+                localStorage.setItem(
+                    reviewStorageKey,
+                    JSON.stringify(reviews)
+                );
+
+
+                document.getElementById(
+                    "name"
+                ).value = "";
+
+
+                document.getElementById(
+                    "comment"
+                ).value = "";
+
+
+                renderReviews();
+
+            };
+
+
+    </script>
+
+</body>
+
+</html>

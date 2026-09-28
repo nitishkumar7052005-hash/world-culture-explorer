@@ -1,0 +1,236 @@
+{
+    "India": {
+        "food": [
+            "Biryani",
+            "Masala Dosa",
+            "Butter Chicken",
+            "Samosa",
+            "Litti Chokha",
+            "Chai"
+        ],
+        "clothing": [
+            "Saree",
+            "Kurta",
+            "Lehenga Choli",
+            "Sherwani",
+            "Dhoti"
+        ],
+        "festivals": [
+            "Diwali",
+            "Holi",
+            "Navratri",
+            "Ganesh Chaturthi",
+            "Pongal",
+            "Onam"
+        ],
+        "dance": [
+            "Bharatanatyam",
+            "Kathak",
+            "Odissi",
+            "Kathakali",
+            "Bhangra",
+            "Garba"
+        ],
+        "crafts": [
+            "Madhubani Painting",
+            "Warli Art",
+            "Dhokra Art",
+            "Phulkari",
+            "Patan Patola",
+            "Channapatna Toys"
+        ],
+        "sports": [
+            "Cricket",
+            "Hockey",
+            "Kabaddi",
+            "Football",
+            "Badminton",
+            "Traditional Indian Sports"
+        ],
+        "lifestyle": [
+            "Family & Community Life",
+            "Festivals & Celebrations",
+            "Food & Eating Traditions",
+            "Yoga & Wellness",
+            "Markets & Shopping",
+            "Modern & Traditional Lifestyle"
+        ],
+        "places": [
+            "Taj Mahal",
+            "Red Fort",
+            "Hawa Mahal",
+            "Golden Temple",
+            "Gateway of India",
+            "Varanasi"
+        ]
+    },
+
+    "Japan": {
+        "food": [
+            "Sushi",
+            "Ramen",
+            "Tempura",
+            "Udon",
+            "Miso Soup"
+        ],
+        "clothing": [
+            "Kimono",
+            "Yukata",
+            "Hakama"
+        ],
+        "festivals": [
+            "Hanami",
+            "Gion Matsuri",
+            "Tanabata",
+            "Obon",
+            "Shogatsu"
+        ],
+        "dance": [
+            "Bon Odori",
+            "Nihon Buyo",
+            "Kabuki Dance"
+        ],
+        "crafts": [
+            "Origami",
+            "Kintsugi",
+            "Japanese Pottery",
+            "Bamboo Crafts"
+        ],
+        "sports": [
+            "Sumo",
+            "Baseball",
+            "Judo",
+            "Karate",
+            "Kendo"
+        ],
+        "lifestyle": [
+            "Tea Ceremony",
+            "Japanese Family Life",
+            "Traditional Festivals",
+            "Onsen Culture",
+            "Modern City Life"
+        ],
+        "places": [
+            "Mount Fuji",
+            "Tokyo",
+            "Kyoto",
+            "Osaka Castle",
+            "Hiroshima Peace Memorial"
+        ]
+    },
+
+    "France": {
+        "food": [
+            "Croissant",
+            "Baguette",
+            "Ratatouille",
+            "Crêpes",
+            "French Cheese"
+        ],
+        "clothing": [
+            "French Haute Couture",
+            "Breton Shirt",
+            "Traditional Regional Dress"
+        ],
+        "festivals": [
+            "Bastille Day",
+            "Cannes Film Festival",
+            "Nice Carnival",
+            "Fête de la Musique"
+        ],
+        "dance": [
+            "French Cancan",
+            "Ballet",
+            "Traditional Folk Dance"
+        ],
+        "crafts": [
+            "French Pottery",
+            "Lace Making",
+            "Glass Art",
+            "Perfume Making"
+        ],
+        "sports": [
+            "Football",
+            "Rugby",
+            "Cycling",
+            "Tennis",
+            "Petanque"
+        ],
+        "lifestyle": [
+            "Café Culture",
+            "French Cuisine",
+            "Family Life",
+            "Fashion Culture",
+            "Art & Museums"
+        ],
+        "places": [
+            "Eiffel Tower",
+            "Louvre Museum",
+            "Palace of Versailles",
+            "Notre-Dame",
+            "French Riviera"
+        ]
+    },
+    "Italy": {
+    "food": [
+        "Pizza",
+        "Pasta",
+        "Risotto",
+        "Lasagna",
+        "Gelato",
+        "Tiramisu"
+    ],
+
+    "clothing": [
+    "Italian Regional Dress",
+    "Sardinian Traditional Dress",
+    "Venetian Carnival Costume"
+],
+
+    "festivals": [
+        "Venice Carnival",
+        "Palio di Siena",
+        "Ferragosto",
+        "Carnevale di Viareggio"
+    ],
+
+    "dance": [
+        "Tarantella",
+        "Italian Folk Dance",
+        "Pizzica"
+    ],
+
+    "crafts": [
+        "Murano Glass",
+        "Italian Ceramics",
+        "Leather Craft",
+        "Lace Making"
+    ],
+
+    "sports": [
+        "Football",
+        "Cycling",
+        "Tennis",
+        "Formula 1",
+        "Volleyball"
+    ],
+
+    "lifestyle": [
+        "Italian Family Life",
+        "Café Culture",
+        "Italian Cuisine",
+        "Fashion Culture",
+        "Mediterranean Lifestyle",
+        "Outdoor Social Life"
+    ],
+
+    "places": [
+        "Colosseum",
+        "Venice",
+        "Leaning Tower of Pisa",
+        "Amalfi Coast",
+        "Vatican City",
+        "Lake Como"
+    ]
+}
+}

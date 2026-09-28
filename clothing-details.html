@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clothing Details | World Culture Explorer</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        body {
+            background: #f7f7f7;
+        }
+
+        .details-page {
+            padding: 50px 7%;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .details-hero {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .details-hero h1 {
+            font-size: 42px;
+            margin: 0 0 10px;
+        }
+
+        .details-hero p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .country-label {
+            color: #e67e22;
+            font-weight: bold;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .details-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+
+        .details-main,
+        .details-sidebar {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+
+        /* ================= IMAGE ================= */
+
+        .details-main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            background: #eee;
+        }
+
+
+        .details-gallery {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .details-thumbnail {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .details-thumbnail.active,
+        .details-thumbnail:hover {
+            border-color: #e67e22;
+        }
+
+
+        /* ================= ACTIONS ================= */
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .action-button {
+            border: none;
+            padding: 11px 17px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #222;
+            color: white;
+            font-weight: 600;
+        }
+
+        .action-button:hover {
+            background: #e67e22;
+        }
+
+        .action-button.active {
+            background: #e67e22;
+        }
+
+
+        /* ================= SECTION ================= */
+
+        .detail-section {
+            margin-top: 30px;
+        }
+
+        .detail-section h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .detail-section p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+
+        /* ================= HIGHLIGHTS ================= */
+
+        .highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .highlight {
+            padding: 9px 14px;
+            background: #f1f1f1;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar-box {
+            padding: 18px;
+            background: #f8f8f8;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-box strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+
+        /* ================= UPLOAD ================= */
+
+        .upload-box {
+            margin-top: 15px;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .upload-box input {
+            margin-top: 10px;
+        }
+
+
+        /* ================= USER PHOTOS ================= */
+
+        .user-photos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .user-photo {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+
+        /* ================= COMMENTS ================= */
+
+        .comment-form {
+            margin-top: 15px;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .comment-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .comment {
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .comment strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+        /* ================= BACK ================= */
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 20px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            background: #e67e22;
+        }
+
+
+        /* ================= LOADING ================= */
+
+        .loading {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+
+        @media (max-width: 800px) {
+
+            .details-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .details-hero h1 {
+                font-size: 32px;
+            }
+
+            .details-main-image {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .details-gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .user-photos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+        🌍 World Culture Explorer
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#countries">
+            Countries
+        </a>
+
+        <a href="index.html#culture">
+            Culture
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="details-page">
+
+    <div id="loading" class="loading">
+        👕 Loading clothing details...
+    </div>
+
+
+    <div id="content" style="display:none;">
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="details-hero">
+
+            <h1>
+                👕
+                <span id="clothingName"></span>
+            </h1>
+
+            <p>
+                Traditional clothing of
+                <span id="countryName" class="country-label"></span>
+            </p>
+
+        </section>
+
+
+        <!-- ================= LAYOUT ================= -->
+
+        <div class="details-layout">
+
+
+            <!-- ================= MAIN ================= -->
+
+            <div class="details-main">
+
+
+                <img
+                    id="mainImage"
+                    class="details-main-image"
+                    src=""
+                    alt=""
+                >
+
+
+                <div
+                    id="gallery"
+                    class="details-gallery">
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="action-buttons">
+
+                    <button
+                        id="likeButton"
+                        class="action-button">
+
+                        ❤️ Like
+                        <span id="likeCount">0</span>
+
+                    </button>
+
+
+                    <button
+                        id="wishlistButton"
+                        class="action-button">
+
+                        🔖 Add to Wishlist
+
+                    </button>
+
+                </div>
+
+
+                <!-- ABOUT -->
+
+                <section class="detail-section">
+
+                    <h2>
+                        📖 About This Clothing
+                    </h2>
+
+                    <p id="aboutText"></p>
+
+                </section>
+
+
+                <!-- DETAILS -->
+
+                <section class="detail-section">
+
+                    <h2>
+                        👗 Traditional Clothing Details
+                    </h2>
+
+                    <p id="detailsText"></p>
+
+                </section>
+
+
+                <!-- HIGHLIGHTS -->
+
+                <section class="detail-section">
+
+                    <h2>
+                        ⭐ Highlights
+                    </h2>
+
+                    <div
+                        id="highlights"
+                        class="highlights">
+                    </div>
+
+                </section>
+
+
+                <!-- USER PHOTOS -->
+
+                <section class="detail-section">
+
+                    <h2>
+                        📸 User Photos
+                    </h2>
+
+                    <p>
+                        Share your photo of this traditional clothing.
+                    </p>
+
+
+                    <div class="upload-box">
+
+                        <input
+                            type="file"
+                            id="photoUpload"
+                            accept="image/*"
+                        >
+
+                        <p>
+                            Photos are stored locally in your browser.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        id="userPhotos"
+                        class="user-photos">
+                    </div>
+
+                </section>
+
+
+                <!-- REVIEWS -->
+
+                <section class="detail-section">
+
+                    <h2>
+                        ⭐ Reviews & Comments
+                    </h2>
+
+
+                    <div class="comment-form">
+
+                        <input
+                            type="text"
+                            id="userName"
+                            placeholder="Your name"
+                        >
+
+
+                        <textarea
+                            id="commentText"
+                            placeholder="Write your comment...">
+                        </textarea>
+
+
+                        <button
+                            id="commentButton"
+                            class="action-button">
+
+                            Post Comment
+
+                        </button>
+
+                    </div>
+
+
+                    <div id="comments"></div>
+
+                </section>
+
+
+                <a
+                    id="backButton"
+                    href="#"
+                    class="back-button">
+
+                    ← Back to Clothing
+
+                </a>
+
+            </div>
+
+
+            <!-- ================= SIDEBAR ================= -->
+
+            <aside class="details-sidebar">
+
+                <div class="sidebar-box">
+
+                    <strong>
+                        🌍 Country
+                    </strong>
+
+                    <span id="sideCountry"></span>
+
+                </div>
+
+
+                <div class="sidebar-box">
+
+                    <strong>
+                        👕 Clothing
+                    </strong>
+
+                    <span id="sideClothing"></span>
+
+                </div>
+
+
+                <div class="sidebar-box">
+
+                    <strong>
+                        📷 Photo Source
+                    </strong>
+
+                    Wikimedia Commons
+
+                </div>
+
+
+                <div class="sidebar-box">
+
+                    <strong>
+                        💡 Culture
+                    </strong>
+
+                    Traditional clothing is an important
+                    part of cultural identity and heritage.
+
+                </div>
+
+            </aside>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   URL DATA
+===================================================== */
+
+const params =
+    new URLSearchParams(window.location.search);
+
+const country =
+    params.get("country") || "India";
+
+const clothing =
+    params.get("clothing") || "Saree";
+
+
+/* =====================================================
+   IMAGE DATA
+===================================================== */
+
+const indiaClothing = {
+
+    "Saree": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Saree.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20traditional%20lady%20wearing%20saree.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20way%20of%20wearing%20saree.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Rajasthani%20saree.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20Maheshwari%20Saree%2001.jpg"
+    ],
+
+    "Kurta": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20Hindu%20Outfit.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20traditional%20dress.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20man%20in%20traditional%20dress.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20Indian%20clothing.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20traditional%20clothes.jpg"
+    ],
+
+    "Lehenga Choli": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/A-store-person-showcases-a-lehenga.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Lehenga-Choli%20%286375587865%29.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Hindu%20bride%20in%20Lehenga.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20woman%20wearing%20choli%20and%20lehenga%2C%20Oct.%202019.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Sindhi%20lehenga%2C%20choli%20and%20Sindhi%20traditional%20pantaloon%20shalwar.jpg"
+    ],
+
+    "Sherwani": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Sherwani.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20Sherwani.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Sherwani%20traditional.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20groom%20sherwani.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Sherwani%20dress.jpg"
+    ],
+
+    "Dhoti": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Dhoti.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20dhoti.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Man%20wearing%20dhoti.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Dhoti%20traditional%20dress.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20traditional%20dhoti.jpg"
+    ]
+};
+
+
+const japanClothing = {
+
+    "Kimono": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20kimono.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20Traditional%20Kimono.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20Kimono.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20obi%20and%20kimono.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Man-and-lady-kimono.JPG"
+    ],
+
+    "Yukata": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Japanese%20lady%20wearing%20a%20Yukata.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Japanese%20lady%20wearing%20a%20Yukata%20and%20Japanese%20old%20folk%20house.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Japanese%20woman%20wearing%20a%20Yukata%20and%20a%20Koi%20pond%20in%20a%20Japanese%20garden.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Yukata%20girls%20in%20Japan.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Four%20ladies%20wearing%20a%20yukata%20in%20front%20of%20the%20North%20Gate%20of%20Kiyomizu-dera%20temple%20Kyoto%20Japan.jpg"
+    ],
+
+    "Hakama": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Haori%20hakama.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Hakama.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20Hakama.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Hakama%20traditional.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20man%20wearing%20hakama.jpg"
+    ]
+};
+
+
+const franceClothing = {
+
+    "French Haute Couture": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Haute%20Couture.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20Fashion%20Week.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/French%20fashion.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Haute%20couture%20fashion.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/French%20designer%20fashion.jpg"
+    ],
+
+    "Breton Shirt": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breton%20shirt.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Mariniere.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Marini%C3%A8re.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breton%20clothes.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breton%20traditional%20clothing.jpg"
+    ],
+
+    "Traditional Regional Dress": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breton%20clothes.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/French%20traditional%20costume.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20French%20costume.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/French%20regional%20costume.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Folk%20costume%20France.jpg"
+    ]
+};
+
+
+const italyClothing = {
+
+    "Italian Regional Dress": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Abiti%20tradizionali%20conservati%20nel%20Palazzo%20delle%20Decime.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Cocullo%20abiti%20tradizionali.jpg"
+    ],
+
+    "Sardinian Traditional Dress": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20Sardinian%20costume%20%2815764685557%29.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Costumes%20of%20Sardinia%201880s%2001.jpg"
+    ],
+
+    "Venetian Carnival Costume": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Venice%20carnival%20costume%20with%20mask%20and%20hat.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Venetian%20carnival.jpg"
+    ]
+};
+
+
+/* =====================================================
+   GET IMAGES
+===================================================== */
+
+function getImages() {
+
+    const c = country.toLowerCase();
+
+    if (c === "india") {
+        return indiaClothing[clothing] || [];
+    }
+
+    if (c === "japan") {
+        return japanClothing[clothing] || [];
+    }
+
+    if (c === "france") {
+        return franceClothing[clothing] || [];
+    }
+
+    if (c === "italy") {
+        return italyClothing[clothing] || [];
+    }
+
+    return [];
+}
+
+
+/* =====================================================
+   CLOTHING INFORMATION
+===================================================== */
+
+const clothingInfo = {
+
+    "Saree": {
+        about: "A saree is a traditional Indian garment known for its long draped fabric and wide variety of regional styles.",
+        details: "Sarees can vary in fabric, weaving technique, patterns, colours and draping style. Different regions of India have their own distinctive saree traditions.",
+        highlights: [
+            "Traditional Indian Dress",
+            "Regional Styles",
+            "Handloom Tradition",
+            "Decorative Designs",
+            "Cultural Heritage"
+        ]
+    },
+
+    "Kurta": {
+        about: "The kurta is a traditional South Asian garment worn in many parts of India and neighbouring regions.",
+        details: "Kurtas can be simple everyday garments or highly decorated clothing for festivals and celebrations.",
+        highlights: [
+            "Traditional Wear",
+            "Comfortable Design",
+            "Festivals",
+            "Embroidery",
+            "Regional Variations"
+        ]
+    },
+
+    "Lehenga Choli": {
+        about: "Lehenga choli is a traditional Indian outfit consisting of a skirt, blouse and often a dupatta.",
+        details: "It is particularly associated with celebrations, weddings and festivals, with styles varying across different regions.",
+        highlights: [
+            "Wedding Wear",
+            "Festivals",
+            "Embroidery",
+            "Colourful Designs",
+            "Traditional Craft"
+        ]
+    },
+
+    "Sherwani": {
+        about: "Sherwani is a formal traditional South Asian garment commonly associated with ceremonial occasions.",
+        details: "It is often worn for weddings and other formal celebrations and can feature detailed embroidery and decorative work.",
+        highlights: [
+            "Formal Wear",
+            "Wedding Clothing",
+            "Embroidery",
+            "Ceremonial Dress",
+            "Traditional Style"
+        ]
+    },
+
+    "Dhoti": {
+        about: "Dhoti is a traditional Indian garment consisting of a long piece of fabric wrapped around the waist and legs.",
+        details: "Different regions use different wrapping styles and fabrics, and the garment has longstanding cultural significance.",
+        highlights: [
+            "Traditional Garment",
+            "Regional Styles",
+            "Cultural Heritage",
+            "Traditional Fabric",
+            "Historic Clothing"
+        ]
+    },
+
+    "Kimono": {
+        about: "Kimono is a traditional Japanese garment with a distinctive straight-lined form and wrapped front.",
+        details: "Different types of kimono are associated with seasons, occasions, age and social context.",
+        highlights: [
+            "Japanese Heritage",
+            "Traditional Design",
+            "Seasonal Patterns",
+            "Obi Belt",
+            "Ceremonial Wear"
+        ]
+    },
+
+    "Yukata": {
+        about: "Yukata is a lighter Japanese traditional garment commonly associated with summer and informal occasions.",
+        details: "Yukata are generally made from lighter fabric and are often seen during summer festivals and cultural events.",
+        highlights: [
+            "Summer Clothing",
+            "Japanese Festivals",
+            "Light Fabric",
+            "Colourful Patterns",
+            "Traditional Wear"
+        ]
+    },
+
+    "Hakama": {
+        about: "Hakama are traditional Japanese garments worn over other clothing and are associated with formal and ceremonial settings.",
+        details: "Different forms of hakama have been used in Japanese cultural, martial and ceremonial traditions.",
+        highlights: [
+            "Japanese Tradition",
+            "Formal Wear",
+            "Ceremonial Dress",
+            "Martial Arts",
+            "Cultural Heritage"
+        ]
+    },
+
+    "French Haute Couture": {
+        about: "French haute couture represents highly specialised fashion design and craftsmanship associated with France.",
+        details: "Haute couture focuses on individually constructed garments, detailed craftsmanship and elaborate design.",
+        highlights: [
+            "French Fashion",
+            "Luxury Design",
+            "Craftsmanship",
+            "Paris Fashion",
+            "Designer Clothing"
+        ]
+    },
+
+    "Breton Shirt": {
+        about: "The Breton shirt is a striped garment associated with Brittany and French maritime culture.",
+        details: "Its distinctive horizontal stripes have become strongly associated with French clothing and fashion.",
+        highlights: [
+            "French Style",
+            "Brittany",
+            "Striped Design",
+            "Maritime Heritage",
+            "Classic Fashion"
+        ]
+    },
+
+    "Traditional Regional Dress": {
+        about: "Traditional regional dress represents the clothing traditions of different communities and regions of France.",
+        details: "Regional costumes can vary considerably in materials, colours, accessories and patterns.",
+        highlights: [
+            "Regional Heritage",
+            "French Culture",
+            "Traditional Costume",
+            "Folk Clothing",
+            "Cultural Identity"
+        ]
+    },
+
+    "Italian Regional Dress": {
+        about: "Italian regional dress reflects the diverse clothing traditions found across different parts of Italy.",
+        details: "Regional garments can differ in fabric, decoration, accessories and style according to local traditions.",
+        highlights: [
+            "Italian Heritage",
+            "Regional Culture",
+            "Traditional Costume",
+            "Folk Clothing",
+            "Local Craft"
+        ]
+    },
+
+    "Sardinian Traditional Dress": {
+        about: "Sardinian traditional dress represents the distinctive cultural clothing traditions of Sardinia.",
+        details: "Traditional Sardinian clothing includes regionally distinctive fabrics, colours, accessories and decorative elements.",
+        highlights: [
+            "Sardinian Culture",
+            "Regional Heritage",
+            "Traditional Costume",
+            "Decorative Details",
+            "Folk Tradition"
+        ]
+    },
+
+    "Venetian Carnival Costume": {
+        about: "Venetian Carnival costumes are associated with the historic Carnival traditions of Venice.",
+        details: "These costumes are known for elaborate clothing, decorative accessories and the famous masks associated with Venetian Carnival.",
+        highlights: [
+            "Venice",
+            "Carnival",
+            "Traditional Masks",
+            "Elaborate Costumes",
+            "Cultural Festival"
+        ]
+    }
+};
+
+
+/* =====================================================
+   LOCAL STORAGE KEY
+===================================================== */
+
+const storageKey =
+    "wce_clothing_" +
+    country.toLowerCase() +
+    "_" +
+    clothing.toLowerCase();
+
+
+/* =====================================================
+   LOAD PAGE
+===================================================== */
+
+function loadDetails() {
+
+    const images = getImages();
+
+    const info =
+        clothingInfo[clothing] || {
+            about:
+                `${clothing} is a traditional clothing style associated with ${country}.`,
+
+            details:
+                `Explore the cultural clothing tradition represented by ${clothing}.`,
+
+            highlights: [
+                "Traditional Clothing",
+                "Cultural Heritage",
+                "Regional Style"
+            ]
+        };
+
+
+    document.getElementById("clothingName")
+        .textContent = clothing;
+
+    document.getElementById("countryName")
+        .textContent = country;
+
+    document.getElementById("sideCountry")
+        .textContent = country;
+
+    document.getElementById("sideClothing")
+        .textContent = clothing;
+
+    document.getElementById("aboutText")
+        .textContent = info.about;
+
+    document.getElementById("detailsText")
+        .textContent = info.details;
+
+
+    /* ================= HIGHLIGHTS ================= */
+
+    const highlights =
+        document.getElementById("highlights");
+
+    highlights.innerHTML = "";
+
+    info.highlights.forEach(item => {
+
+        const span =
+            document.createElement("span");
+
+        span.className = "highlight";
+
+        span.textContent = "⭐ " + item;
+
+        highlights.appendChild(span);
+
+    });
+
+
+    /* ================= IMAGE ================= */
+
+    const mainImage =
+        document.getElementById("mainImage");
+
+    const gallery =
+        document.getElementById("gallery");
+
+    if (images.length > 0) {
+
+        mainImage.src = images[0];
+        mainImage.alt = clothing;
+
+        images.forEach((image, index) => {
+
+            const thumbnail =
+                document.createElement("img");
+
+            thumbnail.src = image;
+
+            thumbnail.alt =
+                clothing + " photo " + (index + 1);
+
+            thumbnail.className =
+                "details-thumbnail" +
+                (index === 0 ? " active" : "");
+
+            thumbnail.onclick = () => {
+
+                mainImage.src = image;
+
+                gallery
+                    .querySelectorAll(".details-thumbnail")
+                    .forEach(item =>
+                        item.classList.remove("active")
+                    );
+
+                thumbnail.classList.add("active");
+            };
+
+            gallery.appendChild(thumbnail);
+
+        });
+
+    } else {
+
+        mainImage.src = "";
+        mainImage.alt = "No image available";
+    }
+
+
+    /* ================= BACK ================= */
+
+    document.getElementById("backButton").href =
+        "clothing.html?country=" +
+        encodeURIComponent(country);
+
+
+    loadActions();
+
+
+    document.getElementById("loading").style.display =
+        "none";
+
+    document.getElementById("content").style.display =
+        "block";
+}
+
+
+/* =====================================================
+   LIKE
+===================================================== */
+
+function loadActions() {
+
+    const data =
+        JSON.parse(
+            localStorage.getItem(storageKey) ||
+            '{"likes":0,"liked":false,"wishlist":false,"photos":[],"comments":[]}'
+        );
+
+
+    document.getElementById("likeCount")
+        .textContent = data.likes;
+
+
+    if (data.liked) {
+
+        document.getElementById("likeButton")
+            .classList.add("active");
+    }
+
+
+    if (data.wishlist) {
+
+        document.getElementById("wishlistButton")
+            .classList.add("active");
+
+        document.getElementById("wishlistButton")
+            .textContent = "🔖 In Wishlist";
+    }
+
+
+    renderPhotos(data.photos || []);
+
+    renderComments(data.comments || []);
+}
+
+
+/* =====================================================
+   SAVE DATA
+===================================================== */
+
+function getSavedData() {
+
+    return JSON.parse(
+        localStorage.getItem(storageKey) ||
+        '{"likes":0,"liked":false,"wishlist":false,"photos":[],"comments":[]}'
+    );
+}
+
+
+function saveData(data) {
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(data)
+    );
+}
+
+
+/* =====================================================
+   LIKE BUTTON
+===================================================== */
+
+document.getElementById("likeButton")
+    .addEventListener("click", () => {
+
+        const data = getSavedData();
+
+        if (data.liked) {
+
+            data.likes =
+                Math.max(0, data.likes - 1);
+
+            data.liked = false;
+
+            document.getElementById("likeButton")
+                .classList.remove("active");
+
+        } else {
+
+            data.likes++;
+
+            data.liked = true;
+
+            document.getElementById("likeButton")
+                .classList.add("active");
+        }
+
+        document.getElementById("likeCount")
+            .textContent = data.likes;
+
+        saveData(data);
+    });
+
+
+/* =====================================================
+   WISHLIST
+===================================================== */
+
+document.getElementById("wishlistButton")
+    .addEventListener("click", () => {
+
+        const data = getSavedData();
+
+        data.wishlist = !data.wishlist;
+
+        const button =
+            document.getElementById("wishlistButton");
+
+        if (data.wishlist) {
+
+            button.classList.add("active");
+
+            button.textContent =
+                "🔖 In Wishlist";
+
+        } else {
+
+            button.classList.remove("active");
+
+            button.textContent =
+                "🔖 Add to Wishlist";
+        }
+
+        saveData(data);
+    });
+
+
+/* =====================================================
+   PHOTO UPLOAD
+===================================================== */
+
+document.getElementById("photoUpload")
+    .addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+
+            alert("Please select an image.");
+
+            return;
+        }
+
+
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+
+            const data = getSavedData();
+
+            data.photos =
+                data.photos || [];
+
+            data.photos.push(event.target.result);
+
+            saveData(data);
+
+            renderPhotos(data.photos);
+
+        };
+
+        reader.readAsDataURL(file);
+
+        this.value = "";
+    });
+
+
+/* =====================================================
+   RENDER PHOTOS
+===================================================== */
+
+function renderPhotos(photos) {
+
+    const container =
+        document.getElementById("userPhotos");
+
+    container.innerHTML = "";
+
+    if (!photos.length) {
+
+        container.innerHTML =
+            "<p>No user photos yet.</p>";
+
+        return;
+    }
+
+
+    photos.forEach(photo => {
+
+        const img =
+            document.createElement("img");
+
+        img.src = photo;
+
+        img.className = "user-photo";
+
+        container.appendChild(img);
+
+    });
+}
+
+
+/* =====================================================
+   COMMENTS
+===================================================== */
+
+document.getElementById("commentButton")
+    .addEventListener("click", () => {
+
+        const name =
+            document.getElementById("userName")
+                .value.trim();
+
+        const text =
+            document.getElementById("commentText")
+                .value.trim();
+
+
+        if (!name || !text) {
+
+            alert("Please enter your name and comment.");
+
+            return;
+        }
+
+
+        const data = getSavedData();
+
+        data.comments =
+            data.comments || [];
+
+
+        data.comments.push({
+
+            name: name,
+
+            text: text,
+
+            date: new Date()
+                .toLocaleDateString()
+
+        });
+
+
+        saveData(data);
+
+        document.getElementById("userName")
+            .value = "";
+
+        document.getElementById("commentText")
+            .value = "";
+
+        renderComments(data.comments);
+
+    });
+
+
+/* =====================================================
+   RENDER COMMENTS
+===================================================== */
+
+function renderComments(comments) {
+
+    const container =
+        document.getElementById("comments");
+
+    container.innerHTML = "";
+
+
+    if (!comments.length) {
+
+        container.innerHTML =
+            "<p>No comments yet. Be the first to share your thoughts!</p>";
+
+        return;
+    }
+
+
+    comments
+        .slice()
+        .reverse()
+        .forEach(comment => {
+
+            const div =
+                document.createElement("div");
+
+            div.className = "comment";
+
+            div.innerHTML = `
+
+                <strong>
+                    👤 ${escapeHTML(comment.name)}
+                </strong>
+
+                <small>
+                    ${escapeHTML(comment.date)}
+                </small>
+
+                <p>
+                    ${escapeHTML(comment.text)}
+                </p>
+            `;
+
+            container.appendChild(div);
+
+        });
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadDetails();
+
+</script>
+
+</body>
+</html>

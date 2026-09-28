@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lifestyle - World Culture Explorer</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 11px 24px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            background: #f0f0f0;
+        }
+
+        .country-title {
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* =========================
+           LIFESTYLE SNAPSHOT
+        ========================= */
+
+        .snapshot {
+            background: rgba(255,255,255,.96);
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+        }
+
+        .snapshot h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .snapshot-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .snapshot-item {
+            background: #f5f6ff;
+            border-radius: 15px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .snapshot-item .icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .snapshot-item strong {
+            display: block;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .snapshot-item span {
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* =========================
+           DAY IN LIFE
+        ========================= */
+
+        .day-life {
+            background: white;
+            border-radius: 22px;
+            padding: 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+        }
+
+        .day-life h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .timeline-item {
+            position: relative;
+            background: #f7f7ff;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            border-top: 4px solid #667eea;
+        }
+
+        .timeline-item .time {
+            font-size: 14px;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item .emoji {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 7px;
+            color: #333;
+        }
+
+        .timeline-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           TRADITIONAL / MODERN
+        ========================= */
+
+        .comparison {
+            background: white;
+            border-radius: 22px;
+            padding: 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.18);
+        }
+
+        .comparison h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .comparison-box {
+            padding: 22px;
+            border-radius: 16px;
+        }
+
+        .traditional {
+            background: #fff5e8;
+        }
+
+        .modern {
+            background: #eef1ff;
+        }
+
+        .comparison-box h3 {
+            margin-bottom: 12px;
+        }
+
+        .comparison-box ul {
+            padding-left: 20px;
+        }
+
+        .comparison-box li {
+            margin-bottom: 8px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.20);
+        }
+
+        .card h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .main-image-box {
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+            border-radius: 18px;
+            margin-bottom: 15px;
+            background: #eee;
+        }
+
+        .main-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .thumbnails img {
+            width: 110px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            flex-shrink: 0;
+            transition: .2s;
+        }
+
+        .thumbnails img:hover {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .description {
+            color: #555;
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            background: #f5f6ff;
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        .info-box p {
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .info-box strong {
+            color: #667eea;
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 10px 18px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .source {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* =========================
+           CARD HIGHLIGHTS
+        ========================= */
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .highlight {
+            background: #f7f7ff;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* =========================
+           ACTIONS
+        ========================= */
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            border: none;
+            padding: 11px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .like-btn {
+            background: #ffe7ec;
+            color: #d63355;
+        }
+
+        .save-btn {
+            background: #fff3d4;
+            color: #9a6a00;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 50px;
+            background: rgba(0,0,0,.25);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        footer h3 {
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        footer p {
+            margin: 6px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-copy {
+            margin-top: 15px;
+            font-size: 13px;
+            opacity: .8;
+        }
+
+        .not-found {
+            background: white;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 40px;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:850px) {
+
+            .snapshot-grid,
+            .timeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media(max-width:700px) {
+
+            body {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .main-image-box {
+                height: 300px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .snapshot-grid,
+            .timeline,
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🌍 Lifestyle</h1>
+
+    <p>
+        Explore daily life, traditions and modern living around the world
+    </p>
+
+    <a id="backButton" href="#" class="back-btn">
+        ← Back to Country
+    </a>
+
+</header>
+
+<h2 id="countryTitle" class="country-title"></h2>
+
+<div id="container" class="container"></div>
+
+<footer>
+
+    <h3>🌍 World Culture Explorer</h3>
+
+    <p>
+        Discover cultures, traditions, lifestyle and heritage
+        from around the world.
+    </p>
+
+    <div class="footer-links">
+
+        <a href="index.html">Home</a>
+
+        <a id="footerCountryLink" href="#">
+            Country
+        </a>
+
+    </div>
+
+    <p class="footer-copy">
+        © 2026 World Culture Explorer. All Rights Reserved.
+    </p>
+
+</footer>
+
+<script>
+
+    /* ==============================
+       GET COUNTRY
+    ============================== */
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const countryParam =
+        params.get("country") || "India";
+
+
+    function normalizeCountry(name) {
+
+        const value = name.trim().toLowerCase();
+
+        if (value === "india") return "India";
+        if (value === "japan") return "Japan";
+        if (value === "france") return "France";
+        if (value === "italy") return "Italy";
+
+        return name;
+
+    }
+
+
+    const country =
+        normalizeCountry(countryParam);
+
+
+    /* ==============================
+       BACK TO COUNTRY
+    ============================== */
+
+    const countryURL =
+        "country.html?country=" +
+        encodeURIComponent(country);
+
+    document.getElementById("backButton").href =
+        countryURL;
+
+    document.getElementById("footerCountryLink").href =
+        countryURL;
+
+
+    document.getElementById("countryTitle").innerText =
+        "Lifestyle of " + country;
+
+
+    /* ==============================
+       LIFESTYLE DATA
+       
+       YAHAN TUMHARA EXISTING
+       lifestyleData OBJECT SAME RAKHO
+    ============================== */
+
+    const lifestyleData = {
+
+        India: [
+
+            {
+                name: "Family & Community Life",
+                description:
+                    "Family and community relationships are important parts of everyday life in India.",
+                location: "India",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Family%20at%20Aguada%20Fort.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Mamatha%20poojari%20family.JPG",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Family%20in%20India.jpg"
+                ]
+            },
+
+            {
+                name: "Festivals & Celebrations",
+                description:
+                    "Festivals bring families and communities together through food, music, decorations, rituals and celebrations.",
+                location: "India",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Diwali%20celebration.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Holi%20festival%20India.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20festival.jpg"
+                ]
+            },
+
+            {
+                name: "Food & Eating Traditions",
+                description:
+                    "Indian lifestyle includes diverse regional cuisines, traditional cooking methods, family meals and street food culture.",
+                location: "India",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20food.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20cuisine.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20street%20food.jpg"
+                ]
+            },
+
+            {
+                name: "Yoga & Wellness",
+                description:
+                    "Yoga is an important part of India's cultural heritage and is practiced for physical and mental well-being.",
+                location: "India",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/International%20Yoga%20day.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Yoga%20at%20school.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Yoga%20in%20the%20morning%20%287663105006%29.jpg"
+                ]
+            },
+
+            {
+                name: "Markets & Shopping",
+                description:
+                    "Traditional markets and bazaars are popular for clothing, food, spices, handicrafts and locally produced goods.",
+                location: "India",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Bazar%20in%20india.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Market%20in%20India.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Street%20market.JPG"
+                ]
+            },
+
+            {
+                name: "Modern & Traditional Lifestyle",
+                description:
+                    "India combines traditional customs with modern cities, technology, education, entertainment and changing lifestyles.",
+                location: "Delhi, India",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Buiobuione%20Street%20photography%20of%20daily%20life%20in%20Delhi%20India%20-%2021.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Street%20photography%20of%20daily%20life%20in%20Delhi%20India%2005.jpg"
+                ]
+            }
+
+        ],
+
+        Japan: [
+
+            {
+                name: "Tea Ceremony",
+                description:
+                    "The Japanese tea ceremony emphasizes hospitality, preparation, respect and calmness.",
+                location: "Kyoto, Japan",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Japanese%20Tea%20Ceremony%27s%20Host%20Preparing%20Tea%20-%20Kyoto%2C%202023.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Japan%20tea%20ceremony%201165.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Outdoor%20Tea%20Ceremony.jpg"
+                ]
+            },
+
+            {
+                name: "Japanese Family Life",
+                description:
+                    "Japanese family life combines traditional values with modern urban lifestyles.",
+                location: "Japan",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20family%2001.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/A%2019th%20century%20Japanese%20family.jpg"
+                ]
+            },
+
+            {
+                name: "Traditional Festivals",
+                description:
+                    "Japanese festivals include seasonal celebrations, local traditions, performances and community events.",
+                location: "Japan",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/2015-07-31Minazuki-Festival%20Kokuryo%2CTamba%2CHyogo-Japan%20%E5%9B%BD%E9%A0%98%E6%B0%B4%E7%84%A1%E6%9C%88%E7%A5%AD%E3%82%8A%208579.JPG",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/2015-07-31Minazuki-Festival%20Kokuryo%2CTamba%2CHyogo-Japan%20%E5%9B%BD%E9%A0%98%E6%B0%B4%E7%84%A1%E6%9C%88%E7%A5%AD%E3%82%8A%208580.JPG"
+                ]
+            },
+
+            {
+                name: "Onsen Culture",
+                description:
+                    "Onsen, or traditional hot spring bathing, is an important part of Japanese leisure and cultural life.",
+                location: "Japan",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Urijima-onsen%20Hot%20spring.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Mizunashi%20Kaihin%20Onsen%20%28hot%20spring%20bath%29%20in%20Hakodate%2C%20Japan.jpg"
+                ]
+            },
+
+            {
+                name: "Modern City Life",
+                description:
+                    "Japan combines advanced technology, highly developed cities and traditional cultural practices.",
+                location: "Tokyo, Japan",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20nightview.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo%20Tower%2C%20Minato%20City.jpg"
+                ]
+            }
+
+        ],
+
+        France: [
+
+            {
+                name: "Café Culture",
+                description:
+                    "Cafés are an important part of French social life and provide spaces for conversation, food and relaxation.",
+                location: "France",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Bourg-en-Bresse%20-%20Le%20Caf%C3%A9%20Fran%C3%A7ais%20-%20avenue%20Alsace-Lorraine%207%20%281-2014%29%202014-06-24%2011.13.59.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Caf%C3%A9%20Fran%C3%A7ais%20Bourg%20Bresse%201.jpg"
+                ]
+            },
+
+            {
+                name: "French Cuisine",
+                description:
+                    "French cuisine includes regional dishes, bread, cheese, pastries and traditional cooking techniques.",
+                location: "France",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Poireaux%20vinaigrette%20Dijon.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/French%20cuisine%20banner.jpg"
+                ]
+            },
+
+            {
+                name: "Family Life",
+                description:
+                    "Family relationships, social activities and shared meals are important elements of everyday life in France.",
+                location: "France",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/French%20family.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Family%20in%20France.jpg"
+                ]
+            },
+
+            {
+                name: "Fashion Culture",
+                description:
+                    "France, especially Paris, has a strong fashion tradition associated with haute couture and luxury fashion.",
+                location: "Paris, France",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20Fashion%20Week.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/French%20fashion.jpg"
+                ]
+            },
+
+            {
+                name: "Art & Museums",
+                description:
+                    "Art, museums and cultural heritage are important parts of French cultural life.",
+                location: "Paris, France",
+                images: [
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Louvre%20Paris.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Louvre%20Museum.jpg",
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Louvre%20museum%2001.jpg"
+                ]
+            }
+
+        ]
+
+    };
+
+
+    /* ==============================
+       DAY IN THE LIFE
+    ============================== */
+
+    function createDayInLife() {
+
+        return `
+
+            <section class="day-life">
+
+                <h2>🌅 A Day in the Life of ${country}</h2>
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+                        <div class="time">🌅 Morning</div>
+                        <div class="emoji">☀️</div>
+                        <h3>Start of the Day</h3>
+                        <p>
+                            Morning routines, breakfast, family time
+                            and preparation for work or school.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">🏙️ Afternoon</div>
+                        <div class="emoji">💼</div>
+                        <h3>Work & Activities</h3>
+                        <p>
+                            Work, education, shopping and everyday
+                            community activities.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">🌇 Evening</div>
+                        <div class="emoji">☕</div>
+                        <h3>Leisure Time</h3>
+                        <p>
+                            Socializing, hobbies, entertainment,
+                            sports and relaxation.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">🌙 Night</div>
+                        <div class="emoji">🍽️</div>
+                        <h3>Family & Rest</h3>
+                        <p>
+                            Dinner, family conversations and
+                            relaxing before the next day.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        `;
+
+    }
+
+
+    /* ==============================
+       LIFESTYLE SNAPSHOT
+    ============================== */
+
+    function createSnapshot(data) {
+
+        return `
+
+            <section class="snapshot">
+
+                <h2>✨ Lifestyle Snapshot</h2>
+
+                <div class="snapshot-grid">
+
+                    <div class="snapshot-item">
+                        <div class="icon">👨‍👩‍👧</div>
+                        <strong>Family</strong>
+                        <span>
+                            Family and community life
+                        </span>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <div class="icon">🍽️</div>
+                        <strong>Food</strong>
+                        <span>
+                            Local food and eating traditions
+                        </span>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <div class="icon">🎊</div>
+                        <strong>Celebrations</strong>
+                        <span>
+                            Festivals and social gatherings
+                        </span>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <div class="icon">☕</div>
+                        <strong>Leisure</strong>
+                        <span>
+                            Hobbies and relaxation
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        `;
+
+    }
+
+
+    /* ==============================
+       TRADITIONAL VS MODERN
+    ============================== */
+
+    function createComparison() {
+
+        return `
+
+            <section class="comparison">
+
+                <h2>⚖️ Traditional & Modern Lifestyle</h2>
+
+                <div class="comparison-grid">
+
+                    <div class="comparison-box traditional">
+
+                        <h3>🏡 Traditional Side</h3>
+
+                        <ul>
+                            <li>Traditional customs and family practices</li>
+                            <li>Local food and regional traditions</li>
+                            <li>Community celebrations</li>
+                            <li>Traditional arts and cultural activities</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="comparison-box modern">
+
+                        <h3>🌆 Modern Side</h3>
+
+                        <ul>
+                            <li>Modern cities and technology</li>
+                            <li>Contemporary work and education</li>
+                            <li>Digital entertainment and communication</li>
+                            <li>Changing social and lifestyle patterns</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        `;
+
+    }
+
+
+    /* ==============================
+       DISPLAY
+    ============================== */
+
+    function displayLifestyle() {
+
+        const container =
+            document.getElementById("container");
+
+        const data =
+            lifestyleData[country];
+
+
+        if (!data) {
+
+            container.innerHTML = `
+
+                <div class="not-found">
+
+                    <h2>🌍 Country Data Not Available</h2>
+
+                    <p>
+                        Lifestyle information for
+                        <strong>${country}</strong>
+                        is not available yet.
+                    </p>
+
+                    <a
+                        href="${countryURL}"
+                        class="back-btn">
+                        ← Back to Country
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /*
+            New sections first
+        */
+
+        container.innerHTML =
+            createSnapshot(data) +
+            createDayInLife() +
+            createComparison();
+
+
+        /*
+            Existing lifestyle cards
+        */
+
+        data.forEach((item, index) => {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "card";
+
+
+            const storageKey =
+                "wce_lifestyle_" +
+                country.toLowerCase() +
+                "_" +
+                index;
+
+
+            const likes =
+                Number(
+                    localStorage.getItem(
+                        storageKey + "_likes"
+                    ) || 0
+                );
+
+
+            const saved =
+                localStorage.getItem(
+                    storageKey + "_saved"
+                ) === "1";
+
+
+            card.innerHTML = `
+
+                <h2>
+                    ${item.name}
+                </h2>
+
+                <div class="main-image-box">
+
+                    <img
+                        id="mainImage${index}"
+                        src="${item.images[0]}"
+                        alt="${item.name}"
+                        onerror="this.style.display='none';"
+                    >
+
+                </div>
+
+
+                <div
+                    class="thumbnails"
+                    id="thumbs${index}">
+                </div>
+
+
+                <p class="description">
+                    ${item.description}
+                </p>
+
+
+                <div class="info-box">
+
+                    <p>
+                        <strong>📍 Location:</strong>
+                        ${item.location}
+                    </p>
+
+                    <a
+                        class="map-btn"
+                        href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location)}"
+                        target="_blank">
+
+                        📍 View on Google Maps
+
+                    </a>
+
+                </div>
+
+
+                <div class="highlights">
+
+                    <div class="highlight">
+                        🌍 ${country}
+                    </div>
+
+                    <div class="highlight">
+                        🏠 Daily Life
+                    </div>
+
+                    <div class="highlight">
+                        ✨ Cultural Tradition
+                    </div>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button
+                        class="action-btn like-btn"
+                        id="likeBtn${index}">
+
+                        ❤️ Like
+                        <span id="likeCount${index}">
+                            ${likes}
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="action-btn save-btn"
+                        id="saveBtn${index}">
+
+                        ${saved ? "⭐ Saved" : "☆ Save Lifestyle"}
+
+                    </button>
+
+                </div>
+
+
+                <div class="source">
+                    Source: Wikimedia Commons
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+
+            /*
+                Thumbnails
+            */
+
+            const thumbs =
+                document.getElementById(
+                    "thumbs" + index
+                );
+
+
+            item.images.forEach(image => {
+
+                const img =
+                    document.createElement("img");
+
+                img.src = image;
+
+                img.alt = item.name;
+
+                img.onerror = function() {
+                    this.style.display = "none";
+                };
+
+                img.onclick = function() {
+
+                    document.getElementById(
+                        "mainImage" + index
+                    ).src = image;
+
+                };
+
+                thumbs.appendChild(img);
+
+            });
+
+
+            /*
+                Like
+            */
+
+            document.getElementById(
+                "likeBtn" + index
+            ).onclick = function() {
+
+                const currentLikes =
+                    Number(
+                        localStorage.getItem(
+                            storageKey + "_likes"
+                        ) || 0
+                    ) + 1;
+
+
+                localStorage.setItem(
+                    storageKey + "_likes",
+                    currentLikes
+                );
+
+
+                document.getElementById(
+                    "likeCount" + index
+                ).textContent =
+                    currentLikes;
+
+            };
+
+
+            /*
+                Save
+            */
+
+            document.getElementById(
+                "saveBtn" + index
+            ).onclick = function() {
+
+                const currentlySaved =
+                    localStorage.getItem(
+                        storageKey + "_saved"
+                    ) === "1";
+
+
+                localStorage.setItem(
+                    storageKey + "_saved",
+                    currentlySaved ? "0" : "1"
+                );
+
+
+                this.textContent =
+                    currentlySaved
+                        ? "☆ Save Lifestyle"
+                        : "⭐ Saved";
+
+            };
+
+        });
+
+    }
+
+
+    /* ==============================
+       START
+    ============================== */
+
+    displayLifestyle();
+
+</script>
+
+</body>
+
+</html>

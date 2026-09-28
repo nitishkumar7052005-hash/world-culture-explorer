@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Traditional Clothing | World Culture Explorer</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .clothing-page {
+            padding: 60px 7%;
+        }
+
+        .clothing-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .clothing-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .clothing-header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .country-name {
+            color: #e67e22;
+            font-weight: bold;
+        }
+
+        .clothing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .clothing-card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+            transition: 0.3s;
+        }
+
+        .clothing-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .clothing-card h2 {
+            font-size: 26px;
+            color: #222;
+            margin-top: 0;
+        }
+
+        .clothing-card p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .main-clothing-image,
+        .no-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            display: block;
+            margin-bottom: 15px;
+            background: #eee;
+        }
+
+        .clothing-gallery {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .clothing-thumbnail {
+            width: 100%;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .clothing-thumbnail:hover,
+        .clothing-thumbnail.active {
+            transform: scale(1.04);
+            border-color: #e67e22;
+        }
+
+        .clothing-info {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+
+        .clothing-info strong {
+            color: #222;
+        }
+
+        .clothing-details-button {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 11px 18px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .clothing-details-button:hover {
+            background: #e67e22;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 22px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            background: #e67e22;
+        }
+
+        .loading,
+        .error-message {
+            text-align: center;
+            padding: 80px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .error-message h2 {
+            color: #d35400;
+        }
+
+        .no-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+        }
+
+        @media (max-width: 768px) {
+            .clothing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .clothing-header h1 {
+                font-size: 32px;
+            }
+
+            .clothing-page {
+                padding: 40px 5%;
+            }
+
+            .main-clothing-image,
+            .no-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .clothing-gallery {
+                gap: 5px;
+            }
+
+            .clothing-thumbnail {
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        🌍 World Culture Explorer
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#countries">Countries</a>
+        <a href="index.html#culture">Culture</a>
+    </nav>
+
+</header>
+
+
+<main class="clothing-page">
+
+    <div class="clothing-header">
+
+        <h1>
+            👕 Traditional Clothing of
+            <span id="countryName" class="country-name">
+                Loading...
+            </span>
+        </h1>
+
+        <p>
+            Explore traditional clothing and cultural dress from this country.
+        </p>
+
+    </div>
+
+
+    <div id="clothingContainer" class="clothing-grid">
+
+        <div class="loading">
+            👕 Loading clothing...
+        </div>
+
+    </div>
+
+
+    <a href="#" id="backButton" class="back-button">
+        ← Back to Country
+    </a>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   GET COUNTRY
+===================================================== */
+
+function getCountryName() {
+
+    const params = new URLSearchParams(window.location.search);
+
+    return (
+        params.get("country") ||
+        params.get("name") ||
+        "India"
+    ).trim();
+}
+
+
+/* =====================================================
+   FIND COUNTRY
+===================================================== */
+
+function findCountry(cultureData, requestedCountry) {
+
+    const requested = requestedCountry
+        .trim()
+        .toLowerCase();
+
+    return Object.keys(cultureData).find(
+        key => key.trim().toLowerCase() === requested
+    );
+}
+
+
+/* =====================================================
+   INDIA
+===================================================== */
+
+const indiaClothing = {
+
+    "Saree": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Saree.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20traditional%20lady%20wearing%20saree.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20way%20of%20wearing%20saree.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Rajasthani%20saree.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20Maheshwari%20Saree%2001.jpg"
+    ],
+
+    "Kurta": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20Hindu%20Outfit.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20traditional%20dress.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20man%20in%20traditional%20dress.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20Indian%20clothing.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20traditional%20clothes.jpg"
+    ],
+
+    "Lehenga Choli": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/A-store-person-showcases-a-lehenga.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Lehenga-Choli%20%286375587865%29.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Hindu%20bride%20in%20Lehenga.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20woman%20wearing%20choli%20and%20lehenga%2C%20Oct.%202019.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Sindhi%20lehenga%2C%20choli%20and%20Sindhi%20traditional%20pantaloon%20shalwar.jpg"
+    ],
+
+    "Sherwani": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Sherwani.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20Sherwani.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Sherwani%20traditional.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20groom%20sherwani.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Sherwani%20dress.jpg"
+    ],
+
+    "Dhoti": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Dhoti.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20dhoti.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Man%20wearing%20dhoti.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Dhoti%20traditional%20dress.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20traditional%20dhoti.jpg"
+    ]
+};
+
+
+/* =====================================================
+   JAPAN
+===================================================== */
+
+const japanClothing = {
+
+    "Kimono": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20kimono.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20Traditional%20Kimono.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20Kimono.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20obi%20and%20kimono.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Man-and-lady-kimono.JPG"
+    ],
+
+    "Yukata": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Japanese%20lady%20wearing%20a%20Yukata.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Japanese%20lady%20wearing%20a%20Yukata%20and%20Japanese%20old%20folk%20house.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/A%20Japanese%20woman%20wearing%20a%20Yukata%20and%20a%20Koi%20pond%20in%20a%20Japanese%20garden.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Yukata%20girls%20in%20Japan.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Four%20ladies%20wearing%20a%20yukata%20in%20front%20of%20the%20North%20Gate%20of%20Kiyomizu-dera%20temple%20Kyoto%20Japan.jpg"
+    ],
+
+    "Hakama": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Haori%20hakama.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Hakama.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20Hakama.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Hakama%20traditional.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20man%20wearing%20hakama.jpg"
+    ]
+};
+
+
+/* =====================================================
+   FRANCE
+===================================================== */
+
+const franceClothing = {
+
+    "French Haute Couture": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Haute%20Couture.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Paris%20Fashion%20Week.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/French%20fashion.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Haute%20couture%20fashion.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/French%20designer%20fashion.jpg"
+    ],
+
+    "Breton Shirt": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breton%20shirt.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Mariniere.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Marini%C3%A8re.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breton%20clothes.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breton%20traditional%20clothing.jpg"
+    ],
+
+    "Traditional Regional Dress": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Breton%20clothes.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/French%20traditional%20costume.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20French%20costume.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/French%20regional%20costume.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Folk%20costume%20France.jpg"
+    ]
+};
+
+
+/* =====================================================
+   ITALY
+===================================================== */
+
+const italyClothing = {
+
+    "Italian Regional Dress": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Abiti%20tradizionali%20conservati%20nel%20Palazzo%20delle%20Decime.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Cocullo%20abiti%20tradizionali.jpg"
+    ],
+
+    "Sardinian Traditional Dress": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Traditional%20Sardinian%20costume%20%2815764685557%29.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Costumes%20of%20Sardinia%201880s%2001.jpg"
+    ],
+
+    "Venetian Carnival Costume": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Venice%20carnival%20costume%20with%20mask%20and%20hat.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Venetian%20carnival.jpg"
+    ]
+};
+
+
+/* =====================================================
+   GET CLOTHING IMAGES
+===================================================== */
+
+function getClothingImages(countryKey, clothing) {
+
+    const country = countryKey.trim().toLowerCase();
+
+    if (country === "india") {
+        return indiaClothing[clothing] || [];
+    }
+
+    if (country === "japan") {
+        return japanClothing[clothing] || [];
+    }
+
+    if (country === "france") {
+        return franceClothing[clothing] || [];
+    }
+
+    if (country === "italy") {
+        return italyClothing[clothing] || [];
+    }
+
+    return [];
+}
+
+
+/* =====================================================
+   CHANGE IMAGE
+===================================================== */
+
+function changeClothingImage(thumbnail, mainImageId, imagePath) {
+
+    const mainImage = document.getElementById(mainImageId);
+
+    if (mainImage) {
+        mainImage.src = imagePath;
+        mainImage.style.display = "block";
+    }
+
+    const gallery = thumbnail.parentElement;
+
+    gallery.querySelectorAll(".clothing-thumbnail")
+        .forEach(item => item.classList.remove("active"));
+
+    thumbnail.classList.add("active");
+}
+
+
+/* =====================================================
+   LOAD CLOTHING
+===================================================== */
+
+async function loadClothingData() {
+
+    const requestedCountry = getCountryName();
+
+    const countryNameElement =
+        document.getElementById("countryName");
+
+    const clothingContainer =
+        document.getElementById("clothingContainer");
+
+    const backButton =
+        document.getElementById("backButton");
+
+    countryNameElement.textContent = requestedCountry;
+
+    backButton.href =
+        "country.html?country=" +
+        encodeURIComponent(requestedCountry);
+
+    try {
+
+        const response =
+            await fetch("./data/culture.json");
+
+        if (!response.ok) {
+            throw new Error("culture.json could not be loaded");
+        }
+
+        const cultureData = await response.json();
+
+        const countryKey =
+            findCountry(cultureData, requestedCountry);
+
+        if (!countryKey) {
+
+            clothingContainer.innerHTML = `
+                <div class="error-message">
+                    <h2>🌍 Country data not available</h2>
+
+                    <p>
+                        Clothing information for
+                        <strong>${requestedCountry}</strong>
+                        is not available yet.
+                    </p>
+
+                    <p>
+                        Available countries:
+                        ${Object.keys(cultureData).join(", ")}
+                    </p>
+                </div>
+            `;
+
+            return;
+        }
+
+        const countryData = cultureData[countryKey];
+
+        const clothing = countryData.clothing;
+
+        if (!clothing || clothing.length === 0) {
+
+            clothingContainer.innerHTML = `
+                <div class="error-message">
+                    <h2>👕 No clothing data available</h2>
+                </div>
+            `;
+
+            return;
+        }
+
+        clothingContainer.innerHTML = "";
+
+        clothing.forEach((item, index) => {
+
+            const card = document.createElement("div");
+
+            card.className = "clothing-card";
+
+            const images =
+                getClothingImages(countryKey, item);
+
+            let imageHTML = "";
+
+            if (images.length > 0) {
+
+                const mainImageId =
+                    "mainClothingImage" + index;
+
+                imageHTML = `
+                    <img
+                        id="${mainImageId}"
+                        src="${images[0]}"
+                        alt="${item}"
+                        class="main-clothing-image"
+                        onerror="this.style.display='none'"
+                    >
+
+                    <div class="clothing-gallery">
+                `;
+
+                images.forEach((image, imageIndex) => {
+
+                    imageHTML += `
+                        <img
+                            src="${image}"
+                            alt="${item} photo ${imageIndex + 1}"
+                            class="clothing-thumbnail ${
+                                imageIndex === 0 ? "active" : ""
+                            }"
+                            onclick="changeClothingImage(
+                                this,
+                                '${mainImageId}',
+                                '${image}'
+                            )"
+                            onerror="this.style.display='none'"
+                        >
+                    `;
+
+                });
+
+                imageHTML += `</div>`;
+
+            } else {
+
+                imageHTML = `
+                    <div class="no-image">
+                        👕
+                    </div>
+                `;
+            }
+
+
+            const detailsURL =
+                "clothing-details.html?country=" +
+                encodeURIComponent(countryKey) +
+                "&clothing=" +
+                encodeURIComponent(item);
+
+
+            card.innerHTML = `
+
+                ${imageHTML}
+
+                <h2>
+                    ${item}
+                </h2>
+
+                <p>
+                    Traditional clothing associated with
+                    <strong>${countryKey}</strong>.
+                </p>
+
+                <div class="clothing-info">
+
+                    <p>
+                        <strong>Country:</strong>
+                        ${countryKey}
+                    </p>
+
+                    <p>
+                        <strong>Clothing:</strong>
+                        ${item}
+                    </p>
+
+                    <p>
+                        <strong>Photo Source:</strong>
+                        Wikimedia Commons
+                    </p>
+
+                </div>
+
+                <a
+                    href="${detailsURL}"
+                    class="clothing-details-button">
+
+                    👕 View Details →
+
+                </a>
+            `;
+
+            clothingContainer.appendChild(card);
+
+        });
+
+    } catch (error) {
+
+        console.error("ERROR:", error);
+
+        clothingContainer.innerHTML = `
+            <div class="error-message">
+
+                <h2>
+                    ⚠️ Error Loading Clothing
+                </h2>
+
+                <p>
+                    ${error.message}
+                </p>
+
+            </div>
+        `;
+    }
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadClothingData();
+
+</script>
+
+</body>
+</html>

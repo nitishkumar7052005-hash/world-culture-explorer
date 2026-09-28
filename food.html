@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Food | World Culture Explorer</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* =========================
+           FOOD PAGE
+        ========================= */
+
+        .food-page {
+            padding: 60px 7%;
+        }
+
+        .food-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .food-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .food-header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .country-name {
+            color: #e67e22;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           FOOD GRID
+        ========================= */
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+
+        /* =========================
+           FOOD CARD
+        ========================= */
+
+        .food-card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+            transition: 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .food-card h2 {
+            margin-top: 0;
+            font-size: 26px;
+            color: #222;
+        }
+
+        .food-card p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           MAIN IMAGE
+        ========================= */
+
+        .main-food-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            display: block;
+            margin-bottom: 15px;
+            background: #eee;
+        }
+
+
+        /* =========================
+           FOOD GALLERY
+        ========================= */
+
+        .food-gallery {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .food-thumbnail {
+            width: 100%;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .food-thumbnail:hover {
+            transform: scale(1.04);
+            border-color: #e67e22;
+        }
+
+        .food-thumbnail.active {
+            border-color: #e67e22;
+        }
+
+
+        /* =========================
+           FOOD INFO
+        ========================= */
+
+        .food-info {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+
+        .food-info strong {
+            color: #222;
+        }
+
+
+        /* =========================
+           DETAILS BUTTON
+        ========================= */
+
+        .food-details-button {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .food-details-button:hover {
+            background: #e67e22;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 22px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            background: #e67e22;
+        }
+
+
+        /* =========================
+           LOADING / ERROR
+        ========================= */
+
+        .loading,
+        .error-message {
+            text-align: center;
+            padding: 80px 20px;
+            grid-column: 1 / -1;
+        }
+
+
+        /* =========================
+           NO IMAGE
+        ========================= */
+
+        .no-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            background: linear-gradient(
+                135deg,
+                #f5f5f5,
+                #e8e8e8
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 70px;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .food-header h1 {
+                font-size: 32px;
+            }
+
+            .food-page {
+                padding: 40px 5%;
+            }
+
+            .main-food-image {
+                height: 250px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .food-gallery {
+                gap: 5px;
+            }
+
+            .food-thumbnail {
+                height: 50px;
+            }
+
+            .food-card {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#countries">
+                Countries
+            </a>
+
+            <a href="index.html#culture">
+                Culture
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         FOOD PAGE
+    ========================= -->
+
+    <main class="food-page">
+
+
+        <!-- HEADER -->
+
+        <div class="food-header">
+
+            <h1>
+
+                🍛 Famous Food of
+
+                <span
+                    id="countryName"
+                    class="country-name"
+                >
+                    Loading...
+                </span>
+
+            </h1>
+
+            <p>
+                Discover traditional food and famous dishes
+                from this country.
+            </p>
+
+        </div>
+
+
+        <!-- FOOD CONTAINER -->
+
+        <div
+            id="foodContainer"
+            class="food-grid"
+        >
+
+            <div class="loading">
+
+                🍽️ Loading food...
+
+            </div>
+
+        </div>
+
+
+        <!-- BACK BUTTON -->
+
+        <a
+            href="#"
+            id="backButton"
+            class="back-button"
+        >
+
+            ← Back to Country
+
+        </a>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =====================================================
+           GET COUNTRY FROM URL
+        ===================================================== */
+
+        function getCountryName() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+            const country =
+                params.get("country") ||
+                params.get("name") ||
+                "India";
+
+            return country.trim();
+
+        }
+
+
+
+        /* =====================================================
+           FIND COUNTRY CASE-INSENSITIVE
+        ===================================================== */
+
+        function findCountry(
+            cultureData,
+            requestedCountry
+        ) {
+
+            const requested =
+                requestedCountry
+                    .trim()
+                    .toLowerCase();
+
+            return Object.keys(cultureData).find(
+                key =>
+                    key.trim().toLowerCase() === requested
+            );
+
+        }
+
+
+
+        /* =====================================================
+           INDIA IMAGES
+        ===================================================== */
+
+        const indiaImages = {
+
+            "Biryani": [
+
+                "./images/food/biryani/biryani1.jpg",
+                "./images/food/biryani/biryani2.jpg",
+                "./images/food/biryani/biryani3.jpg",
+                "./images/food/biryani/biryani4.jpg",
+                "./images/food/biryani/biryani5.jpg"
+
+            ],
+
+
+            "Masala Dosa": [
+
+                "./images/food/masla-dosa/dosa1.jpg",
+                "./images/food/masla-dosa/dosa2.jpg",
+                "./images/food/masla-dosa/dosa3.jpg",
+                "./images/food/masla-dosa/dosa4.jpg",
+                "./images/food/masla-dosa/dosa5.jpg"
+
+            ],
+
+
+            "Butter Chicken": [
+
+                "./images/food/butter chicken/butter chicken1.jpg",
+                "./images/food/butter chicken/butter chicken2.jpg",
+                "./images/food/butter chicken/butter chicken3.jpg",
+                "./images/food/butter chicken/butter chicken4.jpg",
+                "./images/food/butter chicken/butter chicken5.jpg"
+
+            ],
+
+
+            "Litti Chokha": [
+
+                "./images/food/Litti chokha/litti-chokha.jpg",
+                "./images/food/Litti chokha/litti-2.jpg",
+                "./images/food/Litti chokha/litti-3.jpg",
+                "./images/food/Litti chokha/litti-4.jpg",
+                "./images/food/Litti chokha/litti-5.jpg"
+
+            ],
+
+
+            "Samosa": [
+
+                "./images/food/Samosa/samosa.jpg",
+                "./images/food/Samosa/samosa-2.jpg",
+                "./images/food/Samosa/samosa-3.jpg",
+                "./images/food/Samosa/samosa-4.jpg",
+                "./images/food/Samosa/samosa-5.jpg"
+
+            ],
+
+
+            "Chai": [
+
+                "./images/food/chai/chai.jpg",
+                "./images/food/chai/chai-2.jpg",
+                "./images/food/chai/chai-3.jpg",
+                "./images/food/chai/chai-4.jpg",
+                "./images/food/chai/chai-5.jpg"
+
+            ]
+
+        };
+
+
+
+        /* =====================================================
+           JAPAN IMAGES
+        ===================================================== */
+
+        const japanImages = {
+
+            "Sushi": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Sushi%20platter.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Sushi.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Sushi%20-%20Kansai.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Sushi%20in%20Japan.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Sushi%20Saito%20IMG%201798%20%2823175996243%29.jpg"
+
+            ],
+
+
+            "Ramen": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/2013.02.27.ramen.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/2021-01-31%2019-06-09%20ILCE-7C%20DSC02428%20DxO%20%2850996748471%29.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Ramen.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Ramen%20Tokyo.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Shoyu%20Ramen%20with%20Sushi%20and%20Tempura.jpg"
+
+            ],
+
+
+            "Tempura": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Tempura%20001.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Tempura%20002.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Tempura%20003.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Tempura.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Tempura%20udon%20by%206strings.jpg"
+
+            ],
+
+
+            "Udon": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Udon-M1336.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Udon%20%2837284229176%29.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Mizusawa%20Udon%20Tamaruya.JPG",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Nabeyaki%20udon.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Tempura-Udon-Nudeln.JPG"
+
+            ],
+
+
+            "Miso Soup": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Miso%20Soup%201.JPG",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Miso%20Soup%202.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Miso%20soup%20and%20Rice%2020141027.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Miso%20soup%20bowl.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Miso%20soup%20at%20a%20sushi%20restaurant.jpg"
+
+            ]
+
+        };
+
+
+
+        /* =====================================================
+           FRANCE IMAGES
+        ===================================================== */
+
+        const franceImages = {
+
+            "Croissant": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/00%20Croissant.%20Yum.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/First%20croissant%20%2853089464091%29.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Flickr%20-%20cyclonebill%20-%20Croissanter.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Homemade%20croissants%20%288344423880%29.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/La%20parisienne%20unbaked%20croissant.jpg"
+
+            ],
+
+
+            "Baguette": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/9457French%20bagette%2001.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/170520-N-FQ994-217%20%2834656539342%29.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/20080215-18%20Wenen%20%28126%29.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Baguette.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/French%20Baguette.jpg"
+
+            ],
+
+
+            "Ratatouille": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Ratatouille.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Ratatouille%20home%20cooked.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Ratatouille%20francaise%202020.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Ratatouille-Dish.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Cr%C3%A8pes%20fourr%C3%A9es%20%C3%A0%20la%20ratatouille.jpg"
+
+            ],
+
+
+            "Crêpes": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Cr%C3%A8pes%20fourr%C3%A9es%20%C3%A0%20la%20ratatouille.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Crepe.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Crepes.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Cr%C3%AApe.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Crepes%20with%20chocolate.jpg"
+
+            ],
+
+
+            "French Cheese": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/French%20cheese.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/French%20cheeses.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Assorted%20French%20cheeses.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Cheese%20France.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/French%20cheese%20platter.jpg"
+
+            ]
+
+        };
+
+
+
+        /* =====================================================
+           ITALY IMAGES
+        ===================================================== */
+
+        const italyImages = {
+
+            "Pizza": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Pizza%20Napoletana.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Pizza%20burrata.jpg"
+
+            ],
+
+
+            "Pasta": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Pasta%20Pomodoro.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Homemade%20Spaghetti%20Bolognese.jpg"
+
+            ],
+
+
+            "Risotto": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Risotto%20alla%20milanese.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Risotto%20with%20truffles%20in%20Saudi%20Arabia.jpg"
+
+            ],
+
+
+            "Lasagna": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Lasagne.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Lasagna.jpg"
+
+            ],
+
+
+            "Gelato": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Gelateria%20italiana.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Gelato%20shop.jpg"
+
+            ],
+
+
+            "Tiramisu": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/A%20yummy%20tiramisu.jpg",
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Il%20mio%20tiramis%C3%B9%20anti%20spreco.jpg"
+
+            ]
+
+        };
+
+
+
+        /* =====================================================
+           GET FOOD IMAGES
+        ===================================================== */
+
+        function getFoodImages(
+            countryKey,
+            food
+        ) {
+
+            const country =
+                countryKey
+                    .trim()
+                    .toLowerCase();
+
+
+            if (country === "india") {
+
+                return indiaImages[food] || [];
+
+            }
+
+
+            if (country === "japan") {
+
+                return japanImages[food] || [];
+
+            }
+
+
+            if (country === "france") {
+
+                return franceImages[food] || [];
+
+            }
+
+
+            if (country === "italy") {
+
+                return italyImages[food] || [];
+
+            }
+
+
+            return [];
+
+        }
+
+
+
+        /* =====================================================
+           CHANGE MAIN IMAGE
+        ===================================================== */
+
+        function changeFoodImage(
+            thumbnail,
+            mainImageId,
+            image
+        ) {
+
+            const mainImage =
+                document.getElementById(
+                    mainImageId
+                );
+
+
+            if (mainImage) {
+
+                mainImage.src = image;
+
+            }
+
+
+            const gallery =
+                thumbnail.parentElement;
+
+
+            const thumbnails =
+                gallery.querySelectorAll(
+                    ".food-thumbnail"
+                );
+
+
+            thumbnails.forEach(
+                item => {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            thumbnail.classList.add(
+                "active"
+            );
+
+        }
+
+
+
+        /* =====================================================
+           LOAD FOOD DATA
+        ===================================================== */
+
+        async function loadFoodData() {
+
+            const requestedCountry =
+                getCountryName();
+
+
+            const countryNameElement =
+                document.getElementById(
+                    "countryName"
+                );
+
+
+            const foodContainer =
+                document.getElementById(
+                    "foodContainer"
+                );
+
+
+            const backButton =
+                document.getElementById(
+                    "backButton"
+                );
+
+
+            countryNameElement.textContent =
+                requestedCountry;
+
+
+            backButton.href =
+                "country.html?country=" +
+                encodeURIComponent(
+                    requestedCountry
+                );
+
+
+            try {
+
+                /* =========================
+                   LOAD JSON
+                ========================= */
+
+                const response =
+                    await fetch(
+                        "./data/culture.json"
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "culture.json could not be loaded"
+                    );
+
+                }
+
+
+                const cultureData =
+                    await response.json();
+
+
+
+                /* =========================
+                   FIND COUNTRY
+                ========================= */
+
+                const countryKey =
+                    findCountry(
+                        cultureData,
+                        requestedCountry
+                    );
+
+
+                if (!countryKey) {
+
+                    foodContainer.innerHTML = `
+
+                        <div class="error-message">
+
+                            <h2>
+                                🌍 Country data not available
+                            </h2>
+
+                            <p>
+
+                                Food information for
+
+                                <strong>
+                                    ${requestedCountry}
+                                </strong>
+
+                                is not available yet.
+
+                            </p>
+
+                            <p>
+
+                                Available countries:
+
+                                ${Object.keys(cultureData).join(", ")}
+
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+
+                /* =========================
+                   GET COUNTRY DATA
+                ========================= */
+
+                const countryData =
+                    cultureData[countryKey];
+
+
+                const foods =
+                    countryData.food;
+
+
+                if (
+                    !foods ||
+                    foods.length === 0
+                ) {
+
+                    foodContainer.innerHTML = `
+
+                        <div class="error-message">
+
+                            <h2>
+                                🍽️ No food data available
+                            </h2>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+
+                /* =========================
+                   CLEAR LOADING
+                ========================= */
+
+                foodContainer.innerHTML = "";
+
+
+
+                /* =========================
+                   CREATE FOOD CARDS
+                ========================= */
+
+                foods.forEach(
+                    (food, index) => {
+
+                        const card =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        card.className =
+                            "food-card";
+
+
+
+                        /* =========================
+                           GET IMAGES
+                        ========================= */
+
+                        const images =
+                            getFoodImages(
+                                countryKey,
+                                food
+                            );
+
+
+                        let imageHTML = "";
+
+
+
+                        /* =========================
+                           IMAGES AVAILABLE
+                        ========================= */
+
+                        if (
+                            images &&
+                            images.length > 0
+                        ) {
+
+                            const mainImageId =
+                                "mainFoodImage" +
+                                index;
+
+
+                            imageHTML = `
+
+                                <img
+
+                                    id="${mainImageId}"
+
+                                    src="${images[0]}"
+
+                                    alt="${food}"
+
+                                    class="main-food-image"
+
+                                    onerror="
+                                        this.style.display='none';
+                                    "
+
+                                >
+
+
+                                <div class="food-gallery">
+
+                            `;
+
+
+                            images.forEach(
+                                (
+                                    image,
+                                    imageIndex
+                                ) => {
+
+                                    imageHTML += `
+
+                                        <img
+
+                                            src="${image}"
+
+                                            alt="${food} photo ${imageIndex + 1}"
+
+                                            class="food-thumbnail ${
+                                                imageIndex === 0
+                                                    ? "active"
+                                                    : ""
+                                            }"
+
+                                            onclick="
+                                                changeFoodImage(
+                                                    this,
+                                                    '${mainImageId}',
+                                                    '${image.replace(
+                                                        /'/g,
+                                                        "\\'"
+                                                    )}'
+                                                )
+                                            "
+
+                                            onerror="
+                                                this.style.display='none';
+                                            "
+
+                                        >
+
+                                    `;
+
+                                }
+                            );
+
+
+                            imageHTML += `
+
+                                </div>
+
+                            `;
+
+                        }
+
+
+                        /* =========================
+                           NO IMAGE
+                        ========================= */
+
+                        else {
+
+                            imageHTML = `
+
+                                <div class="no-image">
+
+                                    🍽️
+
+                                </div>
+
+                            `;
+
+                        }
+
+
+
+                        /* =========================
+                           DETAILS LINK
+                        ========================= */
+
+                        const detailsURL =
+                            "food-details.html?country=" +
+                            encodeURIComponent(
+                                countryKey
+                            ) +
+                            "&food=" +
+                            encodeURIComponent(
+                                food
+                            );
+
+
+
+                        /* =========================
+                           CARD HTML
+                        ========================= */
+
+                        card.innerHTML = `
+
+                            ${imageHTML}
+
+
+                            <h2>
+
+                                ${food}
+
+                            </h2>
+
+
+                            <p>
+
+                                Traditional and popular
+                                food from
+
+                                <strong>
+                                    ${countryKey}
+                                </strong>.
+
+                            </p>
+
+
+                            <div class="food-info">
+
+
+                                <p>
+
+                                    <strong>
+                                        Country:
+                                    </strong>
+
+                                    ${countryKey}
+
+                                </p>
+
+
+                                <p>
+
+                                    <strong>
+                                        Dish:
+                                    </strong>
+
+                                    ${food}
+
+                                </p>
+
+
+                                <p>
+
+                                    <strong>
+                                        Photo Source:
+                                    </strong>
+
+                                    ${
+                                        countryKey
+                                            .trim()
+                                            .toLowerCase() === "india"
+                                            ? "Local Project Images"
+                                            : "Wikimedia Commons"
+                                    }
+
+                                </p>
+
+
+                                <a
+
+                                    href="${detailsURL}"
+
+                                    class="food-details-button"
+
+                                >
+
+                                    🍛 View Details →
+
+                                </a>
+
+
+                            </div>
+
+                        `;
+
+
+                        foodContainer.appendChild(
+                            card
+                        );
+
+                    }
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "ERROR:",
+                    error
+                );
+
+
+                foodContainer.innerHTML = `
+
+                    <div class="error-message">
+
+                        <h2>
+                            ⚠️ Error Loading Food
+                        </h2>
+
+
+                        <p>
+
+                            ${error.message}
+
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           START
+        ===================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            loadFoodData
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

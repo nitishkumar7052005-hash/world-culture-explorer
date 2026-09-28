@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Festival Details | World Culture Explorer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            background: white;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #ff7a00;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px 30px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #ff7a00;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #666;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 92%;
+            max-width: 1250px;
+            margin: auto;
+            padding-bottom: 70px;
+        }
+
+        /* ================= MAIN CARD ================= */
+
+        .details-card {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        /* ================= TITLE ================= */
+
+        .festival-title {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .festival-subtitle {
+            color: #777;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* ================= IMAGE ================= */
+
+        .main-image-box {
+            width: 100%;
+            height: 470px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: #eee;
+            margin-bottom: 18px;
+        }
+
+        .main-festival-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ================= GALLERY ================= */
+
+        .gallery {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .gallery-thumb {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: 0.3s;
+        }
+
+        .gallery-thumb:hover {
+            transform: scale(1.05);
+            border-color: #ff7a00;
+        }
+
+        .gallery-thumb.active {
+            border-color: #ff7a00;
+        }
+
+        /* ================= ACTIONS ================= */
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 20px 0 30px;
+        }
+
+        .action-btn {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            background: #f0f2f5;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            background: #ff7a00;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.active {
+            background: #ff7a00;
+            color: white;
+        }
+
+        /* ================= CONTENT GRID ================= */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* ================= SECTIONS ================= */
+
+        .section-box {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .section-box h2 {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .section-box p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* ================= HISTORY ================= */
+
+        .history-box {
+            background: #fff8f1;
+            border-left: 5px solid #ff7a00;
+        }
+
+        /* ================= FOOD ================= */
+
+        .food-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .food-item {
+            background: #f7f8fa;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ================= TRADITIONS ================= */
+
+        .tradition-box {
+            background: #f7f8fa;
+        }
+
+        /* ================= HIGHLIGHTS ================= */
+
+        .highlight-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .highlight-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+        }
+
+        .highlight-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* ================= INFO ================= */
+
+        .info-box {
+            background: #f7f8fa;
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .info-box h2 {
+            margin-bottom: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: bold;
+        }
+
+        .info-value {
+            color: #555;
+            text-align: right;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+        }
+
+        /* ================= USER PHOTOS ================= */
+
+        .upload-box {
+            border: 2px dashed #ccc;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .upload-box input {
+            margin-top: 15px;
+        }
+
+        .user-photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .user-photo {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* ================= REVIEWS ================= */
+
+        .review-form {
+            margin-top: 15px;
+        }
+
+        .review-form input,
+        .review-form textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        .review-form textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .review-submit {
+            background: #222;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .review-submit:hover {
+            background: #ff7a00;
+        }
+
+        .review {
+            background: #f7f8fa;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .review-name {
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .review-text {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .review-date {
+            font-size: 12px;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        /* ================= BACK BUTTON ================= */
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: #ff7a00;
+        }
+
+        /* ================= LOADING ================= */
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 20px;
+            color: #777;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .details-card {
+                padding: 20px;
+            }
+
+            .festival-title {
+                font-size: 30px;
+            }
+
+            .main-image-box {
+                height: 280px;
+            }
+
+            .gallery-thumb {
+                width: 75px;
+                height: 60px;
+            }
+
+            .food-list {
+                grid-template-columns: 1fr;
+            }
+
+            .user-photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="country.html">Countries</a>
+
+            <a href="country.html">Culture</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h1>
+            🎉 <span id="festivalHeroName">Festival</span>
+        </h1>
+
+        <p id="heroSubtitle">
+            Discover the history, traditions and food of this festival.
+        </p>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="container">
+
+        <div id="loading" class="loading">
+            Loading festival details...
+        </div>
+
+        <div id="detailsContainer"></div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 World Culture Explorer
+        </p>
+
+        <p>
+            Explore cultures from around the world 🌍
+        </p>
+
+    </footer>
+
+
+<script>
+
+/* =========================================================
+   URL PARAMETERS
+   ========================================================= */
+
+const params = new URLSearchParams(window.location.search);
+
+let country =
+    params.get("country") ||
+    params.get("name") ||
+    "India";
+
+let festival =
+    params.get("festival") ||
+    "Diwali";
+
+
+/* =========================================================
+   COUNTRY NORMALIZATION
+   ========================================================= */
+
+function normalizeCountry(name) {
+
+    const countries = {
+        india: "India",
+        japan: "Japan",
+        france: "France",
+        italy: "Italy"
+    };
+
+    return countries[String(name).toLowerCase()] || name;
+
+}
+
+country = normalizeCountry(country);
+
+
+/* =========================================================
+   FESTIVAL NORMALIZATION
+   ========================================================= */
+
+function normalizeFestival(name) {
+
+    const festivals = {
+
+        "diwali": "Diwali",
+        "holi": "Holi",
+        "navratri": "Navratri",
+        "ganesh chaturthi": "Ganesh Chaturthi",
+        "pongal": "Pongal",
+        "onam": "Onam",
+
+        "hanami": "Hanami",
+        "gion matsuri": "Gion Matsuri",
+        "tanabata": "Tanabata",
+        "obon": "Obon",
+        "shogatsu": "Shogatsu",
+
+        "bastille day": "Bastille Day",
+        "cannes film festival": "Cannes Film Festival",
+        "nice carnival": "Nice Carnival",
+        "fête de la musique": "Fête de la Musique",
+        "fete de la musique": "Fête de la Musique",
+
+        "venice carnival": "Venice Carnival",
+        "palio di siena": "Palio di Siena",
+        "ferragosto": "Ferragosto",
+        "carnevale di viareggio": "Carnevale di Viareggio"
+
+    };
+
+    return festivals[String(name).toLowerCase()] || name;
+
+}
+
+festival = normalizeFestival(festival);
+
+
+/* =========================================================
+   FESTIVAL PAGE URL
+   ========================================================= */
+
+/*
+   festival.html and festival-details.html
+   should be in the SAME folder.
+*/
+
+function getFestivalPageURL() {
+
+    return "./festivals.html?country=" +
+        encodeURIComponent(country);
+
+}
+
+
+/* =========================================================
+   INDIA FESTIVAL IMAGES
+   ========================================================= */
+
+const indiaFestivals = {
+
+    "Diwali": [
+        "./images/festivals/diwali/diwali-1.jpg",
+        "./images/festivals/diwali/diwali-2.jpg",
+        "./images/festivals/diwali/diwali-3.jpg",
+        "./images/festivals/diwali/diwali-4.jpg",
+        "./images/festivals/diwali/diwali-5.jpg"
+    ],
+
+    "Holi": [
+        "./images/festivals/holi/holi-1.jpg",
+        "./images/festivals/holi/holi-2.jpg",
+        "./images/festivals/holi/holi-3.jpg",
+        "./images/festivals/holi/holi-4.jpg",
+        "./images/festivals/holi/holi-5.jpg"
+    ],
+
+    "Navratri": [
+        "./images/festivals/navratri/navratri-1.jpg",
+        "./images/festivals/navratri/navratri-2.jpg",
+        "./images/festivals/navratri/navratri-3.jpg",
+        "./images/festivals/navratri/navratri-4.jpg",
+        "./images/festivals/navratri/navratri-5.jpg"
+    ],
+
+    "Ganesh Chaturthi": [
+        "./images/festivals/ganesh-chaturthi/ganesh-1.jpg",
+        "./images/festivals/ganesh-chaturthi/ganesh-2.jpg",
+        "./images/festivals/ganesh-chaturthi/ganesh-3.jpg",
+        "./images/festivals/ganesh-chaturthi/ganesh-4.jpg",
+        "./images/festivals/ganesh-chaturthi/ganesh-5.jpg"
+    ],
+
+    "Pongal": [
+        "./images/festivals/pongal/pongal-1.jpg",
+        "./images/festivals/pongal/pongal-2.jpg",
+        "./images/festivals/pongal/pongal-3.jpg",
+        "./images/festivals/pongal/pongal-4.jpg",
+        "./images/festivals/pongal/pongal-5.jpg"
+    ],
+
+    "Onam": [
+        "./images/festivals/onam/onam-1.jpg",
+        "./images/festivals/onam/onam-2.jpg",
+        "./images/festivals/onam/onam-3.jpg",
+        "./images/festivals/onam/onam-4.jpg",
+        "./images/festivals/onam/onam-5.jpg"
+    ]
+
+};
+
+
+/* =========================================================
+   JAPAN FESTIVAL IMAGES
+   ========================================================= */
+
+const japanFestivals = {
+
+    "Hanami": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Hanami%20at%20Japan.jpg"
+    ],
+
+    "Gion Matsuri": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Gion%20Matsuri%20of%20Kyoto%20Japan%201920s.jpg"
+    ],
+
+    "Tanabata": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Ichinomiya%20Tanabata%20Festival%202014%20-%2017.jpg"
+    ],
+
+    "Obon": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Obon%20Festival.jpg"
+    ],
+
+    "Shogatsu": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Shogatsu%20%28LOC%29%20%2816944697722%29.jpg"
+    ]
+
+};
+
+
+/* =========================================================
+   ITALY FESTIVAL IMAGES
+   ========================================================= */
+
+const italyFestivals = {
+
+    "Venice Carnival": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Venice%20Carnival.jpg"
+    ],
+
+    "Palio di Siena": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Palio%20di%20Siena%202008.jpg",
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Palio%20di%20Siena%202008%20%282%29.jpg"
+    ],
+
+    "Ferragosto": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Padova%20-%20Ferragosto.jpg"
+    ],
+
+    "Carnevale di Viareggio": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Carnival%20of%20Viareggio%2C%20Italy%2C%202019.jpg"
+    ]
+
+};
+
+
+/* =========================================================
+   FRANCE FESTIVAL IMAGES
+   ========================================================= */
+
+const franceFestivals = {
+
+    "Bastille Day": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Bastille_Day_Fireworks.jpg"
+    ],
+
+    "Cannes Film Festival": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Cannes_Film_Festival.jpg"
+    ],
+
+    "Nice Carnival": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Nice_Carnival.jpg"
+    ],
+
+    "Fête de la Musique": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Fete_de_la_musique.jpg"
+    ]
+
+};
+
+
+/* =========================================================
+   FESTIVAL DETAILS
+   ========================================================= */
+
+const festivalDetails = {
+
+    "Diwali": {
+        history:
+            "Diwali, also known as Deepavali, is the Festival of Lights. It is associated with the victory of light over darkness and good over evil. In many Hindu traditions, it is also associated with the return of Lord Rama to Ayodhya after his exile. The festival is celebrated over several days with prayers, lamps, family gatherings and sharing of sweets.",
+
+        foods: [
+            "Laddoo",
+            "Barfi",
+            "Jalebi",
+            "Gulab Jamun",
+            "Kaju Katli",
+            "Chakli",
+            "Gujiya"
+        ],
+
+        traditions:
+            "Families clean and decorate their homes, light diyas, perform Lakshmi-Ganesha worship, exchange sweets and gifts, and gather with relatives and friends. Food is an important part of the celebration, with sweets and snacks commonly prepared and shared.",
+
+        highlights: [
+            "Festival of Lights",
+            "Lighting of diyas",
+            "Lakshmi-Ganesha Puja",
+            "Traditional sweets",
+            "Family gatherings",
+            "Decorations and rangoli",
+            "Gift exchange"
+        ]
+    },
+
+    "Holi": {
+        history:
+            "Holi is a major Indian festival popularly known as the Festival of Colours. It is associated with the arrival of spring and is celebrated through colourful gatherings, music, dancing and community activities.",
+
+        foods: [
+            "Gujiya",
+            "Thandai",
+            "Dahi Vada",
+            "Malpua",
+            "Puri",
+            "Kachori"
+        ],
+
+        traditions:
+            "People gather with family and friends, play with coloured powders and water, enjoy music and prepare festive foods and drinks.",
+
+        highlights: [
+            "Festival of Colours",
+            "Playing with colours",
+            "Music and dancing",
+            "Community celebrations",
+            "Traditional sweets",
+            "Spring celebration"
+        ]
+    },
+
+    "Navratri": {
+        history:
+            "Navratri is a nine-night festival celebrated in different parts of India with regional customs, religious observances, music and traditional dance.",
+
+        foods: [
+            "Sabudana Khichdi",
+            "Sabudana Vada",
+            "Kuttu Roti",
+            "Singhara Aloo",
+            "Makhana",
+            "Fruit Chaat"
+        ],
+
+        traditions:
+            "Many people observe fasting or special dietary traditions during Navratri. In Gujarat, Garba and Dandiya Raas are major cultural highlights.",
+
+        highlights: [
+            "Nine nights of celebration",
+            "Garba",
+            "Dandiya Raas",
+            "Traditional clothing",
+            "Fasting traditions",
+            "Devotional activities"
+        ]
+    },
+
+    "Ganesh Chaturthi": {
+        history:
+            "Ganesh Chaturthi is a festival dedicated to Lord Ganesha. It is celebrated with prayers, decorated idols, cultural programs and processions.",
+
+        foods: [
+            "Modak",
+            "Puran Poli",
+            "Shrikhand",
+            "Karanji",
+            "Coconut Ladoo"
+        ],
+
+        traditions:
+            "Families and communities install Ganesha idols, offer prayers and prepare traditional sweets. In many places, celebrations conclude with processions and immersion ceremonies.",
+
+        highlights: [
+            "Ganesha worship",
+            "Decorated idols",
+            "Modak",
+            "Cultural programs",
+            "Processions",
+            "Community celebrations"
+        ]
+    },
+
+    "Pongal": {
+        history:
+            "Pongal is a harvest festival especially associated with Tamil Nadu. It celebrates the harvest season and expresses gratitude for nature, agriculture and livestock.",
+
+        foods: [
+            "Pongal",
+            "Sakkarai Pongal",
+            "Ven Pongal",
+            "Vadai",
+            "Payasam",
+            "Sugarcane"
+        ],
+
+        traditions:
+            "Families prepare Pongal dishes, decorate homes with kolam designs and celebrate the harvest with family activities and traditional customs.",
+
+        highlights: [
+            "Harvest celebration",
+            "Traditional Pongal cooking",
+            "Kolam decorations",
+            "Family gatherings",
+            "Agricultural traditions",
+            "Traditional celebrations"
+        ]
+    },
+
+    "Onam": {
+        history:
+            "Onam is a major festival of Kerala associated with the harvest season and the traditional story of King Mahabali. It is celebrated with cultural activities, floral decorations and traditional meals.",
+
+        foods: [
+            "Onam Sadya",
+            "Avial",
+            "Sambar",
+            "Thoran",
+            "Payasam",
+            "Pachadi"
+        ],
+
+        traditions:
+            "Families prepare a traditional Sadya meal, decorate entrances with Pookalam and participate in cultural activities, dances and other celebrations.",
+
+        highlights: [
+            "Onam Sadya",
+            "Pookalam",
+            "Traditional dances",
+            "Boat races",
+            "Family gatherings",
+            "Harvest traditions"
+        ]
+    },
+
+    "Hanami": {
+        history:
+            "Hanami is the Japanese tradition of enjoying the beauty of flowering trees, especially cherry blossoms, during spring.",
+
+        foods: [
+            "Sakura Mochi",
+            "Hanami Bento",
+            "Dango",
+            "Onigiri",
+            "Seasonal Bento"
+        ],
+
+        traditions:
+            "Friends, families and communities gather under blooming cherry trees for picnics and seasonal celebrations.",
+
+        highlights: [
+            "Cherry blossoms",
+            "Spring season",
+            "Picnics",
+            "Hanami bento",
+            "Seasonal sweets",
+            "Family and friends"
+        ]
+    },
+
+    "Gion Matsuri": {
+        history:
+            "Gion Matsuri is one of Kyoto's famous traditional festivals and has a long history connected with religious and community traditions.",
+
+        foods: [
+            "Takoyaki",
+            "Yakitori",
+            "Okonomiyaki",
+            "Taiyaki",
+            "Kakigori"
+        ],
+
+        traditions:
+            "The festival is known for elaborate floats, processions, traditional performances and festive street activities.",
+
+        highlights: [
+            "Festival floats",
+            "Traditional processions",
+            "Kyoto culture",
+            "Street food",
+            "Traditional performances",
+            "Community celebrations"
+        ]
+    },
+
+    "Tanabata": {
+        history:
+            "Tanabata is a Japanese festival associated with the meeting of the star deities Orihime and Hikoboshi. People traditionally write wishes on colourful strips of paper.",
+
+        foods: [
+            "Somen",
+            "Chirashi Sushi",
+            "Wagashi",
+            "Fruit",
+            "Seasonal sweets"
+        ],
+
+        traditions:
+            "People write wishes on colourful paper strips and hang them on decorated bamboo branches.",
+
+        highlights: [
+            "Wish writing",
+            "Bamboo decorations",
+            "Colourful ornaments",
+            "Summer celebrations",
+            "Traditional foods"
+        ]
+    },
+
+    "Obon": {
+        history:
+            "Obon is a Japanese tradition for remembering and honouring ancestors. Customs vary by region and family.",
+
+        foods: [
+            "Somen",
+            "Vegetable dishes",
+            "Seasonal fruits",
+            "Sushi",
+            "Traditional sweets"
+        ],
+
+        traditions:
+            "Families visit ancestral graves, participate in memorial customs and, in many communities, take part in Bon Odori dances.",
+
+        highlights: [
+            "Honouring ancestors",
+            "Family gatherings",
+            "Bon Odori",
+            "Lantern traditions",
+            "Memorial customs"
+        ]
+    },
+
+    "Shogatsu": {
+        history:
+            "Shogatsu is the Japanese New Year celebration. It is one of Japan's major annual cultural periods and includes family gatherings, shrine visits and traditional foods.",
+
+        foods: [
+            "Osechi Ryori",
+            "Ozoni",
+            "Mochi",
+            "Toshikoshi Soba",
+            "Kagami Mochi"
+        ],
+
+        traditions:
+            "Families welcome the New Year, visit shrines and temples, exchange greetings and enjoy traditional New Year foods.",
+
+        highlights: [
+            "Japanese New Year",
+            "Hatsumode",
+            "Osechi Ryori",
+            "Mochi",
+            "Family gatherings",
+            "New Year decorations"
+        ]
+    },
+
+    "Bastille Day": {
+        history:
+            "Bastille Day, celebrated on 14 July, is France's national day. It commemorates the storming of the Bastille during the French Revolution in 1789.",
+
+        foods: [
+            "Baguette",
+            "Cheese",
+            "Croissants",
+            "Crêpes",
+            "Macarons",
+            "French pastries"
+        ],
+
+        traditions:
+            "Celebrations include military parades, fireworks, public events and community gatherings. Food and outdoor celebrations are common during the national holiday.",
+
+        highlights: [
+            "14 July",
+            "Military parade",
+            "Fireworks",
+            "Public celebrations",
+            "French food",
+            "National celebration"
+        ]
+    },
+
+    "Cannes Film Festival": {
+        history:
+            "The Cannes Film Festival is an internationally known film festival held in Cannes and is associated with cinema, filmmakers and international cultural exchange.",
+
+        foods: [
+            "French pastries",
+            "Croissants",
+            "Cheese",
+            "Baguette",
+            "Crêpes",
+            "Mediterranean dishes"
+        ],
+
+        traditions:
+            "The festival is known for film screenings, premieres, red-carpet events and meetings between filmmakers and audiences.",
+
+        highlights: [
+            "International cinema",
+            "Film premieres",
+            "Red carpet",
+            "Filmmakers",
+            "Cannes",
+            "Cultural exchange"
+        ]
+    },
+
+    "Nice Carnival": {
+        history:
+            "Nice Carnival is a major carnival celebration in Nice, known for colourful parades, floats and performances.",
+
+        foods: [
+            "Socca",
+            "Crêpes",
+            "French pastries",
+            "Pissaladière",
+            "Mediterranean dishes"
+        ],
+
+        traditions:
+            "Celebrations include colourful floats, parades, costumes, performances and public festivities.",
+
+        highlights: [
+            "Carnival parades",
+            "Colourful floats",
+            "Costumes",
+            "Performances",
+            "Nice",
+            "Street celebrations"
+        ]
+    },
+
+    "Fête de la Musique": {
+        history:
+            "Fête de la Musique is a music celebration that brings live performances into public spaces and communities.",
+
+        foods: [
+            "Crêpes",
+            "Baguette sandwiches",
+            "Cheese",
+            "Pastries",
+            "Street food"
+        ],
+
+        traditions:
+            "Musicians perform in streets, squares and public spaces, creating a large community celebration centred around music.",
+
+        highlights: [
+            "Live music",
+            "Street performances",
+            "Public spaces",
+            "Musicians",
+            "Community celebration"
+        ]
+    },
+
+    "Venice Carnival": {
+        history:
+            "The Venice Carnival has very old roots and is strongly associated with masks, costumes and public celebrations. Historical accounts connect the tradition with the period of the Venetian Republic.",
+
+        foods: [
+            "Fritole",
+            "Chiacchiere",
+            "Galani",
+            "Risotto",
+            "Cicchetti"
+        ],
+
+        traditions:
+            "Venice Carnival is known for elaborate masks, costumes, parades, performances and celebrations around Venice.",
+
+        highlights: [
+            "Traditional masks",
+            "Costumes",
+            "Venice canals",
+            "Parades",
+            "Street performances",
+            "Traditional foods"
+        ]
+    },
+
+    "Palio di Siena": {
+        history:
+            "Palio di Siena is a historic horse race and cultural event held in Siena's Piazza del Campo.",
+
+        foods: [
+            "Pici",
+            "Ribollita",
+            "Panforte",
+            "Cantucci",
+            "Tuscan dishes"
+        ],
+
+        traditions:
+            "The event brings together Siena's historic contrade and is accompanied by ceremonies, processions and traditional celebrations.",
+
+        highlights: [
+            "Horse race",
+            "Piazza del Campo",
+            "Historic contrade",
+            "Traditional processions",
+            "Siena culture"
+        ]
+    },
+
+    "Ferragosto": {
+        history:
+            "Ferragosto is a major Italian summer holiday period associated with mid-August celebrations and time spent with family and friends.",
+
+        foods: [
+            "Pasta",
+            "Grilled meats",
+            "Seafood",
+            "Fresh salads",
+            "Gelato",
+            "Seasonal fruit"
+        ],
+
+        traditions:
+            "People often celebrate with family meals, outdoor gatherings, trips and summer activities.",
+
+        highlights: [
+            "Summer holiday",
+            "Family gatherings",
+            "Outdoor meals",
+            "Beach trips",
+            "Italian food",
+            "Summer celebrations"
+        ]
+    },
+
+    "Carnevale di Viareggio": {
+        history:
+            "The Carnival of Viareggio is famous for its large artistic floats, colourful parades and satirical carnival traditions.",
+
+        foods: [
+            "Cenci",
+            "Frittelle",
+            "Pasta dishes",
+            "Pizza",
+            "Gelato"
+        ],
+
+        traditions:
+            "The carnival is celebrated through large floats, masks, performances, music and public parades.",
+
+        highlights: [
+            "Large floats",
+            "Carnival parade",
+            "Masks",
+            "Music",
+            "Satirical art",
+            "Street celebrations"
+        ]
+    }
+
+};
+
+
+/* =========================================================
+   GET FESTIVAL IMAGES
+   ========================================================= */
+
+function getFestivalImages() {
+
+    if (country === "India") {
+        return indiaFestivals[festival] || [];
+    }
+
+    if (country === "Japan") {
+        return japanFestivals[festival] || [];
+    }
+
+    if (country === "France") {
+        return franceFestivals[festival] || [];
+    }
+
+    if (country === "Italy") {
+        return italyFestivals[festival] || [];
+    }
+
+    return [];
+
+}
+
+
+/* =========================================================
+   LOCAL STORAGE KEYS
+   ========================================================= */
+
+const storageKey =
+    "wce_festival_" +
+    country.toLowerCase().replace(/\s+/g, "_") +
+    "_" +
+    festival.toLowerCase().replace(/\s+/g, "_");
+
+
+/* =========================================================
+   LIKE
+   ========================================================= */
+
+function getLikeKey() {
+    return storageKey + "_like";
+}
+
+
+function toggleLike(button) {
+
+    const current =
+        localStorage.getItem(getLikeKey()) === "true";
+
+    localStorage.setItem(
+        getLikeKey(),
+        String(!current)
+    );
+
+    updateLikeButton(button);
+
+}
+
+
+function updateLikeButton(button) {
+
+    const liked =
+        localStorage.getItem(getLikeKey()) === "true";
+
+    if (liked) {
+
+        button.textContent = "❤️ Liked";
+        button.classList.add("active");
+
+    }
+    else {
+
+        button.textContent = "🤍 Like";
+        button.classList.remove("active");
+
+    }
+
+}
+
+
+/* =========================================================
+   WISHLIST
+   ========================================================= */
+
+function getWishlistKey() {
+    return storageKey + "_wishlist";
+}
+
+
+function toggleWishlist(button) {
+
+    const current =
+        localStorage.getItem(getWishlistKey()) === "true";
+
+    localStorage.setItem(
+        getWishlistKey(),
+        String(!current)
+    );
+
+    updateWishlistButton(button);
+
+}
+
+
+function updateWishlistButton(button) {
+
+    const saved =
+        localStorage.getItem(getWishlistKey()) === "true";
+
+    if (saved) {
+
+        button.textContent = "🔖 Saved";
+        button.classList.add("active");
+
+    }
+    else {
+
+        button.textContent = "🔖 Wishlist";
+        button.classList.remove("active");
+
+    }
+
+}
+
+
+/* =========================================================
+   USER PHOTOS
+   ========================================================= */
+
+function getPhotosKey() {
+    return storageKey + "_photos";
+}
+
+
+function getUserPhotos() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(getPhotosKey())
+        ) || [];
+
+    }
+    catch {
+
+        return [];
+
+    }
+
+}
+
+
+function saveUserPhoto(file) {
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+
+        const image = new Image();
+
+        image.onload = function() {
+
+            const canvas =
+                document.createElement("canvas");
+
+            const maxWidth = 1000;
+
+            let width = image.width;
+            let height = image.height;
+
+            if (width > maxWidth) {
+
+                height =
+                    height * maxWidth / width;
+
+                width = maxWidth;
+
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx =
+                canvas.getContext("2d");
+
+            ctx.drawImage(
+                image,
+                0,
+                0,
+                width,
+                height
+            );
+
+            const compressed =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    0.75
+                );
+
+            const photos =
+                getUserPhotos();
+
+            if (photos.length >= 10) {
+
+                alert(
+                    "Maximum 10 photos allowed."
+                );
+
+                return;
+
+            }
+
+            photos.push(compressed);
+
+            localStorage.setItem(
+                getPhotosKey(),
+                JSON.stringify(photos)
+            );
+
+            renderUserPhotos();
+
+        };
+
+        image.src = event.target.result;
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =========================================================
+   RENDER USER PHOTOS
+   ========================================================= */
+
+function renderUserPhotos() {
+
+    const container =
+        document.getElementById(
+            "userPhotoGrid"
+        );
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    const photos =
+        getUserPhotos();
+
+    photos.forEach(function(photo) {
+
+        const img =
+            document.createElement("img");
+
+        img.src = photo;
+        img.className = "user-photo";
+
+        container.appendChild(img);
+
+    });
+
+}
+
+
+/* =========================================================
+   REVIEWS
+   ========================================================= */
+
+function getReviewsKey() {
+    return storageKey + "_reviews";
+}
+
+
+function getReviews() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(getReviewsKey())
+        ) || [];
+
+    }
+    catch {
+
+        return [];
+
+    }
+
+}
+
+
+function submitReview() {
+
+    const nameInput =
+        document.getElementById("reviewName");
+
+    const textInput =
+        document.getElementById("reviewText");
+
+    const name =
+        nameInput.value.trim();
+
+    const text =
+        textInput.value.trim();
+
+    if (!name || !text) {
+
+        alert(
+            "Please enter your name and review."
+        );
+
+        return;
+
+    }
+
+    const reviews =
+        getReviews();
+
+    reviews.unshift({
+
+        name: name,
+        text: text,
+        date: new Date().toLocaleDateString()
+
+    });
+
+    localStorage.setItem(
+        getReviewsKey(),
+        JSON.stringify(reviews)
+    );
+
+    nameInput.value = "";
+    textInput.value = "";
+
+    renderReviews();
+
+}
+
+
+function renderReviews() {
+
+    const container =
+        document.getElementById(
+            "reviewsContainer"
+        );
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    const reviews =
+        getReviews();
+
+    if (reviews.length === 0) {
+
+        container.innerHTML =
+            "<p style='color:#777;margin-top:15px;'>No reviews yet. Be the first to share your experience!</p>";
+
+        return;
+
+    }
+
+    reviews.forEach(function(review) {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "review";
+
+        div.innerHTML = `
+
+            <div class="review-name">
+                👤 ${escapeHTML(review.name)}
+            </div>
+
+            <div class="review-text">
+                ${escapeHTML(review.text)}
+            </div>
+
+            <div class="review-date">
+                ${escapeHTML(review.date)}
+            </div>
+
+        `;
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   SECURITY HELPER
+   ========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   CREATE DETAILS PAGE
+   ========================================================= */
+
+function loadFestivalDetails() {
+
+    const loading =
+        document.getElementById("loading");
+
+    const container =
+        document.getElementById("detailsContainer");
+
+    const data =
+        festivalDetails[festival];
+
+    const images =
+        getFestivalImages();
+
+
+    document.getElementById(
+        "festivalHeroName"
+    ).textContent = festival;
+
+
+    document.getElementById(
+        "heroSubtitle"
+    ).textContent =
+        "Explore the history, traditions, food and cultural significance of " +
+        festival +
+        " in " +
+        country +
+        ".";
+
+
+    if (!data) {
+
+        loading.style.display = "none";
+
+        container.innerHTML = `
+
+            <div class="details-card">
+
+                <h2>
+                    Festival details not available
+                </h2>
+
+                <p style="margin-top:15px;color:#666;">
+
+                    Detailed information for
+                    <strong>${escapeHTML(festival)}</strong>
+                    is not available yet.
+
+                </p>
+
+                <a
+                    href="${getFestivalPageURL()}"
+                    class="back-button"
+                >
+                    ← Back to Festivals
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    loading.style.display = "none";
+
+
+    /* ================= GALLERY ================= */
+
+    let galleryHTML = "";
+
+    images.forEach(function(image, index) {
+
+        galleryHTML += `
+
+            <img
+                src="${image}"
+                class="gallery-thumb ${index === 0 ? "active" : ""}"
+                alt="${escapeHTML(festival)}"
+                onclick="changeMainImage(this, '${image.replace(/'/g, "\\'")}')"
+                onerror="this.style.display='none'"
+            >
+
+        `;
+
+    });
+
+
+    /* ================= FOODS ================= */
+
+    let foodsHTML = "";
+
+    data.foods.forEach(function(food) {
+
+        foodsHTML += `
+
+            <div class="food-item">
+                🍛 ${escapeHTML(food)}
+            </div>
+
+        `;
+
+    });
+
+
+    /* ================= HIGHLIGHTS ================= */
+
+    let highlightsHTML = "";
+
+    data.highlights.forEach(function(item) {
+
+        highlightsHTML += `
+
+            <li>
+                ⭐ ${escapeHTML(item)}
+            </li>
+
+        `;
+
+    });
+
+
+    /* ================= MAIN HTML ================= */
+
+    container.innerHTML = `
+
+        <div class="details-card">
+
+
+            <!-- ================= TITLE ================= -->
+
+            <h1 class="festival-title">
+                🎉 ${escapeHTML(festival)}
+            </h1>
+
+
+            <div class="festival-subtitle">
+
+                Traditional festival of
+                <strong>${escapeHTML(country)}</strong>
+
+            </div>
+
+
+            <!-- ================= MAIN IMAGE ================= -->
+
+            <div class="main-image-box">
+
+                ${
+                    images.length > 0
+                    ? `
+                        <img
+                            id="mainFestivalImage"
+                            class="main-festival-image"
+                            src="${images[0]}"
+                            alt="${escapeHTML(festival)}"
+                            onerror="this.style.display='none'"
+                        >
+                    `
+                    : `
+                        <div
+                            style="
+                                width:100%;
+                                height:100%;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                color:#777;
+                                font-size:18px;
+                            "
+                        >
+                            No festival image available
+                        </div>
+                    `
+                }
+
+            </div>
+
+
+            <!-- ================= GALLERY ================= -->
+
+            <div class="gallery">
+
+                ${galleryHTML}
+
+            </div>
+
+
+            <!-- ================= ACTION BUTTONS ================= -->
+
+            <div class="actions">
+
+                <button
+                    id="likeButton"
+                    class="action-btn"
+                    onclick="toggleLike(this)"
+                >
+                    🤍 Like
+                </button>
+
+
+                <button
+                    id="wishlistButton"
+                    class="action-btn"
+                    onclick="toggleWishlist(this)"
+                >
+                    🔖 Wishlist
+                </button>
+
+            </div>
+
+
+            <!-- ================= CONTENT GRID ================= -->
+
+            <div class="content-grid">
+
+
+                <!-- ================= LEFT CONTENT ================= -->
+
+                <main>
+
+
+                    <!-- ================= ABOUT ================= -->
+
+                    <section class="section-box">
+
+                        <h2>
+                            🎉 About ${escapeHTML(festival)}
+                        </h2>
+
+                        <p>
+
+                            ${escapeHTML(
+                                festival +
+                                " is an important cultural celebration associated with " +
+                                country +
+                                ". Explore its history, food traditions and cultural activities below."
+                            )}
+
+                        </p>
+
+                    </section>
+
+
+                    <!-- ================= HISTORY ================= -->
+
+                    <section class="section-box history-box">
+
+                        <h2>
+                            📜 History
+                        </h2>
+
+                        <p>
+                            ${escapeHTML(data.history)}
+                        </p>
+
+                    </section>
+
+
+                    <!-- ================= TRADITIONAL FOODS ================= -->
+
+                    <section class="section-box">
+
+                        <h2>
+                            🍛 Traditional Foods
+                        </h2>
+
+                        <p>
+
+                            Food is an important part of
+                            ${escapeHTML(festival)}
+                            celebrations. Some traditional foods
+                            associated with this festival include:
+
+                        </p>
+
+
+                        <div class="food-list">
+
+                            ${foodsHTML}
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ================= FOOD TRADITIONS ================= -->
+
+                    <section class="section-box tradition-box">
+
+                        <h2>
+                            🍽️ Food Traditions
+                        </h2>
+
+                        <p>
+                            ${escapeHTML(data.traditions)}
+                        </p>
+
+                    </section>
+
+
+                    <!-- ================= HIGHLIGHTS ================= -->
+
+                    <section class="section-box">
+
+                        <h2>
+                            ⭐ Festival Highlights
+                        </h2>
+
+                        <ul class="highlight-list">
+
+                            ${highlightsHTML}
+
+                        </ul>
+
+                    </section>
+
+
+                    <!-- ================= USER PHOTOS ================= -->
+
+                    <section class="section-box">
+
+                        <h2>
+                            📸 User Photos
+                        </h2>
+
+                        <p>
+
+                            Share your own
+                            ${escapeHTML(festival)}
+                            photos with the World Culture Explorer community.
+
+                        </p>
+
+
+                        <div class="upload-box">
+
+                            <strong>
+                                Upload a Photo
+                            </strong>
+
+                            <br>
+
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onchange="saveUserPhoto(this.files[0])"
+                            >
+
+                        </div>
+
+
+                        <div
+                            id="userPhotoGrid"
+                            class="user-photo-grid"
+                        ></div>
+
+                    </section>
+
+
+                    <!-- ================= REVIEWS ================= -->
+
+                    <section class="section-box">
+
+                        <h2>
+                            💬 Reviews & Comments
+                        </h2>
+
+
+                        <p>
+
+                            Share your thoughts about
+                            ${escapeHTML(festival)}.
+
+                        </p>
+
+
+                        <div class="review-form">
+
+                            <input
+                                id="reviewName"
+                                type="text"
+                                placeholder="Your name"
+                            >
+
+
+                            <textarea
+                                id="reviewText"
+                                placeholder="Write your review..."
+                            ></textarea>
+
+
+                            <button
+                                class="review-submit"
+                                onclick="submitReview()"
+                            >
+                                Submit Review
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="reviewsContainer"
+                        ></div>
+
+                    </section>
+
+
+                </main>
+
+
+                <!-- ================= SIDEBAR ================= -->
+
+                <aside class="sidebar">
+
+
+                    <!-- ================= FESTIVAL INFORMATION ================= -->
+
+                    <div class="info-box">
+
+                        <h2>
+                            📋 Festival Information
+                        </h2>
+
+
+                        <div class="info-row">
+
+                            <span class="info-label">
+                                Country
+                            </span>
+
+                            <span class="info-value">
+                                ${escapeHTML(country)}
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span class="info-label">
+                                Festival
+                            </span>
+
+                            <span class="info-value">
+                                ${escapeHTML(festival)}
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span class="info-label">
+                                Category
+                            </span>
+
+                            <span class="info-value">
+                                Cultural Festival
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span class="info-label">
+                                Photos
+                            </span>
+
+                            <span class="info-value">
+                                ${images.length}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </aside>
+
+
+            </div>
+
+
+            <!-- ================= BACK BUTTON ================= -->
+
+            <a
+                href="${getFestivalPageURL()}"
+                class="back-button"
+            >
+                ← Back to Festivals
+            </a>
+
+
+        </div>
+
+    `;
+
+
+    /* ================= ACTION STATES ================= */
+
+    updateLikeButton(
+        document.getElementById("likeButton")
+    );
+
+
+    updateWishlistButton(
+        document.getElementById("wishlistButton")
+    );
+
+
+    /* ================= USER CONTENT ================= */
+
+    renderUserPhotos();
+
+    renderReviews();
+
+}
+
+
+/* =========================================================
+   CHANGE MAIN IMAGE
+   ========================================================= */
+
+function changeMainImage(thumbnail, image) {
+
+    const mainImage =
+        document.getElementById(
+            "mainFestivalImage"
+        );
+
+    if (!mainImage) return;
+
+    mainImage.src = image;
+
+
+    document
+        .querySelectorAll(".gallery-thumb")
+        .forEach(function(item) {
+
+            item.classList.remove("active");
+
+        });
+
+
+    thumbnail.classList.add("active");
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+loadFestivalDetails();
+
+</script>
+
+
+</body>
+
+</html>

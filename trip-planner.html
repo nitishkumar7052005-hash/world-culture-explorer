@@ -1,0 +1,2624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Trip Planner | World Culture Explorer
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f8fafc;
+
+            color: #222;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px 7%;
+
+            background: white;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .logo {
+            font-size: 21px;
+
+            font-weight: bold;
+        }
+
+
+        .navbar nav {
+            display: flex;
+
+            gap: 20px;
+        }
+
+
+        .navbar a {
+            text-decoration: none;
+
+            color: #333;
+
+            font-size: 14px;
+        }
+
+
+        .navbar a:hover {
+            color: #2563eb;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            width: min(1150px, 92%);
+
+            margin: auto;
+
+            padding:
+                50px 0 70px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .page-header {
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+
+        .page-header .emoji {
+            font-size: 55px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .page-header h1 {
+            margin: 0;
+
+            font-size: 42px;
+
+            color: #111827;
+        }
+
+
+        .country-name {
+            color: #2563eb;
+        }
+
+
+        .page-header p {
+            max-width: 700px;
+
+            margin:
+                14px auto 0;
+
+            color: #666;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           PLANNER GRID
+        ========================= */
+
+        .planner-grid {
+            display: grid;
+
+            grid-template-columns:
+                350px 1fr;
+
+            gap: 25px;
+
+            align-items: start;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 6px 20px
+                rgba(0, 0, 0, 0.05);
+        }
+
+
+        .card h2 {
+            margin-top: 0;
+
+            color: #111827;
+
+            font-size: 21px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            color: #374151;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            padding:
+                12px 13px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            background: white;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.1);
+        }
+
+
+        /* =========================
+           PLACES
+        ========================= */
+
+        .places-list {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 15px;
+        }
+
+
+        .place-option {
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 11px;
+
+            padding: 14px;
+
+            background: #f8fafc;
+
+            cursor: pointer;
+
+            transition:
+                border 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        .place-option:hover {
+
+            border-color: #93c5fd;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .place-option.selected {
+
+            border-color: #2563eb;
+
+            background: #eff6ff;
+        }
+
+
+        .place-option h3 {
+
+            margin:
+                0 0 5px;
+
+            font-size: 15px;
+
+            color: #111827;
+        }
+
+
+        .place-option p {
+
+            margin: 0;
+
+            font-size: 12px;
+
+            color: #666;
+        }
+
+
+        .place-check {
+
+            margin-top: 8px;
+
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .button-row {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-top: 20px;
+        }
+
+
+        .button {
+
+            border: none;
+
+            padding:
+                12px 18px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        .primary-button {
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+
+        .primary-button:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        .danger-button {
+
+            background: #fee2e2;
+
+            color: #b91c1c;
+        }
+
+
+        .danger-button:hover {
+
+            background: #fecaca;
+        }
+
+
+        /* =========================
+           ITINERARY SUMMARY
+        ========================= */
+
+        .trip-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .summary-box {
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            padding: 14px;
+
+            text-align: center;
+        }
+
+
+        .summary-box strong {
+
+            display: block;
+
+            font-size: 20px;
+
+            color: #111827;
+
+            margin-bottom: 4px;
+        }
+
+
+        .summary-box span {
+
+            font-size: 12px;
+
+            color: #666;
+        }
+
+
+        /* =========================
+           ITINERARY DAY
+        ========================= */
+
+        .itinerary-day {
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius: 12px;
+
+            margin-bottom: 15px;
+
+            overflow: hidden;
+        }
+
+
+        .day-header {
+
+            background: #eff6ff;
+
+            padding:
+                14px 16px;
+
+            font-weight: bold;
+
+            color: #1e3a8a;
+        }
+
+
+        .day-place {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding:
+                14px 16px;
+
+            border-top:
+                1px solid #e5e7eb;
+        }
+
+
+        .day-place-info h3 {
+
+            margin:
+                0 0 5px;
+
+            font-size: 15px;
+        }
+
+
+        .day-place-info p {
+
+            margin: 0;
+
+            color: #666;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           ITINERARY ACTIONS
+        ========================= */
+
+        .itinerary-actions {
+
+            display: flex;
+
+            gap: 6px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .move-place,
+        .remove-place {
+
+            border: none;
+
+            border-radius: 7px;
+
+            padding:
+                7px 10px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .move-place {
+
+            background: #eff6ff;
+
+            color: #1d4ed8;
+        }
+
+
+        .move-place:hover {
+
+            background: #dbeafe;
+        }
+
+
+        .remove-place {
+
+            background: #fee2e2;
+
+            color: #b91c1c;
+        }
+
+
+        .remove-place:hover {
+
+            background: #fecaca;
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+
+            text-align: center;
+
+            padding:
+                45px 20px;
+
+            color: #777;
+
+            background: #f8fafc;
+
+            border-radius: 12px;
+
+            border:
+                1px dashed #d1d5db;
+        }
+
+
+        .empty-state .empty-icon {
+
+            font-size: 42px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .message {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+        }
+
+
+        .message.success {
+
+            display: block;
+
+            background: #ecfdf5;
+
+            color: #047857;
+        }
+
+
+        .message.error {
+
+            display: block;
+
+            background: #fef2f2;
+
+            color: #b91c1c;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            padding: 25px;
+
+            color: #777;
+
+            border-top:
+                1px solid #e5e7eb;
+
+            background: white;
+        }
+
+
+        .footer a {
+
+            display: inline-block;
+
+            margin-top: 8px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .planner-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            .navbar nav {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .page {
+
+                padding-top: 35px;
+            }
+
+
+            .page-header h1 {
+
+                font-size: 32px;
+            }
+
+
+            .places-list {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .trip-summary {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .day-place {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="country.html">
+                Countries
+            </a>
+
+            <a href="places.html">
+                Places
+            </a>
+
+            <a href="travel-guide.html">
+                Travel Guide
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="page">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <section class="page-header">
+
+            <div class="emoji">
+                🧳
+            </div>
+
+
+            <h1>
+
+                Trip Planner for
+
+                <span
+                    id="countryName"
+                    class="country-name"
+                >
+                    Loading...
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Plan your trip, choose places to visit
+                and build your own itinerary.
+
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             PLANNER
+        ========================= -->
+
+        <div class="planner-grid">
+
+
+            <!-- =====================
+                 LEFT SIDE
+            ====================== -->
+
+            <section class="card">
+
+
+                <h2>
+                    📝 Trip Details
+                </h2>
+
+
+                <!-- START DATE -->
+
+                <div class="form-group">
+
+                    <label for="startDate">
+                        📅 Start Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="startDate"
+                    >
+
+                </div>
+
+
+                <!-- END DATE -->
+
+                <div class="form-group">
+
+                    <label for="endDate">
+                        📅 End Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="endDate"
+                    >
+
+                </div>
+
+
+                <!-- TRAVELERS -->
+
+                <div class="form-group">
+
+                    <label for="travelers">
+                        👥 Travelers
+                    </label>
+
+                    <input
+                        type="number"
+                        id="travelers"
+                        min="1"
+                        value="1"
+                    >
+
+                </div>
+
+
+                <!-- BUDGET -->
+
+                <div class="form-group">
+
+                    <label for="budget">
+                        💰 Budget
+                    </label>
+
+                    <select id="budget">
+
+                        <option value="Budget">
+                            Budget
+                        </option>
+
+                        <option value="Moderate">
+                            Moderate
+                        </option>
+
+                        <option value="Comfortable">
+                            Comfortable
+                        </option>
+
+                        <option value="Luxury">
+                            Luxury
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- SELECT PLACES -->
+
+                <h2>
+                    📍 Select Places
+                </h2>
+
+
+                <div
+                    id="placesList"
+                    class="places-list"
+                >
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            ⏳
+                        </div>
+
+                        Loading places...
+
+                    </div>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="message"
+                    class="message"
+                ></div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-row">
+
+                    <button
+                        type="button"
+                        class="button primary-button"
+                        id="saveTripButton"
+                    >
+                        💾 Save Trip
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="button danger-button"
+                        id="clearTripButton"
+                    >
+                        🗑️ Clear Trip
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 RIGHT SIDE
+            ====================== -->
+
+            <section class="card">
+
+
+                <h2>
+                    📋 My Itinerary
+                </h2>
+
+
+                <!-- SUMMARY -->
+
+                <div
+                    id="tripSummary"
+                    class="trip-summary"
+                >
+
+
+                    <div class="summary-box">
+
+                        <strong id="daysCount">
+                            0
+                        </strong>
+
+                        <span>
+                            Days
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-box">
+
+                        <strong id="placesCount">
+                            0
+                        </strong>
+
+                        <span>
+                            Places
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-box">
+
+                        <strong id="travelersCount">
+                            1
+                        </strong>
+
+                        <span>
+                            Travelers
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-box">
+
+                        <strong id="estimatedCost">
+                            —
+                        </strong>
+
+                        <span>
+                            Estimated Cost
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- ITINERARY -->
+
+                <div
+                    id="itineraryContainer"
+                >
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            🧳
+                        </div>
+
+                        <strong>
+                            Your itinerary is empty
+                        </strong>
+
+                        <p>
+                            Select places from the left
+                            to start planning your trip.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer class="footer">
+
+        <p>
+            🌍 World Culture Explorer
+        </p>
+
+        <small>
+            Explore cultures • Discover places • Plan your trip
+        </small>
+
+        <br>
+
+        <a href="javascript:history.back()">
+            ← Back
+        </a>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           GLOBAL VARIABLES
+        ========================= */
+
+        let currentCountry = "India";
+
+        let placesData = {};
+
+        let selectedPlaces = [];
+
+
+        /* =========================
+           GET COUNTRY FROM URL
+        ========================= */
+
+        function getCountry() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            return (
+                params.get("country") ||
+                params.get("name") ||
+                "India"
+            ).trim();
+
+        }
+
+
+        /* =========================
+           STORAGE KEY
+        ========================= */
+
+        function getStorageKey() {
+
+            return (
+                "wce_trip_" +
+                currentCountry.toLowerCase()
+            );
+
+        }
+
+
+        /* =========================
+           ESCAPE HTML
+        ========================= */
+
+        function escapeHTML(value) {
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        /* =========================
+           LOAD PLACES
+        ========================= */
+
+        async function loadPlaces() {
+
+            const container =
+                document.getElementById(
+                    "placesList"
+                );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "./data/places.json"
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Could not load data/places.json"
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !data ||
+                    typeof data !== "object"
+                ) {
+
+                    throw new Error(
+                        "places.json contains invalid data"
+                    );
+
+                }
+
+
+                const countryKey =
+                    Object.keys(data).find(
+                        function(key) {
+
+                            return (
+                                key.toLowerCase() ===
+                                currentCountry.toLowerCase()
+                            );
+
+                        }
+                    );
+
+
+                if (!countryKey) {
+
+                    container.innerHTML = `
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                🌍
+                            </div>
+
+                            No places found for
+
+                            <strong>
+                                ${escapeHTML(currentCountry)}
+                            </strong>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                placesData =
+                    data[countryKey] || {};
+
+
+                currentCountry =
+                    countryKey;
+
+
+                document.getElementById(
+                    "countryName"
+                ).textContent =
+                    currentCountry;
+
+
+                renderPlaces();
+
+                loadSavedTrip();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "PLACES LOAD ERROR:",
+                    error
+                );
+
+
+                container.innerHTML = `
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            ❌
+                        </div>
+
+                        <strong>
+                            Could not load places
+                        </strong>
+
+                        <p>
+                            ${escapeHTML(
+                                error.message
+                            )}
+                        </p>
+
+                        <small>
+                            Make sure you are running
+                            the project using Live Server.
+                        </small>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =========================
+           RENDER PLACES
+        ========================= */
+
+        function renderPlaces() {
+
+            const container =
+                document.getElementById(
+                    "placesList"
+                );
+
+
+            container.innerHTML = "";
+
+
+            const entries =
+                Object.entries(
+                    placesData
+                );
+
+
+            if (!entries.length) {
+
+                container.innerHTML = `
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            📍
+                        </div>
+
+                        No places available.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            entries.forEach(
+                function([placeName, data]) {
+
+
+                    const option =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    option.className =
+                        "place-option";
+
+
+                    option.dataset.place =
+                        placeName;
+
+
+                    const isSelected =
+                        selectedPlaces.includes(
+                            placeName
+                        );
+
+
+                    if (isSelected) {
+
+                        option.classList.add(
+                            "selected"
+                        );
+
+                    }
+
+
+                    option.innerHTML = `
+
+                        <h3>
+                            ${escapeHTML(
+                                placeName
+                            )}
+                        </h3>
+
+                        <p>
+                            📍
+                            ${escapeHTML(
+                                data.location ||
+                                currentCountry
+                            )}
+                        </p>
+
+                        <div class="place-check">
+
+                            ${
+                                isSelected
+                                    ? "✓ Added to trip"
+                                    : "＋ Add to trip"
+                            }
+
+                        </div>
+
+                    `;
+
+
+                    option.addEventListener(
+                        "click",
+                        function() {
+
+                            togglePlace(
+                                placeName
+                            );
+
+                        }
+                    );
+
+
+                    container.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           TOGGLE PLACE
+        ========================= */
+
+        function togglePlace(
+            placeName
+        ) {
+
+            const index =
+                selectedPlaces.indexOf(
+                    placeName
+                );
+
+
+            if (index === -1) {
+
+                selectedPlaces.push(
+                    placeName
+                );
+
+            }
+
+            else {
+
+                selectedPlaces.splice(
+                    index,
+                    1
+                );
+
+            }
+
+
+            renderPlaces();
+
+            renderItinerary();
+
+        }
+
+
+        /* =========================
+           GET NUMBER OF DAYS
+        ========================= */
+
+        function getNumberOfDays() {
+
+            const start =
+                document.getElementById(
+                    "startDate"
+                ).value;
+
+
+            const end =
+                document.getElementById(
+                    "endDate"
+                ).value;
+
+
+            if (!start || !end) {
+
+                return 0;
+
+            }
+
+
+            const startDate =
+                new Date(
+                    start + "T00:00:00"
+                );
+
+
+            const endDate =
+                new Date(
+                    end + "T00:00:00"
+                );
+
+
+            const difference =
+                endDate - startDate;
+
+
+            const days =
+                Math.floor(
+                    difference /
+                    (1000 * 60 * 60 * 24)
+                ) + 1;
+
+
+            return days > 0
+                ? days
+                : 0;
+
+        }
+
+
+        /* =========================
+           ITINERARY DATE
+        ========================= */
+
+        function getItineraryDate(
+            dayNumber
+        ) {
+
+            const startValue =
+                document.getElementById(
+                    "startDate"
+                ).value;
+
+
+            if (!startValue) {
+
+                return "";
+
+            }
+
+
+            const startDate =
+                new Date(
+                    startValue +
+                    "T00:00:00"
+                );
+
+
+            startDate.setDate(
+                startDate.getDate() +
+                (dayNumber - 1)
+            );
+
+
+            return startDate.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        /* =========================
+           BUDGET RATE
+        ========================= */
+
+        function getBudgetRate() {
+
+            const budget =
+                document.getElementById(
+                    "budget"
+                ).value;
+
+
+            const rates = {
+
+                India: {
+
+                    Budget: 1500,
+
+                    Moderate: 3000,
+
+                    Comfortable: 5000,
+
+                    Luxury: 9000
+
+                },
+
+
+                Japan: {
+
+                    Budget: 8000,
+
+                    Moderate: 15000,
+
+                    Comfortable: 25000,
+
+                    Luxury: 45000
+
+                },
+
+
+                France: {
+
+                    Budget: 70,
+
+                    Moderate: 130,
+
+                    Comfortable: 220,
+
+                    Luxury: 400
+
+                }
+
+            };
+
+
+            const countryRates =
+                rates[currentCountry] ||
+                rates.India;
+
+
+            return (
+                countryRates[budget] ||
+                countryRates.Budget
+            );
+
+        }
+
+
+        /* =========================
+           CURRENCY
+        ========================= */
+
+        function getCurrency() {
+
+            const currencies = {
+
+                India: "INR",
+
+                Japan: "JPY",
+
+                France: "EUR"
+
+            };
+
+
+            return (
+                currencies[currentCountry] ||
+                "INR"
+            );
+
+        }
+
+
+        /* =========================
+           FORMAT COST
+        ========================= */
+
+        function formatCost(
+            amount
+        ) {
+
+            return new Intl.NumberFormat(
+                "en-IN",
+                {
+                    style: "currency",
+
+                    currency:
+                        getCurrency(),
+
+                    maximumFractionDigits: 0
+                }
+            ).format(amount);
+
+        }
+
+
+        /* =========================
+           CALCULATE TRIP COST
+        ========================= */
+
+        function calculateTripCost() {
+
+            const days =
+                getNumberOfDays();
+
+
+            const travelers =
+                Number(
+                    document.getElementById(
+                        "travelers"
+                    ).value
+                ) || 1;
+
+
+            if (!days) {
+
+                return 0;
+
+            }
+
+
+            const dailyRate =
+                getBudgetRate();
+
+
+            return (
+                days *
+                travelers *
+                dailyRate
+            );
+
+        }
+
+
+        /* =========================
+           UPDATE SUMMARY
+        ========================= */
+
+        function updateSummary() {
+
+            const days =
+                getNumberOfDays();
+
+
+            document.getElementById(
+                "daysCount"
+            ).textContent =
+                days;
+
+
+            document.getElementById(
+                "placesCount"
+            ).textContent =
+                selectedPlaces.length;
+
+
+            const travelers =
+                Number(
+                    document.getElementById(
+                        "travelers"
+                    ).value
+                ) || 1;
+
+
+            document.getElementById(
+                "travelersCount"
+            ).textContent =
+                travelers;
+
+
+            const estimatedCost =
+                calculateTripCost();
+
+
+            document.getElementById(
+                "estimatedCost"
+            ).textContent =
+
+                estimatedCost
+                    ? formatCost(
+                        estimatedCost
+                    )
+                    : "—";
+
+        }
+
+
+        /* =========================
+           RENDER ITINERARY
+        ========================= */
+
+        function renderItinerary() {
+
+            const container =
+                document.getElementById(
+                    "itineraryContainer"
+                );
+
+
+            updateSummary();
+
+
+            if (
+                selectedPlaces.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            🧳
+                        </div>
+
+                        <strong>
+                            Your itinerary is empty
+                        </strong>
+
+                        <p>
+                            Select places from the left
+                            to start planning your trip.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            const days =
+                getNumberOfDays();
+
+
+            const totalDays =
+                days ||
+                selectedPlaces.length;
+
+
+            container.innerHTML = "";
+
+
+            selectedPlaces.forEach(
+                function(
+                    placeName,
+                    index
+                ) {
+
+
+                    const dayNumber =
+                        (index %
+                            totalDays) + 1;
+
+
+                    const data =
+                        placesData[
+                            placeName
+                        ] || {};
+
+
+                    /* DAY */
+
+                    const day =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    day.className =
+                        "itinerary-day";
+
+
+                    const itineraryDate =
+                        getItineraryDate(
+                            dayNumber
+                        );
+
+
+                    day.innerHTML = `
+
+                        <div class="day-header">
+
+                            📅 Day
+                            ${dayNumber}
+
+                            ${
+                                itineraryDate
+                                    ? " — " +
+                                      itineraryDate
+                                    : ""
+                            }
+
+                        </div>
+
+                    `;
+
+
+                    /* PLACE ROW */
+
+                    const placeRow =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    placeRow.className =
+                        "day-place";
+
+
+                    /* PLACE INFO */
+
+                    const info =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    info.className =
+                        "day-place-info";
+
+
+                    info.innerHTML = `
+
+                        <h3>
+
+                            📍
+
+                            ${escapeHTML(
+                                placeName
+                            )}
+
+                        </h3>
+
+
+                        <p>
+
+                            ${escapeHTML(
+                                data.location ||
+                                currentCountry
+                            )}
+
+                        </p>
+
+                    `;
+
+
+                    /* ACTIONS */
+
+                    const actions =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    actions.className =
+                        "itinerary-actions";
+
+
+                    /* UP */
+
+                    const upButton =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    upButton.type =
+                        "button";
+
+
+                    upButton.className =
+                        "move-place";
+
+
+                    upButton.textContent =
+                        "↑";
+
+
+                    upButton.title =
+                        "Move Up";
+
+
+                    upButton.addEventListener(
+                        "click",
+                        function() {
+
+                            const currentIndex =
+                                selectedPlaces.indexOf(
+                                    placeName
+                                );
+
+
+                            if (
+                                currentIndex > 0
+                            ) {
+
+                                const temp =
+                                    selectedPlaces[
+                                        currentIndex - 1
+                                    ];
+
+
+                                selectedPlaces[
+                                    currentIndex - 1
+                                ] =
+                                    selectedPlaces[
+                                        currentIndex
+                                    ];
+
+
+                                selectedPlaces[
+                                    currentIndex
+                                ] =
+                                    temp;
+
+
+                                renderItinerary();
+
+                            }
+
+                        }
+                    );
+
+
+                    /* DOWN */
+
+                    const downButton =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    downButton.type =
+                        "button";
+
+
+                    downButton.className =
+                        "move-place";
+
+
+                    downButton.textContent =
+                        "↓";
+
+
+                    downButton.title =
+                        "Move Down";
+
+
+                    downButton.addEventListener(
+                        "click",
+                        function() {
+
+                            const currentIndex =
+                                selectedPlaces.indexOf(
+                                    placeName
+                                );
+
+
+                            if (
+                                currentIndex !== -1 &&
+                                currentIndex <
+                                selectedPlaces.length - 1
+                            ) {
+
+                                const temp =
+                                    selectedPlaces[
+                                        currentIndex + 1
+                                    ];
+
+
+                                selectedPlaces[
+                                    currentIndex + 1
+                                ] =
+                                    selectedPlaces[
+                                        currentIndex
+                                    ];
+
+
+                                selectedPlaces[
+                                    currentIndex
+                                ] =
+                                    temp;
+
+
+                                renderItinerary();
+
+                            }
+
+                        }
+                    );
+
+
+                    /* REMOVE */
+
+                    const removeButton =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    removeButton.type =
+                        "button";
+
+
+                    removeButton.className =
+                        "remove-place";
+
+
+                    removeButton.textContent =
+                        "Remove";
+
+
+                    removeButton.addEventListener(
+                        "click",
+                        function() {
+
+                            togglePlace(
+                                placeName
+                            );
+
+                        }
+                    );
+
+
+                    /* ADD BUTTONS */
+
+                    actions.appendChild(
+                        upButton
+                    );
+
+
+                    actions.appendChild(
+                        downButton
+                    );
+
+
+                    actions.appendChild(
+                        removeButton
+                    );
+
+
+                    /* ADD INFO */
+
+                    placeRow.appendChild(
+                        info
+                    );
+
+
+                    placeRow.appendChild(
+                        actions
+                    );
+
+
+                    day.appendChild(
+                        placeRow
+                    );
+
+
+                    container.appendChild(
+                        day
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           SAVE TRIP
+        ========================= */
+
+        function saveTrip() {
+
+            const startDate =
+                document.getElementById(
+                    "startDate"
+                ).value;
+
+
+            const endDate =
+                document.getElementById(
+                    "endDate"
+                ).value;
+
+
+            const travelers =
+                Number(
+                    document.getElementById(
+                        "travelers"
+                    ).value
+                ) || 1;
+
+
+            const budget =
+                document.getElementById(
+                    "budget"
+                ).value;
+
+
+            if (!startDate) {
+
+                showMessage(
+                    "Please select a start date.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!endDate) {
+
+                showMessage(
+                    "Please select an end date.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                new Date(
+                    endDate +
+                    "T00:00:00"
+                ) <
+                new Date(
+                    startDate +
+                    "T00:00:00"
+                )
+            ) {
+
+                showMessage(
+                    "End date cannot be before start date.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                selectedPlaces.length === 0
+            ) {
+
+                showMessage(
+                    "Please select at least one place.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const trip = {
+
+                country:
+                    currentCountry,
+
+                startDate:
+                    startDate,
+
+                endDate:
+                    endDate,
+
+                travelers:
+                    travelers,
+
+                budget:
+                    budget,
+
+                places:
+                    selectedPlaces,
+
+                estimatedCost:
+                    calculateTripCost()
+
+            };
+
+
+            localStorage.setItem(
+                getStorageKey(),
+                JSON.stringify(trip)
+            );
+
+
+            showMessage(
+                "Trip saved successfully! 💾",
+                "success"
+            );
+
+        }
+
+
+        /* =========================
+           LOAD SAVED TRIP
+        ========================= */
+
+        function loadSavedTrip() {
+
+            const saved =
+                localStorage.getItem(
+                    getStorageKey()
+                );
+
+
+            if (!saved) {
+
+                selectedPlaces = [];
+
+                renderPlaces();
+
+                renderItinerary();
+
+                return;
+
+            }
+
+
+            try {
+
+                const trip =
+                    JSON.parse(
+                        saved
+                    );
+
+
+                document.getElementById(
+                    "startDate"
+                ).value =
+                    trip.startDate ||
+                    "";
+
+
+                document.getElementById(
+                    "endDate"
+                ).value =
+                    trip.endDate ||
+                    "";
+
+
+                document.getElementById(
+                    "travelers"
+                ).value =
+                    trip.travelers ||
+                    1;
+
+
+                document.getElementById(
+                    "budget"
+                ).value =
+                    trip.budget ||
+                    "Budget";
+
+
+                selectedPlaces =
+                    Array.isArray(
+                        trip.places
+                    )
+                        ? trip.places.filter(
+                            function(place) {
+
+                                return Object.prototype.hasOwnProperty.call(
+                                    placesData,
+                                    place
+                                );
+
+                            }
+                        )
+                        : [];
+
+
+                renderPlaces();
+
+                renderItinerary();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Saved trip error:",
+                    error
+                );
+
+
+                selectedPlaces = [];
+
+                renderPlaces();
+
+                renderItinerary();
+
+            }
+
+        }
+
+
+        /* =========================
+           CLEAR TRIP
+        ========================= */
+
+        function clearTrip() {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to clear your trip?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            localStorage.removeItem(
+                getStorageKey()
+            );
+
+
+            selectedPlaces = [];
+
+
+            document.getElementById(
+                "startDate"
+            ).value = "";
+
+
+            document.getElementById(
+                "endDate"
+            ).value = "";
+
+
+            document.getElementById(
+                "travelers"
+            ).value = 1;
+
+
+            document.getElementById(
+                "budget"
+            ).value =
+                "Budget";
+
+
+            renderPlaces();
+
+            renderItinerary();
+
+
+            showMessage(
+                "Trip cleared.",
+                "success"
+            );
+
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        function showMessage(
+            message,
+            type
+        ) {
+
+            const box =
+                document.getElementById(
+                    "message"
+                );
+
+
+            box.textContent =
+                message;
+
+
+            box.className =
+                "message " +
+                type;
+
+
+            setTimeout(
+                function() {
+
+                    box.className =
+                        "message";
+
+                },
+                3000
+            );
+
+        }
+
+
+        /* =========================
+           EVENTS
+        ========================= */
+
+        document
+            .getElementById(
+                "startDate"
+            )
+            .addEventListener(
+                "change",
+                renderItinerary
+            );
+
+
+        document
+            .getElementById(
+                "endDate"
+            )
+            .addEventListener(
+                "change",
+                renderItinerary
+            );
+
+
+        document
+            .getElementById(
+                "travelers"
+            )
+            .addEventListener(
+                "input",
+                renderItinerary
+            );
+
+
+        document
+            .getElementById(
+                "budget"
+            )
+            .addEventListener(
+                "change",
+                renderItinerary
+            );
+
+
+        document
+            .getElementById(
+                "saveTripButton"
+            )
+            .addEventListener(
+                "click",
+                saveTrip
+            );
+
+
+        document
+            .getElementById(
+                "clearTripButton"
+            )
+            .addEventListener(
+                "click",
+                clearTrip
+            );
+
+
+        /* =========================
+           INITIALIZE
+        ========================= */
+
+        currentCountry =
+            getCountry();
+
+
+        document.getElementById(
+            "countryName"
+        ).textContent =
+            currentCountry;
+
+
+        loadPlaces();
+
+
+    </script>
+
+</body>
+
+</html>

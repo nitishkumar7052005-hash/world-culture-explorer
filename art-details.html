@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Art & Craft Details - World Culture Explorer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        nav {
+            background: #fff;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: #222;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #ff7a00;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #ff7a00;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #666;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+        .details-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+        }
+
+        .main-image-box {
+            height: 430px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 18px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .thumb {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        .thumb:hover {
+            border-color: #ff7a00;
+        }
+
+        .section {
+            margin-top: 25px;
+        }
+
+        .section h2 {
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .section p,
+        .section li {
+            font-size: 17px;
+            line-height: 1.75;
+            color: #444;
+        }
+
+        .section ul {
+            padding-left: 22px;
+        }
+
+        .info-box {
+            background: #f1efff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .info-box p {
+            margin: 8px 0;
+        }
+
+        .info-box strong {
+            color: #5b4bc4;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 15px;
+        }
+
+        .highlight {
+            background: #f8f8f8;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .action-btn {
+            border: 0;
+            padding: 11px 18px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .like {
+            background: #ffe9ed;
+        }
+
+        .wishlist {
+            background: #fff5d9;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 22px;
+            background: #222;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            background: #ff7a00;
+        }
+
+        .sidebar {
+            background: #f8f9fb;
+            border-radius: 18px;
+            padding: 22px;
+            margin-top: 25px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 12px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #222;
+            text-decoration: none;
+            padding: 9px 0;
+            font-weight: 600;
+        }
+
+        .sidebar a:hover {
+            color: #ff7a00;
+        }
+
+        .upload-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            font: inherit;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .review {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 12px;
+        }
+
+        .review strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .review small {
+            color: #777;
+        }
+
+        .empty {
+            padding: 50px;
+            text-align: center;
+            background: #fff;
+            border-radius: 20px;
+        }
+
+        footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        @media (max-width: 850px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .details-card {
+                padding: 20px;
+            }
+
+            .main-image-box {
+                height: 300px;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="country.html">Countries</a>
+            <a href="country.html">Culture</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>
+            🎨 <span id="artName">Art & Craft</span>
+        </h1>
+
+        <p id="heroSubtitle">
+            Explore the story, technique and cultural importance of this craft.
+        </p>
+    </section>
+
+    <main class="container">
+
+        <div id="loading" class="empty">
+            🎨 Loading details...
+        </div>
+
+        <div id="content" style="display:none"></div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 World Culture Explorer</p>
+        <p>Explore cultures from around the world 🌍</p>
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+
+        let country =
+            params.get("country") ||
+            params.get("name") ||
+            "India";
+
+        const requestedArt =
+            params.get("art") || "";
+
+        const map = {
+            india: "India",
+            japan: "Japan",
+            france: "France"
+        };
+
+        country =
+            map[country.trim().toLowerCase()] ||
+            country;
+
+        const data = {
+
+            India: {
+
+                "Madhubani Painting": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Madhubani%20art.jpg",
+                    description: "Madhubani or Mithila painting is a traditional folk art associated with the Mithila region of Bihar. It is known for detailed patterns, nature-inspired themes, animals, flowers and traditional cultural subjects.",
+                    location: "Mithila region, Bihar, India",
+                    history: "Madhubani painting developed as a folk painting tradition in the Mithila region and has been passed through generations as a form of cultural expression.",
+                    technique: "Artists create dense compositions using lines, patterns, natural and symbolic motifs, often emphasizing decorative borders and filled spaces.",
+                    materials: "Traditionally associated with handmade surfaces and natural or locally available pigments; contemporary artists also work on paper and other surfaces.",
+                    significance: "The art preserves regional stories, symbolism, family traditions and visual representations of nature and community life.",
+                    highlights: [
+                        "Mithila folk tradition",
+                        "Nature-inspired motifs",
+                        "Detailed patterns"
+                    ]
+                },
+
+                "Warli Art": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Warli%20art.jpg",
+                    description: "Warli painting is a traditional tribal art form from Maharashtra. It commonly uses simple geometric shapes and depicts everyday life, farming, hunting, dancing and community activities.",
+                    location: "Maharashtra, India",
+                    history: "Warli art is associated with the Warli community of Maharashtra and has traditionally been used to express community life and important cultural themes.",
+                    technique: "Simple geometric forms such as circles, triangles and lines are arranged to represent people, animals, activities and scenes.",
+                    materials: "Traditional works are associated with mud or earth-colored surfaces and light-colored pigment; contemporary versions may use paper and canvas.",
+                    significance: "Warli art visually records community activities, nature and social life through a distinctive geometric language.",
+                    highlights: [
+                        "Geometric figures",
+                        "Community life",
+                        "Maharashtra tradition"
+                    ]
+                },
+
+                "Dhokra Art": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Dhokra%20art.jpg",
+                    description: "Dhokra is a traditional metal-casting craft known for distinctive handmade figures and decorative objects. The craft uses the lost-wax casting technique.",
+                    location: "Chhattisgarh, Odisha, West Bengal and other regions of India",
+                    history: "Dhokra is a long-standing metal-casting tradition practiced by artisan communities in several parts of India.",
+                    technique: "The lost-wax casting process creates a mould around a wax model; after the wax is removed, molten metal is cast into the resulting space.",
+                    materials: "Traditionally uses metal alloys along with wax, clay and other mould-making materials.",
+                    significance: "The craft is valued for handmade character, distinctive textures and representations of people, animals and cultural motifs.",
+                    highlights: [
+                        "Lost-wax casting",
+                        "Handmade metal craft",
+                        "Traditional artisan practice"
+                    ]
+                },
+
+                "Phulkari": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Phulkari.jpg",
+                    description: "Phulkari is a traditional embroidery style from Punjab. The craft is famous for colorful floral patterns embroidered on fabric.",
+                    location: "Punjab, India",
+                    history: "Phulkari developed as a textile embroidery tradition in Punjab and has been closely associated with clothing, family traditions and ceremonial use.",
+                    technique: "Decorative patterns are built with embroidery stitches to create dense floral and geometric compositions.",
+                    materials: "Fabric and colorful embroidery threads are the primary materials.",
+                    significance: "Phulkari preserves Punjabi textile traditions and carries strong associations with dress, celebration and cultural identity.",
+                    highlights: [
+                        "Punjabi embroidery",
+                        "Floral patterns",
+                        "Textile heritage"
+                    ]
+                },
+
+                "Patan Patola": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Patola.jpg",
+                    description: "Patan Patola is a traditional double-ikat textile tradition known for detailed geometric patterns, bright colors and highly skilled weaving.",
+                    location: "Patan, Gujarat, India",
+                    history: "Patan Patola is a renowned textile tradition of Patan in Gujarat, known for its demanding weaving process and intricate designs.",
+                    technique: "Double ikat involves resist-dyeing the threads before weaving so that the design aligns across both warp and weft.",
+                    materials: "Silk yarns and textile dyes are traditionally used in the production of Patola textiles.",
+                    significance: "The craft represents highly specialized weaving knowledge and is an important part of Gujarat's textile heritage.",
+                    highlights: [
+                        "Double ikat",
+                        "Patan, Gujarat",
+                        "Intricate textile designs"
+                    ]
+                },
+
+                "Channapatna Toys": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Channapatna%20toys53.jpg",
+                    description: "Channapatna toys are traditional wooden toys and dolls made in Channapatna, Karnataka. The craft is known for colorful handcrafted wooden products.",
+                    location: "Channapatna, Karnataka, India",
+                    history: "Channapatna became known for its specialized wooden toy-making tradition, which developed into an important local craft industry.",
+                    technique: "Wood is shaped and turned, then finished and colored to create smooth toy forms and decorative objects.",
+                    materials: "Wood and traditional finishing and coloring materials are used to make the toys.",
+                    significance: "The craft supports local artisan knowledge while preserving a recognizable regional tradition of handmade wooden toys.",
+                    highlights: [
+                        "Wooden toys",
+                        "Karnataka craft",
+                        "Handmade finishing"
+                    ]
+                }
+
+            },
+
+            Japan: {
+
+                "Origami": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Origami.jpg",
+                    description: "Origami is the traditional Japanese art of paper folding. Paper is folded into animals, flowers, geometric forms and decorative objects.",
+                    location: "Japan",
+                    history: "Origami is associated with Japanese paper-folding traditions and has become widely recognized as a creative art form.",
+                    technique: "A sheet of paper is folded into a sequence of structured forms without cutting or gluing in traditional origami practice.",
+                    materials: "Paper is the essential material, with different weights, sizes and patterns used for different designs.",
+                    significance: "Origami connects creativity, patience, geometry and visual design and is practiced both as art and as a cultural tradition.",
+                    highlights: [
+                        "Paper folding",
+                        "Geometric forms",
+                        "Creative tradition"
+                    ]
+                },
+
+                "Kintsugi": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Kintugi.jpg",
+                    description: "Kintsugi is a Japanese craft technique in which broken ceramic objects are repaired using lacquer and often highlighted with metallic powder such as gold.",
+                    location: "Japan",
+                    history: "Kintsugi developed as a Japanese approach to repairing ceramics while making the repair visible rather than attempting to hide it.",
+                    technique: "Broken ceramic pieces are joined with lacquer, with the repaired lines often emphasized using metallic powder.",
+                    materials: "Ceramic objects, lacquer and metallic powder are associated with the technique.",
+                    significance: "Kintsugi is recognized for treating repair as part of an object's visible history and aesthetic character.",
+                    highlights: [
+                        "Ceramic repair",
+                        "Visible repair lines",
+                        "Japanese craft tradition"
+                    ]
+                },
+
+                "Japanese Pottery": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20pottery.jpg",
+                    description: "Japanese pottery includes many regional traditions known for handmade forms, natural textures, glazing techniques and functional as well as artistic designs.",
+                    location: "Japan",
+                    history: "Japanese pottery encompasses many regional ceramic traditions developed over long periods for both everyday use and artistic purposes.",
+                    technique: "Potters shape clay by hand or on wheels and use firing and glazing methods suited to regional traditions.",
+                    materials: "Clay, mineral-based glazes and kiln-firing processes are central to pottery production.",
+                    significance: "Pottery reflects regional materials, aesthetics, craftsmanship and everyday cultural practices.",
+                    highlights: [
+                        "Regional traditions",
+                        "Handmade ceramics",
+                        "Glazing and firing"
+                    ]
+                },
+
+                "Bamboo Crafts": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Japanese%20bamboo%20basket.jpg",
+                    description: "Japanese bamboo craftsmanship includes baskets, containers and decorative objects made using carefully prepared bamboo strips.",
+                    location: "Japan",
+                    history: "Bamboo has long been used in Japanese craft traditions for practical and decorative objects.",
+                    technique: "Bamboo is split, prepared and woven or shaped into baskets, containers and other objects.",
+                    materials: "Prepared bamboo strips are the primary material.",
+                    significance: "The craft combines practical design, natural materials and skilled handwork.",
+                    highlights: [
+                        "Bamboo weaving",
+                        "Natural material",
+                        "Hand craftsmanship"
+                    ]
+                }
+
+            },
+
+            France: {
+
+                "French Pottery": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/French%20pottery.jpg",
+                    description: "French pottery includes regional ceramic traditions with decorated tableware, artistic ceramics and handcrafted pottery.",
+                    location: "Various regions of France",
+                    history: "French pottery developed through many regional ceramic traditions serving household, decorative and artistic purposes.",
+                    technique: "Clay is shaped, dried, fired and often glazed or decorated according to regional styles.",
+                    materials: "Clay, ceramic glazes and kiln-firing methods are central materials and processes.",
+                    significance: "Regional pottery traditions reflect local craft skills, design preferences and everyday cultural life.",
+                    highlights: [
+                        "Regional ceramics",
+                        "Handcrafted pottery",
+                        "Decorative designs"
+                    ]
+                },
+
+                "Lace Making": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Alen%C3%A7on%20lace.jpg",
+                    description: "French lace-making has a long history and includes highly detailed handmade lace traditions. Alençon lace is one of the notable French lace traditions.",
+                    location: "Alençon, Normandy, France",
+                    history: "French lace traditions developed specialized techniques for producing delicate decorative textiles, with Alençon becoming particularly associated with fine lace.",
+                    technique: "Fine threads are manipulated through detailed handwork to create open decorative patterns.",
+                    materials: "Fine textile threads are used to construct intricate lace patterns.",
+                    significance: "Lace-making represents specialized textile knowledge and a long tradition of decorative craftsmanship.",
+                    highlights: [
+                        "Fine textile work",
+                        "Alençon tradition",
+                        "Intricate patterns"
+                    ]
+                },
+
+                "Glass Art": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/French%20glass%20art.jpg",
+                    description: "French glass craftsmanship includes decorative glass objects, artistic vessels and detailed glasswork created through traditional techniques.",
+                    location: "Various regions of France",
+                    history: "French glassmaking includes regional and artistic traditions that developed specialized techniques for decorative and functional glass.",
+                    technique: "Glass is heated, shaped and finished using methods suited to the desired vessel or artistic form.",
+                    materials: "Glass and specialist tools used for shaping, finishing and decoration.",
+                    significance: "Glass art demonstrates technical skill while producing functional and decorative objects.",
+                    highlights: [
+                        "Glass craftsmanship",
+                        "Decorative vessels",
+                        "Artistic glasswork"
+                    ]
+                },
+
+                "Perfume Making": {
+                    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Perfume%20making.jpg",
+                    description: "Perfume making is an important traditional craft associated especially with Grasse. It involves selecting, processing and blending aromatic ingredients.",
+                    location: "Grasse, Provence-Alpes-Côte d'Azur, France",
+                    history: "Grasse developed a major perfume-making tradition and became strongly associated with the cultivation and processing of aromatic plants and fragrance production.",
+                    technique: "Perfumers select aromatic materials and blend them into fragrance compositions using specialized knowledge of scent.",
+                    materials: "Aromatic flowers, plants, extracts and other fragrance ingredients are used in perfume production.",
+                    significance: "Perfume making is an important part of Grasse's cultural and craft heritage.",
+                    highlights: [
+                        "Grasse tradition",
+                        "Aromatic ingredients",
+                        "Fragrance craftsmanship"
+                    ]
+                }
+
+            }
+        };
+
+        function esc(s) {
+            return String(s ?? "").replace(
+                /[&<>'"]/g,
+                c => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[c])
+            );
+        }
+
+        const key =
+            "wce_art_" +
+            country
+                .toLowerCase()
+                .replace(/\s+/g, "_");
+
+        const item =
+            data[country]?.[requestedArt] ||
+            Object.values(data[country] || {})[0];
+
+        function render() {
+            const load =
+                document.getElementById("loading");
+
+            const content =
+                document.getElementById("content");
+
+            if (!item) {
+                load.innerHTML = `
+                    <h2>🎨 Art & Craft not found</h2>
+
+                    <p>
+                        Please return to the Art & Crafts page.
+                    </p>
+
+                    <a
+                        class="back-button"
+                        href="./art.html?country=${encodeURIComponent(country)}">
+                        ← Back to Art & Crafts
+                    </a>
+                `;
+
+                return;
+            }
+
+            document.getElementById("artName").textContent =
+                item.name;
+
+            content.innerHTML = `
+                <div class="details-card">
+
+                    <div class="main-image-box">
+                        <img
+                            id="mainImage"
+                            class="main-image"
+                            src="${item.image}"
+                            alt="${esc(item.name)}">
+                    </div>
+
+                    <div class="thumbnail-container">
+
+                        <img
+                            class="thumb"
+                            src="${item.image}"
+                            alt="${esc(item.name)}"
+                            onclick="changeMainImage(this.src)">
+
+                    </div>
+
+                    <div class="section">
+
+                        <h2>🎨 About This Art & Craft</h2>
+
+                        <p>
+                            ${esc(item.description)}
+                        </p>
+
+                    </div>
+
+                    <div class="section">
+
+                        <h2>📜 History</h2>
+
+                        <p>
+                            ${esc(item.history)}
+                        </p>
+
+                    </div>
+
+                    <div class="section">
+
+                        <h2>🛠️ Technique & Process</h2>
+
+                        <p>
+                            ${esc(item.technique)}
+                        </p>
+
+                    </div>
+
+                    <div class="section">
+
+                        <h2>🧵 Materials</h2>
+
+                        <p>
+                            ${esc(item.materials)}
+                        </p>
+
+                    </div>
+
+                    <div class="section">
+
+                        <h2>🌍 Cultural Significance</h2>
+
+                        <p>
+                            ${esc(item.significance)}
+                        </p>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <p>
+                            <strong>🎨 Craft:</strong>
+                            ${esc(item.name)}
+                        </p>
+
+                        <p>
+                            <strong>🌍 Country:</strong>
+                            ${esc(country)}
+                        </p>
+
+                        <p>
+                            <strong>📍 Region:</strong>
+                            ${esc(item.location)}
+                        </p>
+
+                    </div>
+
+                    <div class="section">
+
+                        <h2>✨ Highlights</h2>
+
+                        <div class="highlights">
+                            ${item.highlights
+                                .map(
+                                    h => `
+                                        <div class="highlight">
+                                            ✨ ${esc(h)}
+                                        </div>
+                                    `
+                                )
+                                .join("")}
+                        </div>
+
+                    </div>
+
+                    <div class="actions">
+
+                        <button
+                            class="action-btn like"
+                            id="likeBtn">
+                            ❤️ Like
+                            <span id="likeCount">0</span>
+                        </button>
+
+                        <button
+                            class="action-btn wishlist"
+                            id="wishBtn">
+                            ⭐ Add to Wishlist
+                        </button>
+
+                    </div>
+
+                    <div class="section">
+
+                        <h2>📸 User Photos</h2>
+
+                        <input
+                            type="file"
+                            id="photoInput"
+                            accept="image/*">
+
+                        <div
+                            class="photo-grid"
+                            id="photoGrid">
+                        </div>
+
+                    </div>
+
+                    <div class="section">
+
+                        <h2>⭐ Reviews & Comments</h2>
+
+                        <input
+                            id="reviewName"
+                            placeholder="Your name">
+
+                        <textarea
+                            id="reviewText"
+                            placeholder="Write your comment...">
+                        </textarea>
+
+                        <button
+                            class="action-btn"
+                            id="reviewBtn"
+                            style="margin-top:10px;background:#222;color:#fff">
+                            Post Review
+                        </button>
+
+                        <div id="reviews"></div>
+
+                    </div>
+
+                    <a
+                        class="back-button"
+                        href="./art.html?country=${encodeURIComponent(country)}">
+                        ← Back to Art & Crafts
+                    </a>
+
+                    <div class="sidebar">
+
+                        <h3>🔗 Quick Links</h3>
+
+                        <a
+                            href="./art.html?country=${encodeURIComponent(country)}">
+                            🎨 All Art & Crafts
+                        </a>
+
+                        <a
+                            href="./country.html?country=${encodeURIComponent(country)}">
+                            🌍 ${esc(country)}
+                        </a>
+
+                        <a
+                            href="${mapLink(item.location)}"
+                            target="_blank">
+                            🗺️ View Region on Map
+                        </a>
+
+                    </div>
+
+                </div>
+            `;
+
+            load.style.display = "none";
+            content.style.display = "block";
+
+            initFeatures();
+        }
+
+        function changeMainImage(src) {
+            document.getElementById("mainImage").src =
+                src;
+        }
+
+        function mapLink(location) {
+            return (
+                "https://www.google.com/maps/search/?api=1&query=" +
+                encodeURIComponent(location)
+            );
+        }
+
+        function initFeatures() {
+
+            const likeKey =
+                key + "_likes";
+
+            const wishKey =
+                key + "_wish";
+
+            const photoKey =
+                key + "_photos";
+
+            const reviewKey =
+                key + "_reviews";
+
+            let likes =
+                Number(
+                    localStorage.getItem(likeKey) || 0
+                );
+
+            let wish =
+                localStorage.getItem(wishKey) === "1";
+
+            document.getElementById(
+                "likeCount"
+            ).textContent = likes;
+
+            document.getElementById(
+                "wishBtn"
+            ).textContent =
+                wish
+                    ? "⭐ In Wishlist"
+                    : "⭐ Add to Wishlist";
+
+            document.getElementById(
+                "likeBtn"
+            ).onclick = () => {
+
+                likes++;
+
+                localStorage.setItem(
+                    likeKey,
+                    likes
+                );
+
+                document.getElementById(
+                    "likeCount"
+                ).textContent = likes;
+            };
+
+            document.getElementById(
+                "wishBtn"
+            ).onclick = () => {
+
+                wish = !wish;
+
+                localStorage.setItem(
+                    wishKey,
+                    wish ? "1" : "0"
+                );
+
+                document.getElementById(
+                    "wishBtn"
+                ).textContent =
+                    wish
+                        ? "⭐ In Wishlist"
+                        : "⭐ Add to Wishlist";
+            };
+
+            function renderPhotos() {
+
+                const grid =
+                    document.getElementById(
+                        "photoGrid"
+                    );
+
+                const photos =
+                    JSON.parse(
+                        localStorage.getItem(
+                            photoKey
+                        ) || "[]"
+                    );
+
+                grid.innerHTML =
+                    photos
+                        .map(
+                            p => `
+                                <img
+                                    src="${p}"
+                                    alt="User uploaded photo">
+                            `
+                        )
+                        .join("");
+            }
+
+            document.getElementById(
+                "photoInput"
+            ).onchange = e => {
+
+                const file =
+                    e.target.files[0];
+
+                if (!file) {
+                    return;
+                }
+
+                const reader =
+                    new FileReader();
+
+                reader.onload = () => {
+
+                    const photos =
+                        JSON.parse(
+                            localStorage.getItem(
+                                photoKey
+                            ) || "[]"
+                        );
+
+                    if (photos.length >= 10) {
+
+                        alert(
+                            "Maximum 10 photos allowed."
+                        );
+
+                        return;
+                    }
+
+                    photos.push(
+                        reader.result
+                    );
+
+                    localStorage.setItem(
+                        photoKey,
+                        JSON.stringify(photos)
+                    );
+
+                    renderPhotos();
+                };
+
+                reader.readAsDataURL(file);
+            };
+
+            function renderReviews() {
+
+                const box =
+                    document.getElementById(
+                        "reviews"
+                    );
+
+                const reviews =
+                    JSON.parse(
+                        localStorage.getItem(
+                            reviewKey
+                        ) || "[]"
+                    );
+
+                box.innerHTML =
+                    reviews
+                        .map(
+                            r => `
+                                <div class="review">
+
+                                    <strong>
+                                        ${esc(r.name)}
+                                    </strong>
+
+                                    <p>
+                                        ${esc(r.text)}
+                                    </p>
+
+                                    <small>
+                                        ${esc(r.date)}
+                                    </small>
+
+                                </div>
+                            `
+                        )
+                        .join("");
+            }
+
+            document.getElementById(
+                "reviewBtn"
+            ).onclick = () => {
+
+                const name =
+                    document.getElementById(
+                        "reviewName"
+                    ).value.trim();
+
+                const text =
+                    document.getElementById(
+                        "reviewText"
+                    ).value.trim();
+
+                if (!name || !text) {
+
+                    alert(
+                        "Please enter your name and comment."
+                    );
+
+                    return;
+                }
+
+                const reviews =
+                    JSON.parse(
+                        localStorage.getItem(
+                            reviewKey
+                        ) || "[]"
+                    );
+
+                reviews.unshift({
+                    name,
+                    text,
+                    date: new Date().toLocaleString(
+                        "en-IN"
+                    )
+                });
+
+                localStorage.setItem(
+                    reviewKey,
+                    JSON.stringify(reviews)
+                );
+
+                document.getElementById(
+                    "reviewName"
+                ).value = "";
+
+                document.getElementById(
+                    "reviewText"
+                ).value = "";
+
+                renderReviews();
+            };
+
+            renderPhotos();
+            renderReviews();
+        }
+
+        render();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+{
+    "India": {
+
+        "intro": "A practical guide to help you explore India's culture, transport, food and travel essentials.",
+
+        "visa": "International visitors generally need the appropriate Indian visa or electronic travel authorization before arrival. Check the latest official entry requirements for your nationality before travelling.",
+
+        "budget": "India offers options for different budgets. Daily costs can vary depending on accommodation, transport, food and activities. Major cities and popular tourist destinations may cost more.",
+
+        "transport": "Major cities have metro systems, buses, taxis and app-based transport. Trains are useful for travelling between many cities, while domestic flights can save time on longer journeys.",
+
+        "stay": "Popular options include hotels, guesthouses, hostels and homestays. Staying near major transport connections can make sightseeing easier.",
+
+        "food": "Try regional dishes such as biryani, dosa, butter chicken, samosa and local sweets. Food styles vary significantly from one region to another.",
+
+        "language": "Hindi and English are widely used, while India has many regional languages. Learning simple local greetings can make interactions easier.",
+
+        "tips": "Dress respectfully when visiting religious and cultural sites. Keep valuables secure, carry drinking water and check local conditions before travelling.",
+
+        "important": "India is geographically and culturally diverse. Travel times can be longer than expected, and local customs can differ considerably between regions.",
+
+        "tipList": [
+            "Carry a valid ID and copies of important travel documents.",
+            "Respect local customs and religious practices.",
+            "Use trusted transport services when possible.",
+            "Keep some cash available for smaller businesses.",
+            "Drink safe or properly treated water.",
+            "Check local weather before travelling.",
+            "Allow extra time for traffic in large cities.",
+            "Keep emergency contact information accessible."
+        ]
+
+    },
+
+
+    "Japan": {
+
+        "intro": "A practical guide to help you explore Japan's cities, culture, transport, food and travel essentials.",
+
+        "visa": "Entry requirements depend on nationality and travel purpose. Check Japan's latest official immigration and visa requirements before your trip.",
+
+        "budget": "Japan has options ranging from budget hostels and casual restaurants to premium hotels and dining. Transportation and accommodation can form a significant part of the travel budget.",
+
+        "transport": "Japan has an extensive rail and public transport network. Trains and subways are especially convenient in major cities such as Tokyo, Kyoto and Osaka.",
+
+        "stay": "Popular accommodation includes hotels, hostels, ryokan and traditional guesthouses. Staying near a railway or subway station is often convenient.",
+
+        "food": "Try sushi, ramen, tempura, okonomiyaki, yakitori and regional Japanese specialties. Convenience stores and local restaurants can also offer affordable meals.",
+
+        "language": "Japanese is the main language. English is available in many tourist areas, stations and hotels, but learning a few basic Japanese phrases can be helpful.",
+
+        "tips": "Be mindful of local etiquette, keep public spaces clean and follow transport rules. Quiet behaviour is generally expected on trains.",
+
+        "important": "Japan has distinct regional climates and seasonal conditions. Public transport schedules are generally precise, so arriving on time is useful.",
+
+        "tipList": [
+            "Carry your passport when required for identification.",
+            "Keep noise low on public transport.",
+            "Follow local queueing and public-space etiquette.",
+            "Carry a reusable bag for shopping.",
+            "Check train schedules before long journeys.",
+            "Keep cash available because some smaller businesses may not accept cards.",
+            "Respect temple and shrine customs.",
+            "Check seasonal weather before visiting outdoor destinations."
+        ]
+
+    },
+
+
+    "France": {
+
+        "intro": "A practical guide to help you explore France's cities, heritage, food, transport and travel essentials.",
+
+        "visa": "Entry requirements depend on nationality and travel purpose. Check the latest French and Schengen entry requirements before travelling.",
+
+        "budget": "Travel costs vary considerably between Paris, major tourist destinations and smaller towns. Accommodation, dining and transport should be considered when planning a daily budget.",
+
+        "transport": "France has extensive rail, metro, tram and bus networks. High-speed trains connect many major cities, while local public transport is useful for urban sightseeing.",
+
+        "stay": "Accommodation ranges from hotels and hostels to apartments and guesthouses. Staying near public transport can make city exploration easier.",
+
+        "food": "Try regional French dishes, pastries, cheeses, breads and desserts. Local specialties vary significantly between regions.",
+
+        "language": "French is the main language. English is commonly encountered in major tourist areas, but learning basic French greetings is useful.",
+
+        "tips": "Keep an eye on belongings in busy tourist areas, especially around major attractions and public transport. Check opening hours before visiting museums and monuments.",
+
+        "important": "France has different regional cultures and travel experiences. Popular attractions can become very busy, especially during peak travel periods.",
+
+        "tipList": [
+            "Carry identification and important travel documents securely.",
+            "Learn a few basic French greetings.",
+            "Check museum and attraction opening hours.",
+            "Use official transport information when planning journeys.",
+            "Keep valuables secure in crowded tourist areas.",
+            "Book popular attractions ahead when required.",
+            "Respect local dining and public-space etiquette.",
+            "Check regional weather before outdoor activities."
+        ]
+
+    }
+
+}

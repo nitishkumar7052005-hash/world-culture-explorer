@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>World Culture Explorer</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* ================= LOGOUT BUTTON ================= */
+
+        .logout-btn {
+            margin-left: 15px;
+            padding: 9px 16px;
+            border: none;
+            border-radius: 10px;
+            background: #e74c3c;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="#countries">
+                Countries
+            </a>
+
+            <a href="#culture">
+                Culture
+            </a>
+
+            <a href="#about">
+                About
+    
+<!--Profile -->
+<a href="profile.html">
+    👤 My Profile
+</a>
+
+
+            <!-- LOGOUT -->
+
+            <button
+                id="logoutButton"
+                class="logout-btn">
+
+                🚪 Logout
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-title">
+                DISCOVER THE WORLD
+            </p>
+
+
+            <h1>
+                Explore the World,
+                <span>
+                    One Culture at a Time
+                </span>
+            </h1>
+
+
+            <p class="hero-text">
+                Discover countries, cultures, food, festivals,
+                traditional clothing, famous places and much more.
+            </p>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="countrySearch"
+                    placeholder="🔎 Search any country..."
+                    autocomplete="off"
+                >
+
+                <button onclick="searchCountry()">
+                    Explore
+                </button>
+
+            </div>
+
+
+            <p id="searchMessage"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURE SECTION ================= -->
+
+    <section
+        class="section"
+        id="countries">
+
+        <div class="section-title">
+
+            <p>
+                EXPLORE
+            </p>
+
+            <h2>
+                What You Can Discover
+            </h2>
+
+            <span>
+                Explore different aspects of countries around the world.
+            </span>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+            <!-- FOOD -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🍛
+                </div>
+
+                <h3>
+                    Famous Food
+                </h3>
+
+                <p>
+                    Discover traditional dishes and famous
+                    foods from different countries.
+                </p>
+
+            </div>
+
+
+            <!-- CLOTHING -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    👕
+                </div>
+
+                <h3>
+                    Traditional Clothing
+                </h3>
+
+                <p>
+                    Explore traditional dresses and clothing
+                    styles from around the world.
+                </p>
+
+            </div>
+
+
+            <!-- FESTIVALS -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🎉
+                </div>
+
+                <h3>
+                    Festivals
+                </h3>
+
+                <p>
+                    Learn about colorful festivals and
+                    celebrations across different cultures.
+                </p>
+
+            </div>
+
+
+            <!-- PLACES -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🏛️
+                </div>
+
+                <h3>
+                    Famous Places
+                </h3>
+
+                <p>
+                    Explore famous landmarks and beautiful
+                    destinations around the world.
+                </p>
+
+            </div>
+
+
+            <!-- LANGUAGES -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🗣️
+                </div>
+
+                <h3>
+                    Languages
+                </h3>
+
+                <p>
+                    Discover the languages spoken by people
+                    in different countries.
+                </p>
+
+            </div>
+
+
+            <!-- CULTURE -->
+
+            <div
+                class="feature-card"
+                id="culture">
+
+                <div class="feature-icon">
+                    🎵
+                </div>
+
+                <h3>
+                    Culture & Traditions
+                </h3>
+
+                <p>
+                    Discover music, dance, art, customs and
+                    traditional lifestyles.
+                </p>
+
+            </div>
+
+
+            <!-- SPORTS -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🏅
+                </div>
+
+                <h3>
+                    Sports
+                </h3>
+
+                <p>
+                    Learn about popular and traditional sports
+                    around the world.
+                </p>
+
+            </div>
+
+
+            <!-- NATURE -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🌿
+                </div>
+
+                <h3>
+                    Nature & Wildlife
+                </h3>
+
+                <p>
+                    Explore beautiful landscapes, animals
+                    and natural wonders.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section
+        class="about"
+        id="about">
+
+        <div class="about-content">
+
+            <p class="small-title">
+                ABOUT PROJECT
+            </p>
+
+            <h2>
+                World Culture Explorer
+            </h2>
+
+            <p>
+                World Culture Explorer is an interactive website
+                designed to help people discover countries and
+                understand their culture, traditions, food,
+                languages, festivals and famous places.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>
+            🌍 World Culture Explorer
+        </h3>
+
+        <p>
+            Explore cultures. Discover traditions. Understand the world.
+        </p>
+
+        <p class="copyright">
+            © 2026 World Culture Explorer
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/script.js"></script>
+
+
+    <!-- ================= LOGOUT JAVASCRIPT ================= -->
+
+    <script>
+
+        const logoutButton =
+            document.getElementById("logoutButton");
+
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener(
+                "click",
+                function () {
+
+                    /* REMOVE LOGIN STATE */
+
+                    localStorage.removeItem(
+                        "wce_logged_in"
+                    );
+
+
+                    /* REMOVE USER DATA */
+
+                    localStorage.removeItem(
+                        "wce_user_name"
+                    );
+
+                    localStorage.removeItem(
+                        "wce_user_email"
+                    );
+
+
+                    /* GO TO LOGIN */
+
+                    window.location.href =
+                        "login.html";
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

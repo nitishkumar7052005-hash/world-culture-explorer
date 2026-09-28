@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Travel Guide | World Culture Explorer
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+            background: #f8fafc;
+            color: #222;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 7%;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+
+        .navbar nav {
+            display: flex;
+            gap: 20px;
+        }
+
+
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+
+        .navbar a:hover {
+            color: #2563eb;
+        }
+
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .travel-page {
+            width: min(
+                1150px,
+                92%
+            );
+
+            margin: 0 auto;
+
+            padding:
+                55px
+                0
+                70px;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .travel-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+
+        .travel-header .emoji {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+
+        .travel-header h1 {
+            margin: 0;
+            font-size: 42px;
+            color: #111827;
+        }
+
+
+        .travel-country {
+            color: #2563eb;
+        }
+
+
+        .travel-header p {
+            max-width: 700px;
+            margin:
+                14px auto
+                0;
+
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           GUIDE GRID
+        ===================================================== */
+
+        .guide-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 22px;
+        }
+
+
+        .guide-card {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            border:
+                1px solid
+                #e5e7eb;
+
+            box-shadow:
+                0 6px 20px
+                rgba(0, 0, 0, 0.05);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .guide-card:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 28px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .guide-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .guide-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eff6ff;
+
+            border-radius: 12px;
+
+            font-size: 25px;
+
+            flex-shrink: 0;
+        }
+
+
+        .guide-card h2 {
+            margin: 0;
+
+            font-size: 20px;
+
+            color: #111827;
+        }
+
+
+        .guide-card p {
+            margin: 0;
+
+            color: #555;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           TRAVEL TIPS
+        ===================================================== */
+
+        .tips-section {
+            margin-top: 28px;
+
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 28px;
+
+            border:
+                1px solid
+                #e5e7eb;
+        }
+
+
+        .tips-section h2 {
+            margin-top: 0;
+        }
+
+
+        .tips-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 18px;
+        }
+
+
+        .tip-item {
+            display: flex;
+
+            gap: 10px;
+
+            padding: 13px;
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+
+            color: #444;
+
+            line-height: 1.5;
+        }
+
+
+        .tip-icon {
+            color: #2563eb;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .travel-actions {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            margin-top: 35px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .travel-button {
+            display: inline-block;
+
+            padding:
+                12px
+                20px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+
+        .travel-button.secondary {
+            background: #111827;
+        }
+
+
+        .travel-button:hover {
+            opacity: 0.9;
+        }
+
+
+        /* =====================================================
+           LOADING / ERROR
+        ===================================================== */
+
+        .loading-box,
+        .error-box {
+            text-align: center;
+
+            padding: 50px 20px;
+
+            background: white;
+
+            border-radius: 15px;
+        }
+
+
+        .error-box {
+            color: #b91c1c;
+
+            background: #fef2f2;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            text-align: center;
+
+            padding: 25px;
+
+            color: #777;
+
+            border-top:
+                1px solid
+                #e5e7eb;
+
+            background: white;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            .navbar nav {
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .travel-page {
+                padding-top: 35px;
+            }
+
+
+            .travel-header h1 {
+                font-size: 32px;
+            }
+
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .tips-list {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#countries">
+                Countries
+            </a>
+
+            <a href="index.html#culture">
+                Culture
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main class="travel-page">
+
+
+        <!-- HEADER -->
+
+        <section class="travel-header">
+
+            <div class="emoji">
+                ✈️
+            </div>
+
+
+            <h1>
+
+                Travel Guide for
+
+                <span
+                    id="countryName"
+                    class="travel-country"
+                >
+                    Loading...
+                </span>
+
+            </h1>
+
+
+            <p id="travelIntro">
+                Loading travel information...
+            </p>
+
+        </section>
+
+
+
+        <!-- GUIDE -->
+
+        <section
+            id="guideContainer"
+            class="guide-grid"
+        >
+
+            <div class="loading-box">
+
+                ✈️ Loading travel guide...
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TIPS -->
+
+        <section
+            id="tipsSection"
+            class="tips-section"
+        >
+
+            <h2>
+                💡 Travel Tips
+            </h2>
+
+
+            <div
+                id="tipsContainer"
+                class="tips-list"
+            >
+
+                <div class="loading-box">
+                    Loading tips...
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="travel-actions">
+
+            <a
+                href="#"
+                id="placesButton"
+                class="travel-button"
+            >
+                📍 Explore Places
+            </a>
+
+
+            <a
+                href="#"
+                id="backButton"
+                class="travel-button secondary"
+            >
+                ← Back to Country
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="footer">
+
+        <p>
+            🌍 World Culture Explorer
+        </p>
+
+        <small>
+            Explore cultures • Discover places • Travel smarter
+        </small>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           COUNTRY
+        ===================================================== */
+
+        function getCountryName() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            return (
+                params.get("country") ||
+                params.get("name") ||
+                "India"
+            ).trim();
+        }
+
+
+
+        /* =====================================================
+           FIND COUNTRY
+        ===================================================== */
+
+        function findCountry(
+            data,
+            requestedCountry
+        ) {
+
+            const requested =
+                requestedCountry
+                    .trim()
+                    .toLowerCase();
+
+
+            return Object.keys(data).find(
+                function(key) {
+
+                    return (
+                        key
+                            .trim()
+                            .toLowerCase()
+                        ===
+                        requested
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            return String(value)
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        /* =====================================================
+           GUIDE CARD
+        ===================================================== */
+
+        function createGuideCard(
+            icon,
+            title,
+            text
+        ) {
+
+            return `
+
+                <article class="guide-card">
+
+                    <div class="guide-card-header">
+
+                        <div class="guide-icon">
+                            ${icon}
+                        </div>
+
+                        <h2>
+                            ${escapeHTML(title)}
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        ${escapeHTML(text)}
+                    </p>
+
+                </article>
+
+            `;
+
+        }
+
+
+
+        /* =====================================================
+           LOAD TRAVEL GUIDE
+        ===================================================== */
+
+        async function loadTravelGuide() {
+
+            const country =
+                getCountryName();
+
+
+            const countryName =
+                document.getElementById(
+                    "countryName"
+                );
+
+
+            const guideContainer =
+                document.getElementById(
+                    "guideContainer"
+                );
+
+
+            const tipsContainer =
+                document.getElementById(
+                    "tipsContainer"
+                );
+
+
+            const travelIntro =
+                document.getElementById(
+                    "travelIntro"
+                );
+
+
+            const placesButton =
+                document.getElementById(
+                    "placesButton"
+                );
+
+
+            const backButton =
+                document.getElementById(
+                    "backButton"
+                );
+
+
+            countryName.textContent =
+                country;
+
+
+            placesButton.href =
+                "places.html?country=" +
+                encodeURIComponent(
+                    country
+                );
+
+
+            backButton.href =
+                "country.html?country=" +
+                encodeURIComponent(
+                    country
+                );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "./data/travel-guide.json"
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "travel-guide.json could not be loaded"
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                const countryKey =
+                    findCountry(
+                        data,
+                        country
+                    );
+
+
+                if (!countryKey) {
+
+                    guideContainer.innerHTML = `
+
+                        <div class="error-box">
+
+                            🌍 Travel Guide is not
+                            available for
+
+                            <strong>
+                                ${escapeHTML(country)}
+                            </strong>
+
+                        </div>
+
+                    `;
+
+                    tipsContainer.innerHTML = "";
+
+                    return;
+                }
+
+
+                const guide =
+                    data[countryKey];
+
+
+                travelIntro.textContent =
+                    guide.intro ||
+                    "Useful travel information to help you explore this destination.";
+
+
+                guideContainer.innerHTML = "";
+
+
+                guideContainer.innerHTML +=
+                    createGuideCard(
+                        "🛂",
+                        "Visa & Entry",
+                        guide.visa
+                    );
+
+
+                guideContainer.innerHTML +=
+                    createGuideCard(
+                        "💰",
+                        "Budget",
+                        guide.budget
+                    );
+
+
+                guideContainer.innerHTML +=
+                    createGuideCard(
+                        "🚇",
+                        "Getting Around",
+                        guide.transport
+                    );
+
+
+                guideContainer.innerHTML +=
+                    createGuideCard(
+                        "🏨",
+                        "Where to Stay",
+                        guide.stay
+                    );
+
+
+                guideContainer.innerHTML +=
+                    createGuideCard(
+                        "🍜",
+                        "Food Guide",
+                        guide.food
+                    );
+
+
+                guideContainer.innerHTML +=
+                    createGuideCard(
+                        "🗣️",
+                        "Language",
+                        guide.language
+                    );
+
+
+                guideContainer.innerHTML +=
+                    createGuideCard(
+                        "💡",
+                        "Travel Tips",
+                        guide.tips
+                    );
+
+
+                guideContainer.innerHTML +=
+                    createGuideCard(
+                        "⚠️",
+                        "Things to Know",
+                        guide.important
+                    );
+
+
+                /*
+                 * Travel tips list
+                 */
+
+                tipsContainer.innerHTML = "";
+
+
+                const tips =
+                    Array.isArray(
+                        guide.tipList
+                    )
+                        ? guide.tipList
+                        : [];
+
+
+                tips.forEach(
+                    function(tip) {
+
+                        tipsContainer.innerHTML += `
+
+                            <div class="tip-item">
+
+                                <span class="tip-icon">
+                                    ✓
+                                </span>
+
+                                <span>
+                                    ${escapeHTML(tip)}
+                                </span>
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+                if (!tips.length) {
+
+                    tipsContainer.innerHTML = `
+
+                        <div class="tip-item">
+
+                            Travel tips will be
+                            added soon.
+
+                        </div>
+
+                    `;
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Travel Guide Error:",
+                    error
+                );
+
+
+                guideContainer.innerHTML = `
+
+                    <div class="error-box">
+
+                        ✈️ Travel Guide could
+                        not be loaded.
+
+                        <br><br>
+
+                        Please check that
+                        <strong>
+                            data/travel-guide.json
+                        </strong>
+                        exists.
+
+                    </div>
+
+                `;
+
+
+                tipsContainer.innerHTML = "";
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           START
+        ===================================================== */
+
+        loadTravelGuide();
+
+    </script>
+
+</body>
+
+</html>

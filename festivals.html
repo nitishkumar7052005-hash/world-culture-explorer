@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Festivals - World Culture Explorer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* ================= BACK BUTTON ================= */
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            background: #f0f0f0;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            background: white;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #ff7a00;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #ff7a00;
+        }
+
+        .hero p {
+            font-size: 21px;
+            color: #666;
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 60px;
+        }
+
+
+        /* ================= FESTIVAL CARD ================= */
+
+        .festival-card {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .festival-card h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .festival-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+
+        /* ================= MAIN IMAGE ================= */
+
+        .main-image-box {
+            width: 100%;
+            height: 430px;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            background: #eee;
+        }
+
+        .main-festival-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        /* ================= THUMBNAILS ================= */
+
+        .thumbnail-container {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .festival-thumbnail {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: 0.3s;
+        }
+
+        .festival-thumbnail:hover {
+            transform: scale(1.05);
+            border-color: #ff7a00;
+        }
+
+
+        /* ================= DESCRIPTION ================= */
+
+        .festival-description {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+
+        /* ================= INFO ================= */
+
+        .info-box {
+            background: #f7f8fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .info-box p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .info-box strong {
+            color: #111;
+        }
+
+
+        /* ================= SOURCE ================= */
+
+        .source {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #777;
+        }
+
+
+        /* ================= DETAILS BUTTON ================= */
+
+        .festival-details-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .festival-details-button:hover {
+            background: #ff7a00;
+            transform: translateY(-2px);
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .festival-card {
+                padding: 20px;
+            }
+
+            .festival-card h2 {
+                font-size: 26px;
+            }
+
+            .main-image-box {
+                height: 280px;
+            }
+
+            .festival-thumbnail {
+                width: 75px;
+                height: 60px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="country.html">
+                Countries
+            </a>
+
+            <a href="country.html">
+                Culture
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h1>
+
+            🎉 Traditional Festivals of
+
+            <span id="countryName">
+                India
+            </span>
+
+        </h1>
+
+        <p>
+            Explore traditional festivals and cultural celebrations from this country.
+        </p>
+
+    </section>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <div
+        class="container"
+        id="festivalContainer"
+    >
+
+        <!-- JavaScript will create festival cards here -->
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 World Culture Explorer
+        </p>
+
+        <p>
+            Explore cultures from around the world 🌍
+        </p>
+
+    <a id="backButton"
+   href="country.html?country=India"
+   class="back-btn">
+    ← Back to Country
+</a>
+
+    </footer>
+
+
+    <script>
+
+
+        /* =====================================================
+           GET COUNTRY FROM URL
+           ===================================================== */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        let country =
+            urlParams.get("country") ||
+            urlParams.get("name") ||
+            "India";
+
+
+        /* =====================================================
+           CASE-INSENSITIVE COUNTRY
+           ===================================================== */
+
+        function normalizeCountry(name) {
+
+            const countries = {
+
+                "india": "India",
+
+                "japan": "Japan",
+
+                "france": "France",
+
+                "italy": "Italy"
+
+            };
+
+            return (
+                countries[
+                    name.toLowerCase()
+                ] || name
+            );
+
+        }
+
+
+        country =
+            normalizeCountry(country);
+
+
+        document.getElementById(
+            "countryName"
+        ).textContent = country;
+
+
+        /* =====================================================
+           INDIA LOCAL IMAGES
+           ===================================================== */
+
+        const indiaFestivals = {
+
+            "Diwali": [
+
+                "./images/festivals/diwali/diwali-1.jpg",
+
+                "./images/festivals/diwali/diwali-2.jpg",
+
+                "./images/festivals/diwali/diwali-3.jpg",
+
+                "./images/festivals/diwali/diwali-4.jpg",
+
+                "./images/festivals/diwali/diwali-5.jpg"
+
+            ],
+
+
+            "Holi": [
+
+                "./images/festivals/holi/holi-1.jpg",
+
+                "./images/festivals/holi/holi-2.jpg",
+
+                "./images/festivals/holi/holi-3.jpg",
+
+                "./images/festivals/holi/holi-4.jpg",
+
+                "./images/festivals/holi/holi-5.jpg"
+
+            ],
+
+
+            "Navratri": [
+
+                "./images/festivals/navratri/navratri-1.jpg",
+
+                "./images/festivals/navratri/navratri-2.jpg",
+
+                "./images/festivals/navratri/navratri-3.jpg",
+
+                "./images/festivals/navratri/navratri-4.jpg",
+
+                "./images/festivals/navratri/navratri-5.jpg"
+
+            ],
+
+
+            "Ganesh Chaturthi": [
+
+                "./images/festivals/ganesh-chaturthi/ganesh-1.jpg",
+
+                "./images/festivals/ganesh-chaturthi/ganesh-2.jpg",
+
+                "./images/festivals/ganesh-chaturthi/ganesh-3.jpg",
+
+                "./images/festivals/ganesh-chaturthi/ganesh-4.jpg",
+
+                "./images/festivals/ganesh-chaturthi/ganesh-5.jpg"
+
+            ],
+
+
+            "Pongal": [
+
+                "./images/festivals/pongal/pongal-1.jpg",
+
+                "./images/festivals/pongal/pongal-2.jpg",
+
+                "./images/festivals/pongal/pongal-3.jpg",
+
+                "./images/festivals/pongal/pongal-4.jpg",
+
+                "./images/festivals/pongal/pongal-5.jpg"
+
+            ],
+
+
+            "Onam": [
+
+                "./images/festivals/onam/onam-1.jpg",
+
+                "./images/festivals/onam/onam-2.jpg",
+
+                "./images/festivals/onam/onam-3.jpg",
+
+                "./images/festivals/onam/onam-4.jpg",
+
+                "./images/festivals/onam/onam-5.jpg"
+
+            ]
+
+        };
+
+
+        /* =====================================================
+           JAPAN ONLINE IMAGES
+           ===================================================== */
+
+        const japanFestivals = {
+
+            "Hanami": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Hanami%20at%20Japan.jpg"
+
+            ],
+
+
+            "Gion Matsuri": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Gion%20Matsuri%20of%20Kyoto%20Japan%201920s.jpg"
+
+            ],
+
+
+            "Tanabata": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Ichinomiya%20Tanabata%20Festival%202014%20-%2017.jpg"
+
+            ],
+
+
+            "Obon": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Obon%20Festival.jpg"
+
+            ],
+
+
+            "Shogatsu": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Shogatsu%20%28LOC%29%20%2816944697722%29.jpg"
+
+            ]
+
+        };
+
+
+        /* =====================================================
+           ITALY FESTIVALS
+           ===================================================== */
+
+        const italyFestivals = {
+
+            "Venice Carnival": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Venice%20Carnival.jpg"
+
+            ],
+
+
+            "Palio di Siena": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Palio%20di%20Siena%202008.jpg",
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Palio%20di%20Siena%202008%20%282%29.jpg"
+
+            ],
+
+
+            "Ferragosto": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Padova%20-%20Ferragosto.jpg"
+
+            ],
+
+
+            "Carnevale di Viareggio": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Carnival%20of%20Viareggio%2C%20Italy%2C%202019.jpg"
+
+            ]
+
+        };
+
+
+        /* =====================================================
+           FRANCE FESTIVALS
+           ===================================================== */
+
+        const franceFestivals = {
+
+            "Bastille Day": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Bastille%20Day%20Paris.jpg",
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Bastille%20Day%20fireworks.jpg"
+
+            ],
+
+
+            "Cannes Film Festival": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Cannes%20Film%20Festival.jpg"
+
+            ],
+
+
+            "Nice Carnival": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Nice%20Carnival.jpg"
+
+            ],
+
+
+            "Fête de la Musique": [
+
+                "https://commons.wikimedia.org/wiki/Special:FilePath/Fete%20de%20la%20Musique.jpg"
+
+            ]
+
+        };
+
+
+        /* =====================================================
+           FESTIVAL DESCRIPTIONS
+           ===================================================== */
+
+        const descriptions = {
+
+            "Diwali":
+                "Diwali is the Festival of Lights, celebrated with lamps, decorations, sweets and family gatherings.",
+
+
+            "Holi":
+                "Holi is the Festival of Colours, celebrated with colours, music, dancing and joyful gatherings.",
+
+
+            "Navratri":
+                "Navratri is a nine-night festival celebrated with worship, traditional dance and cultural celebrations.",
+
+
+            "Ganesh Chaturthi":
+                "Ganesh Chaturthi celebrates Lord Ganesha with prayers, decorations, cultural programs and processions.",
+
+
+            "Pongal":
+                "Pongal is a harvest festival of Tamil Nadu celebrated with traditional food, decorations and family activities.",
+
+
+            "Onam":
+                "Onam is a major festival of Kerala known for flower decorations, traditional meals, dances and boat races.",
+
+
+            "Hanami":
+                "Hanami is the Japanese tradition of enjoying the beauty of cherry blossoms during spring.",
+
+
+            "Gion Matsuri":
+                "Gion Matsuri is a famous traditional festival of Kyoto known for elaborate floats and cultural processions.",
+
+
+            "Tanabata":
+                "Tanabata is a Japanese festival where people write wishes on colorful paper strips and decorate bamboo branches.",
+
+
+            "Obon":
+                "Obon is a traditional Japanese festival associated with remembering and honoring ancestors.",
+
+
+            "Shogatsu":
+                "Shogatsu is the Japanese New Year celebration, marked by family gatherings and traditional customs.",
+
+
+            "Bastille Day":
+                "Bastille Day is France's national day, celebrated on 14 July with ceremonies, fireworks and public celebrations.",
+
+
+            "Cannes Film Festival":
+                "The Cannes Film Festival is an international film festival held annually in Cannes, France.",
+
+
+            "Nice Carnival":
+                "Nice Carnival is a famous carnival celebration in Nice featuring parades, floats and colorful performances.",
+
+
+            "Fête de la Musique":
+                "Fête de la Musique is a music celebration in France featuring live performances in public spaces."
+
+        };
+
+
+        /* =====================================================
+           GET FESTIVAL DATA
+           ===================================================== */
+
+        function getFestivalData() {
+
+            if (country === "India") {
+
+                return indiaFestivals;
+
+            }
+
+
+            if (country === "Japan") {
+
+                return japanFestivals;
+
+            }
+
+
+            if (country === "France") {
+
+                return franceFestivals;
+
+            }
+
+
+            if (country === "Italy") {
+
+                return italyFestivals;
+
+            }
+
+
+            return {};
+
+        }
+
+
+        /* =====================================================
+           CREATE FESTIVAL CARD
+           ===================================================== */
+
+        function createFestivalCard(
+            name,
+            images
+        ) {
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "festival-card";
+
+
+            /* ================= TITLE ================= */
+
+            const title =
+                document.createElement("h2");
+
+
+            title.textContent =
+                name;
+
+
+            /* ================= SUBTITLE ================= */
+
+            const subtitle =
+                document.createElement("div");
+
+
+            subtitle.className =
+                "festival-subtitle";
+
+
+            subtitle.innerHTML =
+                "Traditional festival associated with <strong>" +
+                country +
+                "</strong>.";
+
+
+            /* ================= MAIN IMAGE ================= */
+
+            const mainBox =
+                document.createElement("div");
+
+
+            mainBox.className =
+                "main-image-box";
+
+
+            const mainImage =
+                document.createElement("img");
+
+
+            mainImage.className =
+                "main-festival-image";
+
+
+            mainImage.src =
+                images[0];
+
+
+            mainImage.alt =
+                name;
+
+
+            mainImage.onerror =
+                function () {
+
+                    this.style.display =
+                        "none";
+
+                };
+
+
+            mainBox.appendChild(
+                mainImage
+            );
+
+
+            /* ================= THUMBNAILS ================= */
+
+            const thumbnailContainer =
+                document.createElement("div");
+
+
+            thumbnailContainer.className =
+                "thumbnail-container";
+
+
+            images.forEach(
+                function(image, index) {
+
+
+                    const thumbnail =
+                        document.createElement("img");
+
+
+                    thumbnail.src =
+                        image;
+
+
+                    thumbnail.className =
+                        "festival-thumbnail";
+
+
+                    thumbnail.alt =
+                        name +
+                        " image " +
+                        (index + 1);
+
+
+                    thumbnail.onerror =
+                        function () {
+
+                            this.style.display =
+                                "none";
+
+                        };
+
+
+                    thumbnail.onclick =
+                        function () {
+
+                            mainImage.src =
+                                image;
+
+                        };
+
+
+                    thumbnailContainer.appendChild(
+                        thumbnail
+                    );
+
+                }
+            );
+
+
+            /* ================= DESCRIPTION ================= */
+
+            const description =
+                document.createElement("p");
+
+
+            description.className =
+                "festival-description";
+
+
+            description.textContent =
+                descriptions[name] ||
+                "A traditional festival celebrated in " +
+                country +
+                ".";
+
+
+            /* ================= INFO BOX ================= */
+
+            const info =
+                document.createElement("div");
+
+
+            info.className =
+                "info-box";
+
+
+            info.innerHTML =
+
+                "<p><strong>Country:</strong> " +
+                country +
+                "</p>" +
+
+                "<p><strong>Festival:</strong> " +
+                name +
+                "</p>" +
+
+                "<p><strong>Photo Source:</strong> " +
+
+                (
+                    country === "India"
+                        ? "Local Project Images"
+                        : "Wikimedia Commons"
+                ) +
+
+                "</p>";
+
+
+            /* ================= SOURCE ================= */
+
+            const source =
+                document.createElement("div");
+
+
+            source.className =
+                "source";
+
+
+            if (country !== "India") {
+
+                source.textContent =
+                    "Online photos are loaded from Wikimedia Commons.";
+
+            }
+
+            else {
+
+                source.textContent =
+                    "India photos are loaded from your local images folder.";
+
+            }
+
+
+            /* ================= APPEND CONTENT ================= */
+
+            card.appendChild(
+                title
+            );
+
+
+            card.appendChild(
+                subtitle
+            );
+
+
+            card.appendChild(
+                mainBox
+            );
+
+
+            card.appendChild(
+                thumbnailContainer
+            );
+
+
+            card.appendChild(
+                description
+            );
+
+
+            card.appendChild(
+                info
+            );
+
+
+            card.appendChild(
+                source
+            );
+
+
+            /* =================================================
+               DETAILS BUTTON
+               IMPORTANT:
+               Button is added LAST so it appears
+               at the bottom of the card.
+               ================================================= */
+
+            const detailsButton =
+                document.createElement("a");
+
+
+            detailsButton.className =
+                "festival-details-button";
+
+
+            detailsButton.textContent =
+                "🎉 View Details →";
+
+
+            detailsButton.href =
+                "festival-details.html?country=" +
+                encodeURIComponent(country) +
+                "&festival=" +
+                encodeURIComponent(name);
+
+
+            card.appendChild(
+                detailsButton
+            );
+
+
+            return card;
+
+        }
+
+
+        /* =====================================================
+           LOAD FESTIVALS
+           ===================================================== */
+
+        function loadFestivals() {
+
+
+            const container =
+                document.getElementById(
+                    "festivalContainer"
+                );
+
+
+            const festivalData =
+                getFestivalData();
+
+
+            container.innerHTML = "";
+
+
+            if (
+                Object.keys(festivalData).length === 0
+            ) {
+
+
+                container.innerHTML = `
+
+                    <div class="festival-card">
+
+                        <h2>
+                            Festival data not available
+                        </h2>
+
+                        <p>
+                            Currently festival information
+                            is available for India, Japan,
+                            France and Italy.
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+            Object.entries(
+                festivalData
+            ).forEach(
+                function([name, images]) {
+
+
+                    const card =
+                        createFestivalCard(
+                            name,
+                            images
+                        );
+
+
+                    container.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           START
+           ===================================================== */
+
+        loadFestivals();
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Sports | World Culture Explorer
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f8fb;
+            color: #222;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            height: 70px;
+
+            background: #fff;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 7%;
+
+            box-shadow: 0 2px 12px #ddd;
+        }
+
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+
+        .nav-links a {
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            text-align: center;
+
+            padding: 60px 20px;
+
+            background: #f0f3ff;
+        }
+
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 0 0 12px;
+        }
+
+
+        .hero p {
+            color: #666;
+        }
+
+
+        /* =========================
+           SPORTS GRID
+        ========================== */
+
+        .container {
+            max-width: 1150px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(310px, 1fr)
+                );
+
+            gap: 25px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================== */
+
+        .card {
+            background: #fff;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow: 0 7px 25px #ddd;
+        }
+
+
+        .card h2 {
+            font-size: 27px;
+
+            margin-top: 0;
+        }
+
+
+        .card p {
+            line-height: 1.6;
+
+            color: #555;
+        }
+
+
+        /* =========================
+           IMAGE
+        ========================== */
+
+        .image {
+            height: 230px;
+
+            border-radius: 13px;
+
+            overflow: hidden;
+
+            background: #eee;
+        }
+
+
+        .image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* =========================
+           INFO
+        ========================== */
+
+        .info {
+            background: #f3f4f7;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================== */
+
+        .map,
+        .details,
+        .back {
+            display: block;
+
+            text-align: center;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            margin-top: 12px;
+        }
+
+
+        .map {
+            background: #edf1ff;
+
+            color: #263c96;
+        }
+
+
+        .details {
+            background: #222;
+
+            color: #fff;
+        }
+
+
+        .details:hover {
+            background: #444;
+        }
+
+
+        .map:hover {
+            background: #dfe5ff;
+        }
+
+
+        .back {
+            display: inline-block;
+
+            background: #eee;
+
+            color: #222;
+        }
+
+
+        .back:hover {
+            background: #ddd;
+        }
+
+
+        /* =========================
+           IMAGE FALLBACK
+        ========================== */
+
+        .image-error {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 20px;
+
+            background: #eeeeee;
+
+            color: #777;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+
+            background: #fff;
+
+            padding: 35px;
+
+            color: #666;
+
+            margin-top: 30px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+
+            .logo {
+                font-size: 18px;
+            }
+
+
+            .nav-links {
+                gap: 10px;
+            }
+
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="country.html">
+                Countries
+            </a>
+
+            <a href="country.html">
+                Culture
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <h1>
+
+            🏆 Sports of
+
+            <span id="countryName">
+                India
+            </span>
+
+        </h1>
+
+
+        <p>
+            Explore sports and their cultural
+            importance around the world.
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         SPORTS CONTAINER
+    ========================== -->
+
+    <div
+        class="container"
+        id="sportsContainer"
+    ></div>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 World Culture Explorer
+        </p>
+
+
+        <a
+            id="backButton"
+            href="#"
+            class="back"
+        >
+            ← Back to Country
+        </a>
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        /* =========================
+           GET COUNTRY
+        ========================== */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        let country =
+            params.get("country") ||
+            params.get("name") ||
+            "India";
+
+
+        /* =========================
+           COUNTRY NORMALIZATION
+        ========================== */
+
+        const normalizedCountries = {
+
+            india: "India",
+
+            japan: "Japan",
+
+            france: "France",
+
+            italy: "Italy"
+
+        };
+
+
+        country =
+            normalizedCountries[
+                country.toLowerCase()
+            ] || country;
+
+
+        /* =========================
+           COUNTRY NAME
+        ========================== */
+
+        document.getElementById(
+            "countryName"
+        ).textContent = country;
+
+
+        /* =========================
+           BACK TO COUNTRY
+        ========================== */
+
+        document.getElementById(
+            "backButton"
+        ).href =
+            "country.html?country=" +
+            encodeURIComponent(country);
+
+
+
+        /* =====================================================
+           SPORTS DATA
+        ===================================================== */
+
+        const data = {
+
+
+            /* =========================
+               INDIA
+            ========================== */
+
+            India: [
+
+                {
+                    name: "Cricket",
+
+                    description:
+                        "Cricket is one of India's most widely followed sports.",
+
+                    country: "India",
+
+                    image:
+                        "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Hockey",
+
+                    description:
+                        "Field hockey has a long sporting history in India.",
+
+                    country: "India",
+
+                    image:
+                        "https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Kabaddi",
+
+                    description:
+                        "A traditional South Asian team sport based on agility and strength.",
+
+                    country: "India",
+
+                    image:
+                        "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Kho Kho",
+
+                    description:
+                        "A traditional Indian chase sport involving speed and teamwork.",
+
+                    country: "India",
+
+                    image:
+                        "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Wrestling",
+
+                    description:
+                        "Traditional wrestling has deep roots in Indian training culture.",
+
+                    country: "India",
+
+                    image:
+                        "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Badminton",
+
+                    description:
+                        "A widely played recreational and competitive sport in India.",
+
+                    country: "India",
+
+                    image:
+                        "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=1200&q=80"
+                }
+
+            ],
+
+
+
+            /* =========================
+               JAPAN
+            ========================== */
+
+            Japan: [
+
+                {
+                    name: "Sumo",
+
+                    description:
+                        "Japan's traditional wrestling sport with strong ritual traditions.",
+
+                    country: "Japan",
+
+                    image:
+                        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Baseball",
+
+                    description:
+                        "A major modern sport with strong school and professional traditions.",
+
+                    country: "Japan",
+
+                    image:
+                        "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Judo",
+
+                    description:
+                        "A Japanese martial art emphasizing throws, grappling and discipline.",
+
+                    country: "Japan",
+
+                    image:
+                        "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Karate",
+
+                    description:
+                        "A Japanese martial art combining striking, forms and discipline.",
+
+                    country: "Japan",
+
+                    image:
+                        "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Kendo",
+
+                    description:
+                        "A Japanese martial art rooted in swordsmanship traditions.",
+
+                    country: "Japan",
+
+                    image:
+                        "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=80"
+                }
+
+            ],
+
+
+
+            /* =========================
+               FRANCE
+            ========================== */
+
+            France: [
+
+                {
+                    name: "Football",
+
+                    description:
+                        "A widely followed sport and important part of modern French sporting culture.",
+
+                    country: "France",
+
+                    image:
+                        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Rugby",
+
+                    description:
+                        "A major sport in France, especially in the southwest.",
+
+                    country: "France",
+
+                    image:
+                        "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Cycling",
+
+                    description:
+                        "Cycling has a major place in French sporting history.",
+
+                    country: "France",
+
+                    image:
+                        "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Tennis",
+
+                    description:
+                        "France has a strong tennis tradition, including Roland-Garros.",
+
+                    country: "France",
+
+                    image:
+                        "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Pétanque",
+
+                    description:
+                        "A popular French throwing game often played socially outdoors.",
+
+                    country: "France",
+
+                    image:
+                        "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1200&q=80"
+                }
+
+            ],
+
+
+
+            /* =========================
+               ITALY
+            ========================== */
+
+            Italy: [
+
+                {
+                    name: "Football",
+
+                    description:
+                        "Football is deeply embedded in Italian sporting culture.",
+
+                    country: "Italy",
+
+                    image:
+                        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Cycling",
+
+                    description:
+                        "Italy has a long road-cycling tradition.",
+
+                    country: "Italy",
+
+                    image:
+                        "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Fencing",
+
+                    description:
+                        "A competitive sport with a strong Italian tradition.",
+
+                    country: "Italy",
+
+                    image:
+                        "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Volleyball",
+
+                    description:
+                        "Widely played in Italian clubs, schools and professional leagues.",
+
+                    country: "Italy",
+
+                    image:
+                        "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=1200&q=80"
+                },
+
+
+                {
+                    name: "Motor Racing",
+
+                    description:
+                        "Motor racing is connected with Italian automotive culture.",
+
+                    country: "Italy",
+
+                    image:
+                        "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80"
+                }
+
+            ]
+
+        };
+
+
+
+        /* =====================================================
+           CREATE SPORTS CARDS
+        ===================================================== */
+
+        const sportsContainer =
+            document.getElementById(
+                "sportsContainer"
+            );
+
+
+        const sports =
+            data[country] || [];
+
+
+        /* =========================
+           NO DATA
+        ========================== */
+
+        if (sports.length === 0) {
+
+            sportsContainer.innerHTML = `
+
+                <div class="card">
+
+                    <h2>
+                        🌍 Sports data unavailable
+                    </h2>
+
+                    <p>
+                        Sports information for
+                        <strong>${country}</strong>
+                        is not available yet.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+
+        /* =========================
+           RENDER CARDS
+        ========================== */
+
+        sports.forEach(
+            function (sport) {
+
+                const card =
+                    document.createElement(
+                        "article"
+                    );
+
+
+                card.className = "card";
+
+
+                card.innerHTML = `
+
+                    <h2>
+                        🏆 ${sport.name}
+                    </h2>
+
+
+                    <div class="image">
+
+                        <img
+                            src="${sport.image}"
+                            alt="${sport.name}"
+                        >
+
+                    </div>
+
+
+                    <p>
+                        ${sport.description}
+                    </p>
+
+
+                    <div class="info">
+
+                        <b>
+                            Country:
+                        </b>
+
+                        ${sport.country}
+
+                        <br>
+
+                        <b>
+                            Sport:
+                        </b>
+
+                        ${sport.name}
+
+                    </div>
+
+
+                    <a
+                        class="map"
+                        target="_blank"
+                        rel="noopener"
+                        href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(sport.country)}"
+                    >
+                        🗺️ View on Google Maps
+                    </a>
+
+
+                    <a
+                        class="details"
+                        href="sports-details.html?country=${encodeURIComponent(country)}&sport=${encodeURIComponent(sport.name)}"
+                    >
+                        🏆 View Details →
+                    </a>
+
+                `;
+
+
+                sportsContainer.appendChild(
+                    card
+                );
+
+
+                /* =========================
+                   IMAGE ERROR HANDLING
+                ========================== */
+
+                const image =
+                    card.querySelector(
+                        "img"
+                    );
+
+
+                image.addEventListener(
+                    "error",
+                    function () {
+
+                        const wrapper =
+                            image.parentElement;
+
+
+                        wrapper.innerHTML = `
+
+                            <div class="image-error">
+
+                                🏆
+
+                                <br>
+
+                                ${sport.name}
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+            }
+        );
+
+
+    </script>
+
+</body>
+
+</html>

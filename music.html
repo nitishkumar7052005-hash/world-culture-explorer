@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Music & Dance - World Culture Explorer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            background: white;
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 50px;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #ff7a00;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+
+            padding: 60px 20px 45px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #ff7a00;
+        }
+
+        .hero p {
+            font-size: 20px;
+
+            color: #666;
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 90%;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding-bottom: 60px;
+        }
+
+
+        /* ================= MUSIC CARD ================= */
+
+        .music-card {
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 30px;
+
+            margin-bottom: 40px;
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,0.08);
+        }
+
+
+        .music-card h2 {
+            font-size: 32px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .music-subtitle {
+            font-size: 18px;
+
+            color: #666;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ================= IMAGE ================= */
+
+        .main-image-box {
+            width: 100%;
+
+            height: 450px;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            margin-bottom: 25px;
+
+            background: #eee;
+        }
+
+
+        .main-music-image {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* ================= DESCRIPTION ================= */
+
+        .description {
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            color: #444;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ================= INFO ================= */
+
+        .info-box {
+            background: #f8f9fb;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .info-box p {
+            margin: 8px 0;
+
+            font-size: 16px;
+        }
+
+
+        /* ================= LOCATION ================= */
+
+        .location-box {
+            background: #fff7ed;
+
+            border-left: 5px solid #ff7a00;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .location-box p {
+            margin: 8px 0;
+
+            font-size: 16px;
+        }
+
+
+        /* ================= MAP BUTTON ================= */
+
+        .map-button {
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #ff7a00;
+
+            color: white;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .map-button:hover {
+            background: #e56700;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ================= SOURCE ================= */
+
+        .source {
+            font-size: 14px;
+
+            color: #777;
+
+            margin-top: 15px;
+        }
+
+
+
+        /* ================= DETAILS BUTTON ================= */
+        .music-details-button { display:inline-block; margin-top:20px; padding:12px 20px; background:#222; color:white; text-decoration:none; border-radius:8px; font-weight:600; transition:0.3s; }
+        .music-details-button:hover { background:#ff7a00; transform:translateY(-2px); }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #111;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+
+        footer p {
+            margin: 5px;
+        }
+.back-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: white;
+    color: #667eea;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    background: #f0f0f0;
+}
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .music-card {
+                padding: 20px;
+            }
+
+            .music-card h2 {
+                font-size: 26px;
+            }
+
+            .main-image-box {
+                height: 280px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            🌍 World Culture Explorer
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="country.html">
+                Countries
+            </a>
+
+            <a href="country.html">
+                Culture
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h1>
+
+            🎵 Music & Dance of
+
+            <span id="countryName">
+                India
+            </span>
+
+        </h1>
+
+
+        <p>
+            Explore traditional music, dance forms and performing arts.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <div
+        class="container"
+        id="musicContainer"
+    >
+
+    </div>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 World Culture Explorer
+        </p>
+
+        <p>
+            Explore cultures from around the world 🌍
+        </p>
+ <a id="musicBackButton" href="country.html?country=India" class="back-btn">
+    ← Back to Country
+</a>
+    </footer>
+
+
+
+    <script>
+
+
+        /* =====================================================
+           GET COUNTRY FROM URL
+           ===================================================== */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        let country =
+            urlParams.get("country") ||
+            urlParams.get("name") ||
+            "India";
+
+
+        /* =====================================================
+           NORMALIZE COUNTRY
+           ===================================================== */
+
+        function normalizeCountry(name) {
+
+            const countries = {
+
+                "india": "India",
+
+                "japan": "Japan",
+
+                "france": "France"
+
+            };
+
+            return countries[
+                name.toLowerCase()
+            ] || name;
+
+        }
+
+
+        country =
+            normalizeCountry(country);
+
+
+        document.getElementById(
+            "countryName"
+        ).textContent = country;
+
+const musicBackButton =
+    document.getElementById("musicBackButton");
+
+if (musicBackButton) {
+    musicBackButton.href =
+        "country.html?country=" +
+        encodeURIComponent(country);
+}
+
+        /* =====================================================
+           INDIA MUSIC & DANCE
+           ONLINE WIKIMEDIA COMMONS PHOTOS
+           ===================================================== */
+
+        const indiaMusic = {
+
+            "Bharatanatyam": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Baratha%20natuyam.jpg",
+
+                description:
+                    "Bharatanatyam is a classical Indian dance tradition associated with Tamil Nadu. It combines rhythmic movements, expressive gestures and storytelling.",
+
+                location:
+                    "Tamil Nadu, India"
+
+            },
+
+
+            "Kathak": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/KATHAK%20DANCE.jpg",
+
+                description:
+                    "Kathak is a classical Indian dance form known for rhythmic footwork, spins, expressive gestures and storytelling.",
+
+                location:
+                    "North India, India"
+
+            },
+
+
+            "Odissi": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Odissi.jpg",
+
+                description:
+                    "Odissi is a classical dance form originating in Odisha. It is known for graceful movements, poses and expressive storytelling.",
+
+                location:
+                    "Odisha, India"
+
+            },
+
+
+            "Kathakali": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Kathakali%20%28Kerala%29.jpg",
+
+                description:
+                    "Kathakali is a classical dance-drama tradition from Kerala, recognized for elaborate costumes, makeup, facial expressions and storytelling.",
+
+                location:
+                    "Kerala, India"
+
+            },
+
+
+            "Bhangra": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/BHANGRA.jpg",
+
+                description:
+                    "Bhangra is a lively Punjabi folk dance traditionally associated with celebration and energetic music.",
+
+                location:
+                    "Punjab, India"
+
+            },
+
+
+            "Garba": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Garba%20%28dance%29.jpg",
+
+                description:
+                    "Garba is a traditional Gujarati folk dance commonly performed during Navratri with rhythmic circular movements.",
+
+                location:
+                    "Gujarat, India"
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           JAPAN MUSIC & DANCE
+           ===================================================== */
+
+        const japanMusic = {
+
+            "Bon Odori": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Bon%20Odori%2C%20a%20style%20of%20dancing%20performed%20during%20Obon%2C%20Japan%3B%20August%202014%20%2801%29.jpg",
+
+                description:
+                    "Bon Odori is a traditional Japanese folk dance associated with the Obon period. Different regions have their own styles and music.",
+
+                location:
+                    "Japan"
+
+            },
+
+
+            "Nihon Buyo": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Ichisayo%20dancing.jpg",
+
+                description:
+                    "Nihon Buyo is a traditional Japanese dance style featuring controlled movements, gestures, costumes and music.",
+
+                location:
+                    "Japan"
+
+            },
+
+
+            "Kabuki Dance": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Eiko%20Hayashi%2C%20Nihon%20Buy%C3%B4%20%E2%80%93%20danse%20du%20Kabuki%20%28Mus%C3%A9e%20Guimet%29%20III.jpg",
+
+                description:
+                    "Kabuki dance is associated with the traditional Japanese Kabuki performing arts and uses stylized movements, costumes and theatrical expression.",
+
+                location:
+                    "Japan"
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           FRANCE MUSIC & DANCE
+           ===================================================== */
+
+        const franceMusic = {
+
+            "French Cancan": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Cancan.jpg",
+
+                description:
+                    "The French Cancan is a lively French stage dance known for energetic movements and high kicks. It became strongly associated with Parisian entertainment.",
+
+                location:
+                    "Paris, France"
+
+            },
+
+
+            "Ballet": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/ParisBalletSchool.jpg",
+
+                description:
+                    "Ballet has a major historical connection with French performing arts and developed important traditions through institutions such as the Paris Opera Ballet.",
+
+                location:
+                    "Paris, France"
+
+            },
+
+
+            "French Folk Dance": {
+
+                image:
+                    "https://commons.wikimedia.org/wiki/Special:FilePath/Folk%20dance%20in%20the%20Tarn%20region.jpg",
+
+                description:
+                    "French folk dance includes regional traditions that reflect the cultural heritage of different areas of France.",
+
+                location:
+                    "Tarn region, France"
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           GET DATA
+           ===================================================== */
+
+        function getMusicData() {
+
+            if (country === "India") {
+
+                return indiaMusic;
+
+            }
+
+
+            if (country === "Japan") {
+
+                return japanMusic;
+
+            }
+
+
+            if (country === "France") {
+
+                return franceMusic;
+
+            }
+
+
+            return {};
+
+        }
+
+
+
+        /* =====================================================
+           GOOGLE MAP
+           ===================================================== */
+
+        function createMapLink(location) {
+
+            return (
+                "https://www.google.com/maps/search/?api=1&query="
+                +
+                encodeURIComponent(location)
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CREATE CARD
+           ===================================================== */
+
+        function createMusicCard(
+            name,
+            data
+        ) {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "music-card";
+
+
+            /* TITLE */
+
+            const title =
+                document.createElement("h2");
+
+            title.textContent =
+                name;
+
+
+            /* SUBTITLE */
+
+            const subtitle =
+                document.createElement("div");
+
+            subtitle.className =
+                "music-subtitle";
+
+            subtitle.innerHTML =
+                "Traditional music or dance associated with <strong>"
+                +
+                country
+                +
+                "</strong>.";
+
+
+            /* IMAGE */
+
+            const imageBox =
+                document.createElement("div");
+
+            imageBox.className =
+                "main-image-box";
+
+
+            const image =
+                document.createElement("img");
+
+            image.className =
+                "main-music-image";
+
+            image.src =
+                data.image;
+
+            image.alt =
+                name;
+
+
+            image.onerror =
+                function() {
+
+                    this.style.display =
+                        "none";
+
+                };
+
+
+            imageBox.appendChild(image);
+
+
+            /* DESCRIPTION */
+
+            const description =
+                document.createElement("p");
+
+            description.className =
+                "description";
+
+            description.textContent =
+                data.description;
+
+
+            /* INFO */
+
+            const info =
+                document.createElement("div");
+
+            info.className =
+                "info-box";
+
+
+            info.innerHTML =
+
+                "<p><strong>Country:</strong> "
+                +
+                country
+                +
+                "</p>" +
+
+                "<p><strong>Art Form:</strong> "
+                +
+                name
+                +
+                "</p>" +
+
+                "<p><strong>Photo Source:</strong> Wikimedia Commons</p>";
+
+
+            /* LOCATION */
+
+            const locationBox =
+                document.createElement("div");
+
+            locationBox.className =
+                "location-box";
+
+
+            locationBox.innerHTML =
+
+                "<p><strong>📍 Location:</strong></p>" +
+
+                "<p>"
+                +
+                data.location
+                +
+                "</p>";
+
+
+            /* MAP */
+
+            const mapButton =
+                document.createElement("a");
+
+            mapButton.className =
+                "map-button";
+
+            mapButton.textContent =
+                "🗺️ View on Google Maps";
+
+            mapButton.href =
+                createMapLink(
+                    data.location
+                );
+
+            mapButton.target =
+                "_blank";
+
+            mapButton.rel =
+                "noopener noreferrer";
+
+
+            locationBox.appendChild(
+                mapButton
+            );
+
+
+            /* SOURCE */
+
+            const source =
+                document.createElement("div");
+
+            source.className =
+                "source";
+
+            source.textContent =
+                "Online image loaded from Wikimedia Commons.";
+
+
+            /* APPEND */
+
+            card.appendChild(title);
+
+            card.appendChild(subtitle);
+
+            card.appendChild(imageBox);
+
+            card.appendChild(description);
+
+            card.appendChild(info);
+
+            card.appendChild(locationBox);
+
+            card.appendChild(source);
+
+            /* ================= DETAILS BUTTON ================= */
+            const detailsButton = document.createElement("a");
+            detailsButton.className = "music-details-button";
+            detailsButton.textContent = "🎵 View Details →";
+            detailsButton.href = "./music-details.html?country=" + encodeURIComponent(country) + "&music=" + encodeURIComponent(name);
+            card.appendChild(detailsButton);
+
+            return card;
+
+        }
+
+
+
+        /* =====================================================
+           LOAD DATA
+           ===================================================== */
+
+        function loadMusic() {
+
+            const container =
+                document.getElementById(
+                    "musicContainer"
+                );
+
+
+            const data =
+                getMusicData();
+
+
+            container.innerHTML = "";
+
+
+            if (
+                Object.keys(data).length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="music-card">
+
+                        <h2>
+                            Music & Dance data not available
+                        </h2>
+
+                        <p>
+                            Currently information is
+                            available for India, Japan
+                            and France.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            Object.entries(data)
+                .forEach(
+                    function([name, item]) {
+
+                        const card =
+                            createMusicCard(
+                                name,
+                                item
+                            );
+
+
+                        container.appendChild(card);
+
+                    }
+                );
+
+        }
+
+
+
+        /* =====================================================
+           START
+           ===================================================== */
+
+        loadMusic();
+
+
+    </script>
+
+</body>
+
+</html>

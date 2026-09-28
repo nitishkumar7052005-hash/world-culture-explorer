@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Music & Dance Details - World Culture Explorer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        nav {
+            background: #fff;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #ff7a00;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #ff7a00;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #666;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 70px;
+        }
+
+        .details-card {
+            background: #fff;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            gap: 30px;
+        }
+
+        .main-image-box {
+            height: 430px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 20px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .title {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .section {
+            background: #f8f9fb;
+            border-radius: 16px;
+            padding: 22px;
+            margin-top: 18px;
+        }
+
+        .section h2 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: #444;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            list-style: none;
+        }
+
+        .highlights li {
+            background: #fff;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+
+        .video-box {
+            margin-top: 20px;
+            background: #111;
+            border-radius: 16px;
+            padding: 14px;
+        }
+
+        .video-box video,
+        .video-box iframe {
+            width: 100%;
+            height: 420px;
+            border: 0;
+            border-radius: 10px;
+            background: #000;
+            display: block;
+        }
+
+        .video-note {
+            color: #ddd;
+            font-size: 13px;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .bottom-back {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+            padding-top: 22px;
+            border-top: 1px solid #eee;
+        }
+
+        .bottom-back .back-btn {
+            padding: 13px 22px;
+        }
+
+        button,
+        .action-btn {
+            border: none;
+            padding: 11px 16px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .like-btn {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .wish-btn {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .back-btn {
+            background: #222;
+            color: #fff;
+        }
+
+        button:hover,
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .sidebar {
+            background: #f8f9fb;
+            border-radius: 18px;
+            padding: 22px;
+            height: max-content;
+            position: sticky;
+            top: 95px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 15px;
+        }
+
+        .sidebar p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #222;
+            text-decoration: none;
+            padding: 10px 0;
+            font-weight: 600;
+        }
+
+        .sidebar a:hover {
+            color: #ff7a00;
+        }
+
+        .upload-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .review {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 12px;
+        }
+
+        .review strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .review small {
+            color: #777;
+        }
+
+        footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        .empty {
+            padding: 50px;
+            text-align: center;
+            background: #fff;
+            border-radius: 20px;
+        }
+
+        @media (max-width: 850px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .details-card {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .main-image-box {
+                height: 300px;
+            }
+
+            .video-box video,
+            .video-box iframe {
+                height: 280px;
+            }
+
+            .title {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🌍 World Culture Explorer</div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="country.html">Countries</a>
+            <a href="country.html">Culture</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>
+            🎵 <span id="musicName">Music & Dance</span>
+        </h1>
+
+        <p id="heroSubtitle">
+            Explore the cultural story behind this performing art.
+        </p>
+    </section>
+
+    <main class="container">
+        <div id="loading" class="empty">
+            🎵 Loading details...
+        </div>
+
+        <div id="content" style="display:none"></div>
+    </main>
+
+    <footer>
+        <p>© 2026 World Culture Explorer</p>
+        <p>Explore cultures from around the world 🌍</p>
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        let country =
+            params.get('country') ||
+            params.get('name') ||
+            'India';
+
+        const requestedMusic = params.get('music') || '';
+
+        const allData = {
+            "India": {
+                "Bharatanatyam": {
+                    "history": "Bharatanatyam is a classical dance tradition associated with Tamil Nadu. Its modern stage form grew from older temple and court performance traditions and emphasizes rhythm, gesture and expressive storytelling.",
+                    "style": "Precise footwork, geometric poses, hand gestures (mudras), facial expression and rhythmic sequences.",
+                    "instruments": "Mridangam, nattuvangam, violin, flute and vocal music are commonly used in performances.",
+                    "significance": "It connects dance, music, poetry and storytelling, often drawing on devotional and literary themes.",
+                    "highlights": [
+                        "Tamil Nadu roots",
+                        "Expressive abhinaya",
+                        "Complex rhythmic patterns",
+                        "Mudras and storytelling"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Baratha%20natuyam.jpg",
+                    "video": {
+                        "type": "iframe",
+                        "url": "https://www.youtube.com/embed/O4dhNrfe78c",
+                        "label": "Bharatanatyam Arangetram demo (CC BY 3.0 source archived on Wikimedia Commons)"
+                    }
+                },
+
+                "Kathak": {
+                    "history": "Kathak developed in North India through storytelling traditions and later evolved through court and classical performance cultures.",
+                    "style": "Fast footwork, spins, rhythmic compositions, expressive gestures and interaction with percussion rhythms.",
+                    "instruments": "Tabla, pakhawaj, sarangi, harmonium and vocal music may accompany performances.",
+                    "significance": "Kathak brings together storytelling, rhythm and improvisation within a highly codified classical form.",
+                    "highlights": [
+                        "North Indian tradition",
+                        "Spins and footwork",
+                        "Storytelling",
+                        "Rhythmic improvisation"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/KATHAK%20DANCE.jpg"
+                },
+
+                "Odissi": {
+                    "history": "Odissi developed in Odisha and is associated with temple performance traditions and classical dance revival movements.",
+                    "style": "Graceful torso movement, tribhanga and chauka positions, hand gestures and expressive storytelling.",
+                    "instruments": "Mardala, flute, violin and vocal music are commonly used.",
+                    "significance": "The form combines dance, music, poetry and devotional storytelling from Odisha's cultural traditions.",
+                    "highlights": [
+                        "Odisha roots",
+                        "Tribhanga posture",
+                        "Graceful movement",
+                        "Abhinaya"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Odissi.jpg"
+                },
+
+                "Kathakali": {
+                    "history": "Kathakali emerged in Kerala as a dance-drama tradition combining acting, music, movement and elaborate visual presentation.",
+                    "style": "Highly expressive facial movements, codified gestures, powerful poses and dramatic storytelling.",
+                    "instruments": "Chenda, maddalam, chengila, ilathalam and vocal music accompany performances.",
+                    "significance": "Kathakali is known for turning mythological and literary stories into a richly visual stage experience.",
+                    "highlights": [
+                        "Kerala tradition",
+                        "Elaborate makeup",
+                        "Dance-drama",
+                        "Expressive acting"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kathakali%20%28Kerala%29.jpg"
+                },
+
+                "Bhangra": {
+                    "history": "Bhangra is a Punjabi folk dance traditionally connected with celebration and agricultural life and now performed widely around the world.",
+                    "style": "Energetic steps, jumps, shoulder and arm movements performed to strong rhythmic patterns.",
+                    "instruments": "Dhol is central, with tumbi, chimta and other folk instruments also used.",
+                    "significance": "Bhangra represents Punjabi celebration, community energy and a living folk tradition.",
+                    "highlights": [
+                        "Punjab roots",
+                        "Energetic movement",
+                        "Dhol rhythm",
+                        "Celebration"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/BHANGRA.jpg"
+                },
+
+                "Garba": {
+                    "history": "Garba is a Gujarati folk dance strongly associated with Navratri and community celebrations.",
+                    "style": "Circular group formations, rhythmic clapping, coordinated footwork and colorful traditional dress.",
+                    "instruments": "Dhol, dholak, tabla, keyboard and other folk or contemporary accompaniment may be used.",
+                    "significance": "Garba creates a participatory community performance centered on rhythm, movement and celebration.",
+                    "highlights": [
+                        "Gujarat roots",
+                        "Navratri tradition",
+                        "Circular formations",
+                        "Community dance"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Garba%20%28dance%29.jpg"
+                }
+            },
+
+            "Japan": {
+                "Bon Odori": {
+                    "history": "Bon Odori is a family of Japanese folk dances associated with the Obon period, when communities honor and remember ancestors.",
+                    "style": "Simple repeated steps performed in circles, often around a yagura platform and accompanied by regional music.",
+                    "instruments": "Taiko drums, shamisen, flutes and recorded or live festival music may be used.",
+                    "significance": "It combines remembrance, local identity and community participation during Obon celebrations.",
+                    "highlights": [
+                        "Obon connection",
+                        "Circle dance",
+                        "Regional variations",
+                        "Community participation"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bon%20Odori%2C%20a%20style%20of%20dancing%20performed%20during%20Obon%2C%20Japan%3B%20August%202014%20%2801%29.jpg",
+                    "video": {
+                        "type": "video",
+                        "url": "https://d34w7g4gy10iej.cloudfront.net/video/2609/DOD_111988654/DOD_111988654.mp4",
+                        "label": "Bon Odori Atsugi 2026 demo (public-domain U.S. Navy source)"
+                    }
+                },
+
+                "Nihon Buyo": {
+                    "history": "Nihon Buyo refers to Japanese traditional dance traditions that developed through stage and cultural performance practices.",
+                    "style": "Controlled gestures, measured walking patterns, fan work, stylized poses and carefully coordinated costume movement.",
+                    "instruments": "Shamisen, drums, flute and traditional vocal music are common accompaniments.",
+                    "significance": "It preserves Japanese stage aesthetics through movement, music, costume and narrative expression.",
+                    "highlights": [
+                        "Japanese stage dance",
+                        "Fan movements",
+                        "Stylized gestures",
+                        "Traditional music"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ichisayo%20dancing.jpg"
+                },
+
+                "Kabuki Dance": {
+                    "history": "Kabuki developed as a major Japanese theatre tradition, with dance and music forming essential parts of its stylized performances.",
+                    "style": "Dramatic poses, precise gestures, stylized movement, costume and theatrical expression.",
+                    "instruments": "Shamisen, drums, flutes and other traditional ensemble instruments support Kabuki performance.",
+                    "significance": "Kabuki dance demonstrates how movement, music, acting and visual design can work together in theatre.",
+                    "highlights": [
+                        "Kabuki theatre",
+                        "Stylized movement",
+                        "Theatrical expression",
+                        "Traditional instruments"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiko%20Hayashi%2C%20Nihon%20Buy%C3%B4%20%E2%80%93%20danse%20du%20Kabuki%20%28Mus%C3%A9e%20Guimet%29%20III.jpg"
+                }
+            },
+
+            "France": {
+                "French Cancan": {
+                    "history": "The French Cancan became strongly associated with Parisian popular entertainment in the 19th century, especially dance halls and cabarets.",
+                    "style": "High kicks, lively group formations, energetic leg movements and theatrical presentation.",
+                    "instruments": "Stage orchestras commonly use brass, woodwinds, strings and percussion depending on the production.",
+                    "significance": "It became an enduring symbol of Parisian entertainment and theatrical dance culture.",
+                    "highlights": [
+                        "Paris association",
+                        "High kicks",
+                        "Cabaret tradition",
+                        "Energetic choreography"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Cancan.jpg",
+                    "video": {
+                        "type": "iframe",
+                        "url": "https://www.youtube.com/embed/0rjcHXvHWzc",
+                        "label": "Can Can Dance demo (CC BY 3.0 source archived on Wikimedia Commons)"
+                    }
+                },
+
+                "Ballet": {
+                    "history": "France played a major role in the institutional development and codification of European ballet, particularly through royal and opera traditions.",
+                    "style": "Turnout, controlled positions, jumps, turns, pointe work and highly structured choreography.",
+                    "instruments": "Orchestral accompaniment is typical, with strings, woodwinds, brass and percussion.",
+                    "significance": "French institutions and terminology have had a lasting influence on classical ballet worldwide.",
+                    "highlights": [
+                        "French ballet tradition",
+                        "Formal technique",
+                        "Opera and theatre",
+                        "International influence"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/ParisBalletSchool.jpg"
+                },
+
+                "French Folk Dance": {
+                    "history": "French folk dance includes regional traditions shaped by local communities, celebrations and social gatherings across France.",
+                    "style": "Group formations, partner dances, regional steps and movements that vary by locality.",
+                    "instruments": "Regional folk ensembles may use accordion, fiddle, hurdy-gurdy, percussion and other local instruments.",
+                    "significance": "These dances preserve regional identity and community traditions across different parts of France.",
+                    "highlights": [
+                        "Regional diversity",
+                        "Community traditions",
+                        "Group dancing",
+                        "Local music"
+                    ],
+                    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Folk%20dance%20in%20the%20Tarn%20region.jpg"
+                }
+            }
+        };
+
+        const countryKey = Object.keys(allData).find(
+            k => k.toLowerCase() === country.trim().toLowerCase()
+        );
+
+        country = countryKey || country.trim();
+
+        const musicKey = countryKey
+            ? Object.keys(allData[countryKey]).find(
+                k => k.toLowerCase() === requestedMusic.trim().toLowerCase()
+            )
+            : null;
+
+        const item = musicKey
+            ? allData[countryKey][musicKey]
+            : null;
+
+        const content = document.getElementById('content');
+        const loading = document.getElementById('loading');
+
+        const escapeHTML = v =>
+            String(v)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+
+        function storageKey(suffix) {
+            return (
+                'wce_music_' +
+                country.toLowerCase() +
+                '_' +
+                musicKey.toLowerCase() +
+                '_' +
+                suffix
+            );
+        }
+
+        function renderVideo(video) {
+            if (!video) {
+                return `
+                    <div class="section">
+                        <h2>🎬 Demo Video</h2>
+                        <p>
+                            Demo video will be added for this art form soon.
+                        </p>
+                    </div>
+                `;
+            }
+
+            if (video.type === 'iframe') {
+                return `
+                    <div class="section">
+                        <h2>🎬 Demo Video</h2>
+
+                        <div class="video-box">
+                            <iframe
+                                src="${video.url}"
+                                title="${escapeHTML(musicKey)} demo video"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                            <div class="video-note">
+                                ${escapeHTML(video.label)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="section">
+                    <h2>🎬 Demo Video</h2>
+
+                    <div class="video-box">
+                        <video controls preload="metadata">
+                            <source src="${video.url}" type="video/mp4">
+                            Your browser does not support video playback.
+                        </video>
+
+                        <div class="video-note">
+                            ${escapeHTML(video.label)}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadUserPhotos() {
+            const photos = JSON.parse(
+                localStorage.getItem(storageKey('photos')) || '[]'
+            );
+
+            const grid = document.getElementById('photoGrid');
+
+            grid.innerHTML = '';
+
+            photos.forEach(src => {
+                const img = document.createElement('img');
+
+                img.src = src;
+                img.alt = 'User uploaded cultural photo';
+
+                grid.appendChild(img);
+            });
+        }
+
+        function loadReviews() {
+            const reviews = JSON.parse(
+                localStorage.getItem(storageKey('reviews')) || '[]'
+            );
+
+            const box = document.getElementById('reviewList');
+
+            box.innerHTML = '';
+
+            if (!reviews.length) {
+                box.innerHTML =
+                    '<p style="color:#777">No reviews yet. Be the first to share your thoughts.</p>';
+
+                return;
+            }
+
+            reviews.forEach(r => {
+                const div = document.createElement('div');
+
+                div.className = 'review';
+
+                div.innerHTML = `
+                    <strong>${escapeHTML(r.name)}</strong>
+                    <small>${escapeHTML(r.date)}</small>
+
+                    <p style="margin-top:8px;line-height:1.6">
+                        ${escapeHTML(r.text)}
+                    </p>
+                `;
+
+                box.appendChild(div);
+            });
+        }
+
+        function render() {
+            if (!item) {
+                loading.innerHTML = `
+                    <h2>Music & Dance details not found</h2>
+
+                    <p style="margin-top:10px">
+                        Please return to the Music & Dance page and choose an available art form.
+                    </p>
+
+                    <a
+                        class="action-btn back-btn"
+                        style="margin-top:18px"
+                        href="./music.html?country=${encodeURIComponent(country)}">
+                        ← Back to Music & Dance
+                    </a>
+                `;
+
+                return;
+            }
+
+            loading.style.display = 'none';
+            content.style.display = 'block';
+
+            document.title =
+                musicKey + ' - Music & Dance Details';
+
+            document.getElementById('musicName').textContent =
+                musicKey;
+
+            document.getElementById('heroSubtitle').textContent =
+                'Explore the history, style, instruments and cultural significance of ' +
+                musicKey +
+                '.';
+
+            const liked =
+                localStorage.getItem(storageKey('liked')) === 'true';
+
+            const wished =
+                localStorage.getItem(storageKey('wish')) === 'true';
+
+            content.innerHTML = `
+                <div class="details-card">
+
+                    <div>
+
+                        <div class="main-image-box">
+                            <img
+                                class="main-image"
+                                src="${escapeHTML(item.image)}"
+                                alt="${escapeHTML(musicKey)}">
+                        </div>
+
+                        <h1 class="title">
+                            🎵 ${escapeHTML(musicKey)}
+                        </h1>
+
+                        <div class="subtitle">
+                            Traditional music or dance associated with
+                            <strong>${escapeHTML(country)}</strong>.
+                        </div>
+
+                        <div class="actions">
+
+                            <button
+                                id="likeBtn"
+                                class="like-btn">
+                                ${liked ? '❤️ Liked' : '🤍 Like'}
+                            </button>
+
+                            <button
+                                id="wishBtn"
+                                class="wish-btn">
+                                ${wished ? '⭐ In Wishlist' : '☆ Add to Wishlist'}
+                            </button>
+
+                        </div>
+
+                        <div class="section">
+                            <h2>📜 History</h2>
+
+                            <p>
+                                ${escapeHTML(item.history)}
+                            </p>
+                        </div>
+
+                        <div class="section">
+                            <h2>💃 Performance Style</h2>
+
+                            <p>
+                                ${escapeHTML(item.style)}
+                            </p>
+                        </div>
+
+                        <div class="section">
+                            <h2>🥁 Instruments & Music</h2>
+
+                            <p>
+                                ${escapeHTML(item.instruments)}
+                            </p>
+                        </div>
+
+                        <div class="section">
+                            <h2>🌍 Cultural Significance</h2>
+
+                            <p>
+                                ${escapeHTML(item.significance)}
+                            </p>
+                        </div>
+
+                        <div class="section">
+
+                            <h2>✨ Highlights</h2>
+
+                            <ul class="highlights">
+                                ${item.highlights
+                                    .map(
+                                        h =>
+                                            '<li>✓ ' +
+                                            escapeHTML(h) +
+                                            '</li>'
+                                    )
+                                    .join('')}
+                            </ul>
+
+                        </div>
+
+                        ${renderVideo(item.video)}
+
+                        <div class="section">
+
+                            <h2>📸 User Photos</h2>
+
+                            <input
+                                type="file"
+                                id="photoInput"
+                                accept="image/*">
+
+                            <div class="upload-row">
+
+                                <button
+                                    id="uploadBtn"
+                                    class="action-btn back-btn">
+                                    Upload Photo
+                                </button>
+
+                            </div>
+
+                            <div
+                                id="photoGrid"
+                                class="photo-grid">
+                            </div>
+
+                        </div>
+
+                        <div class="section">
+
+                            <h2>⭐ Reviews & Comments</h2>
+
+                            <input
+                                id="reviewName"
+                                placeholder="Your name">
+
+                            <textarea
+                                id="reviewText"
+                                placeholder="Write your comment...">
+                            </textarea>
+
+                            <div class="upload-row">
+
+                                <button
+                                    id="reviewBtn"
+                                    class="action-btn back-btn">
+                                    Post Comment
+                                </button>
+
+                            </div>
+
+                            <div id="reviewList"></div>
+
+                        </div>
+
+                        <div class="bottom-back">
+
+                            <a
+                                class="action-btn back-btn"
+                                href="./music.html?country=${encodeURIComponent(country)}">
+                                ← Back to Music & Dance
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <aside class="sidebar">
+
+                        <h3>🎵 Music & Dance</h3>
+
+                        <p>
+                            <strong>Country:</strong>
+                            ${escapeHTML(country)}
+                        </p>
+
+                        <p>
+                            <strong>Art Form:</strong>
+                            ${escapeHTML(musicKey)}
+                        </p>
+
+                        <p>
+                            <strong>Photo Source:</strong>
+                            Wikimedia Commons
+                        </p>
+
+                        <a href="./music.html?country=${encodeURIComponent(country)}">
+                            🎵 All Music & Dance
+                        </a>
+
+                        <a href="./country.html?country=${encodeURIComponent(country)}">
+                            🌍 ${escapeHTML(country)}
+                        </a>
+
+                    </aside>
+
+                </div>
+            `;
+
+            document.getElementById('likeBtn').onclick = () => {
+                const v =
+                    localStorage.getItem(
+                        storageKey('liked')
+                    ) === 'true';
+
+                localStorage.setItem(
+                    storageKey('liked'),
+                    String(!v)
+                );
+
+                render();
+            };
+
+            document.getElementById('wishBtn').onclick = () => {
+                const v =
+                    localStorage.getItem(
+                        storageKey('wish')
+                    ) === 'true';
+
+                localStorage.setItem(
+                    storageKey('wish'),
+                    String(!v)
+                );
+
+                render();
+            };
+
+            document.getElementById('uploadBtn').onclick = () => {
+                const file =
+                    document.getElementById('photoInput')
+                        .files[0];
+
+                if (!file) {
+                    return alert(
+                        'Please choose an image first.'
+                    );
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = () => {
+                    const photos = JSON.parse(
+                        localStorage.getItem(
+                            storageKey('photos')
+                        ) || '[]'
+                    );
+
+                    if (photos.length >= 10) {
+                        return alert(
+                            'Maximum 10 photos allowed.'
+                        );
+                    }
+
+                    photos.push(reader.result);
+
+                    localStorage.setItem(
+                        storageKey('photos'),
+                        JSON.stringify(photos)
+                    );
+
+                    loadUserPhotos();
+
+                    document.getElementById(
+                        'photoInput'
+                    ).value = '';
+                };
+
+                reader.readAsDataURL(file);
+            };
+
+            document.getElementById('reviewBtn').onclick = () => {
+                const name =
+                    document.getElementById(
+                        'reviewName'
+                    ).value.trim() || 'Anonymous';
+
+                const text =
+                    document.getElementById(
+                        'reviewText'
+                    ).value.trim();
+
+                if (!text) {
+                    return alert(
+                        'Please write a comment.'
+                    );
+                }
+
+                const reviews = JSON.parse(
+                    localStorage.getItem(
+                        storageKey('reviews')
+                    ) || '[]'
+                );
+
+                reviews.unshift({
+                    name,
+                    text,
+                    date: new Date().toLocaleDateString()
+                });
+
+                localStorage.setItem(
+                    storageKey('reviews'),
+                    JSON.stringify(reviews)
+                );
+
+                document.getElementById(
+                    'reviewText'
+                ).value = '';
+
+                loadReviews();
+            };
+
+            loadUserPhotos();
+            loadReviews();
+        }
+
+        render();
+    </script>
+
+</body>
+</html>
